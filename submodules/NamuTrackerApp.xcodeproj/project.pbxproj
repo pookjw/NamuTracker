@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F30284828DB0A0800702FDD /* NamuTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4F30284E28DB0A0800702FDD /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		4F30283F28DB0A0800702FDD = {
 			isa = PBXGroup;
 			children = (
-				4F30284A28DB0A0800702FDD /* NamuTracker */,
+				4F30284A28DB0A0800702FDD /* NamuTrackerApp */,
 				4F30284928DB0A0800702FDD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,12 +51,12 @@
 		4F30284928DB0A0800702FDD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F30284828DB0A0800702FDD /* NamuTracker.app */,
+				4F30284828DB0A0800702FDD /* NamuTrackerApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4F30284A28DB0A0800702FDD /* NamuTracker */ = {
+		4F30284A28DB0A0800702FDD /* NamuTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
 				4F30286428DB0D3C00702FDD /* Assets.xcassets */,
@@ -70,15 +70,15 @@
 				4F30285228DB0A0800702FDD /* ViewController.m */,
 				4F30285D28DB0A0800702FDD /* main.m */,
 			);
-			path = NamuTracker;
+			path = NamuTrackerApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F30284728DB0A0800702FDD /* NamuTracker */ = {
+		4F30284728DB0A0800702FDD /* NamuTrackerApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F30286128DB0A0800702FDD /* Build configuration list for PBXNativeTarget "NamuTracker" */;
+			buildConfigurationList = 4F30286128DB0A0800702FDD /* Build configuration list for PBXNativeTarget "NamuTrackerApp" */;
 			buildPhases = (
 				4F30284428DB0A0800702FDD /* Sources */,
 				4F30284528DB0A0800702FDD /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = NamuTracker;
+			name = NamuTrackerApp;
 			productName = NamuTracker;
-			productReference = 4F30284828DB0A0800702FDD /* NamuTracker.app */;
+			productReference = 4F30284828DB0A0800702FDD /* NamuTrackerApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +107,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4F30284328DB0A0800702FDD /* Build configuration list for PBXProject "NamuTracker" */;
+			buildConfigurationList = 4F30284328DB0A0800702FDD /* Build configuration list for PBXProject "NamuTrackerApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -120,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F30284728DB0A0800702FDD /* NamuTracker */,
+				4F30284728DB0A0800702FDD /* NamuTrackerApp */,
 			);
 		};
 /* End PBXProject section */
@@ -276,7 +276,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
-				INFOPLIST_FILE = NamuTracker/Info.plist;
+				INFOPLIST_FILE = NamuTrackerApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -288,7 +288,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.inhouse.userland;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.app.userland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,7 +303,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
-				INFOPLIST_FILE = NamuTracker/Info.plist;
+				INFOPLIST_FILE = NamuTrackerApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -315,7 +315,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.inhouse.userland;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.app.userland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F30284328DB0A0800702FDD /* Build configuration list for PBXProject "NamuTracker" */ = {
+		4F30284328DB0A0800702FDD /* Build configuration list for PBXProject "NamuTrackerApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F30285F28DB0A0800702FDD /* Debug */,
@@ -334,7 +334,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F30286128DB0A0800702FDD /* Build configuration list for PBXNativeTarget "NamuTracker" */ = {
+		4F30286128DB0A0800702FDD /* Build configuration list for PBXNativeTarget "NamuTrackerApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F30286228DB0A0800702FDD /* Debug */,
