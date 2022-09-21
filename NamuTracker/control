@@ -2,7 +2,8 @@ Package: com.pookjw.namutracker
 Name: NamuTracker
 Version: 1.0
 Architecture: iphoneos-arm
-Description: An awesome application!
+Description: Hearthstone Deck Tracker
 Maintainer: Jinwoo Kim
 Author: Jinwoo Kim
 Section: Utilities
+Depends: firmware (>= 14.0), org.coolstar.libhooker, com.opa334.ccsupport, com.rpetrich.rocketbootstrap

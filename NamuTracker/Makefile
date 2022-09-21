@@ -1,12 +1,19 @@
-TARGET := iphone:clang:latest:14.8
+TARGET := iphone:clang:latest
 INSTALL_TARGET_PROCESSES = NamuTracker
+export ARCHS=arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
 APPLICATION_NAME = NamuTracker
 
-NamuTracker_FILES = $(wildcard *.m)
-NamuTracker_FRAMEWORKS = UIKit CoreGraphics
-NamuTracker_CFLAGS = -fobjc-arc
+$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -I$(THEOS_PROJECT_DIR)/headers
+$(APPLICATION_NAME)_FRAMEWORKS = UIKit CoreGraphics
+$(APPLICATION_NAME)_PRIVATE_FRAMEWORKS = AppSupport
+$(APPLICATION_NAME)_LIBRARIES = rocketbootstrap
+
+$(APPLICATION_NAME)_FILES = $(wildcard *.m)
 
 include $(THEOS_MAKE_PATH)/application.mk
+SUBPROJECTS += submodules/NamuTrackerHelper
+SUBPROJECTS += submodules/NamuTrackerCCModule
+include $(THEOS_MAKE_PATH)/aggregate.mk
