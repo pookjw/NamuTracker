@@ -4,9 +4,9 @@ export ARCHS=arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = NamuTrackerHelper
+TWEAK_NAME = NamuTrackerHSHelper
 
-$(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -I$(THEOS_PROJECT_DIR)/headers
+$(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -Wno-unused-function -I$(THEOS_PROJECT_DIR)/headers
 $(TWEAK_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(TWEAK_NAME)_PRIVATE_FRAMEWORKS = AppSupport
 $(TWEAK_NAME)_LIBRARIES = rocketbootstrap

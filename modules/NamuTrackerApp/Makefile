@@ -6,7 +6,7 @@ include $(THEOS)/makefiles/common.mk
 
 APPLICATION_NAME = NamuTrackerApp
 
-$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -I$(THEOS_PROJECT_DIR)/headers
+$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -Wno-unused-function -I$(THEOS_PROJECT_DIR)/headers
 $(APPLICATION_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(APPLICATION_NAME)_PRIVATE_FRAMEWORKS = AppSupport
 $(APPLICATION_NAME)_LIBRARIES = rocketbootstrap

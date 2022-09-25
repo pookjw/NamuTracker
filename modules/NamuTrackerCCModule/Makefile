@@ -7,7 +7,7 @@ include $(THEOS)/makefiles/common.mk
 BUNDLE_NAME = NamuTrackerCCModule
 
 $(BUNDLE_NAME)_BUNDLE_EXTENSION = bundle
-$(BUNDLE_NAME)_CFLAGS +=  -fobjc-arc -Wno-unused-variable -Wno-unused-function -I$(THEOS_PROJECT_DIR)/headers
+$(BUNDLE_NAME)_CFLAGS += -fobjc-arc -Wno-unused-variable -Wno-unused-function -I$(THEOS_PROJECT_DIR)/headers
 $(BUNDLE_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(BUNDLE_NAME)_PRIVATE_FRAMEWORKS = ControlCenterUIKit AppSupport
 $(BUNDLE_NAME)_LIBRARIES = rocketbootstrap

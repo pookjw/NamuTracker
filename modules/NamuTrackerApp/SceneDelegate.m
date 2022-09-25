@@ -16,6 +16,7 @@
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     UIWindow *window = [[UIWindow alloc] initWithWindowScene:windowScene];
+    window.backgroundColor = UIColor.clearColor;
     ViewController *viewController = [ViewController new];
     window.rootViewController = viewController;
     [window makeKeyAndVisible];
