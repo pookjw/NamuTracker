@@ -1,8 +1,6 @@
 #import <Foundation/Foundation.h>
-#import <OSLog/OSLog.h>
 #import <dlfcn.h>
 #import <libhooker/libhooker.h>
-#import <libhooker/libblackjack.h>
 #import <UnityFramework/UnityAppController.h>
 
 static void configure_log() {
