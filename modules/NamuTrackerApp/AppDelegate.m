@@ -16,7 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    ((void (*)(id, SEL, BOOL))objc_msgSend)(application, NSSelectorFromString(@"_setApplicationIsOpaque:"), NO);
     return YES;
 }
 
