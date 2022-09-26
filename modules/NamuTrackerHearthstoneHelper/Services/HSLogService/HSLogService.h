@@ -12,5 +12,7 @@ static NSString * const HSLogServiceHSCardUserInfoKey = @"HSLogServiceHSCardUser
 @property (class, readonly, strong) HSLogService *sharedInstance;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (void)configure;
+- (void)installCustomLogConfiguration;
+- (void)startObserving;
+- (void)stopObserving;
 @end
