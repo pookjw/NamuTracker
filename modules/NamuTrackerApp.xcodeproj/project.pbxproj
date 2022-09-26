@@ -11,8 +11,6 @@
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* ViewController.m */; };
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
-		4F30286B28DB0D3C00702FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F30286428DB0D3C00702FDD /* Assets.xcassets */; };
-		4F30287628DB4D8000702FDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F30287528DB4D8000702FDD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +22,7 @@
 		4F30285128DB0A0800702FDD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4F30285228DB0A0800702FDD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4F30285D28DB0A0800702FDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F30286428DB0D3C00702FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		4F30287328DB4D4800702FDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F30287528DB4D8000702FDD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +55,6 @@
 		4F30284A28DB0A0800702FDD /* NamuTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
-				4F30286428DB0D3C00702FDD /* Assets.xcassets */,
-				4F30287528DB4D8000702FDD /* LaunchScreen.storyboard */,
 				4F30287328DB4D4800702FDD /* Info.plist */,
 				4F30284B28DB0A0800702FDD /* AppDelegate.h */,
 				4F30284C28DB0A0800702FDD /* AppDelegate.m */,
@@ -130,8 +124,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F30286B28DB0D3C00702FDD /* Assets.xcassets in Resources */,
-				4F30287628DB4D8000702FDD /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

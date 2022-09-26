@@ -2,6 +2,7 @@
 #import <dlfcn.h>
 #import <libhooker/libhooker.h>
 #import <UnityFramework/UnityAppController.h>
+#import "HSLogService.h"
 
 static void configure_log() {
         NSString *configStr = @"[LoadingScreen]\n\
@@ -26,6 +27,7 @@ ScreenPrinting=false\n\
 static BOOL (*original_UnityAppController_application_willFinishLaunchingWithOptions)(UnityAppController *self, SEL selector, UIApplication *application, NSDictionary<UIApplicationLaunchOptionsKey, id> *launchOptions);
 static BOOL custom_UnityAppController_application_willFinishLaunchingWithOptions(UnityAppController *self, SEL selector, UIApplication *application, NSDictionary<UIApplicationLaunchOptionsKey, id> *launchOptions) {
     configure_log();
+    [HSLogService.sharedInstance configure];
     return original_UnityAppController_application_willFinishLaunchingWithOptions(self, selector, application, launchOptions);
 }
 
