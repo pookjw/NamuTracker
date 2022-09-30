@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NSNotificationName HSLogServiceNotificationName NS_TYPED_EXTENSIBLE_ENUM;
 static HSLogServiceNotificationName const HSLogServiceNotificationNameDidStartTheGame = @"HSLogServiceNotificationNameDidStartTheGame";
 static HSLogServiceNotificationName const HSLogServiceNotificationNameDidEndTheGame = @"HSLogServiceNotificationNameDidEndTheGame";
@@ -16,3 +18,5 @@ static NSString * const HSLogServiceRemovedAlternativeHSCardsUserInfoKey = @"HSL
 - (void)startObserving;
 - (void)stopObserving;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -4,34 +4,29 @@
 
 @implementation AlternativeHSCard
 
-- (instancetype)initWithCardId:(NSString *)cardId dbfId:(NSUInteger)dbfId name:(NSString *)name cost:(NSUInteger)cost {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [self init]) {
-        self->_objectVersion = 0;
+        NSString *cardId = dictionary[@"cardId"];
+
+        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        NSUInteger dbfId = [[numberFormatter numberFromString:dictionary[@"dbfId"]] unsignedIntegerValue];
+
+        self->_objectVersion = ALTERNATIVEHSCARD_LATEST_VERSION;
 
         self->_cardId = [cardId copy];
         self->_dbfId = dbfId;
-        self->_name = [name copy];
-        self->_cost = cost;
     }
 
     return self;
 }
 
-+ (instancetype)objectFromDictionary:(NSDictionary *)dictionary {
-    NSString *cardId = dictionary[@"cardId"];
-
-    NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
-    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-    NSUInteger dbfId = [[numberFormatter numberFromString:dictionary[@"dbfId"]] unsignedIntegerValue];
-    NSString *name = dictionary[@"name"];
-    NSUInteger cost = [(NSNumber *)dictionary[@"cost"] unsignedIntegerValue];
-
-    AlternativeHSCard *object = [[AlternativeHSCard alloc] initWithCardId:cardId dbfId:dbfId name:name cost:cost];
-    return object;
-}
-
 - (NSString *)description {
     return [[super description] stringByAppendingFormat:@" %@", self.propertiesDictionary];
+}
+
+- (NSUInteger)hash {
+    return self.cardId.hash;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -44,7 +39,7 @@
 }
 
 - (NSComparisonResult)compare:(AlternativeHSCard *)other {
-    return comparisonResultNullableValues(self.name, other.name, @selector(compare:));
+    return comparisonResultNullableValues(self.cardId, other.cardId, @selector(compare:));
 }
 
 #pragma mark - NSCopying
@@ -54,10 +49,9 @@
     
     if (copy) {
         AlternativeHSCard *_copy = (AlternativeHSCard *)copy;
+        
         _copy->_cardId = [self.cardId copyWithZone:zone];
         _copy->_dbfId = self.dbfId;
-        _copy->_name = [self.name copyWithZone:zone];
-        _copy->_cost = self.cost;
     }
 
     return copy;
@@ -71,12 +65,10 @@
     if (self) {
         // NSUInteger objectVersion = [coder decodeIntegerForKey:@"objectVersion"];
 
-        self->_objectVersion = 0;
+        self->_objectVersion = ALTERNATIVEHSCARD_LATEST_VERSION;
 
         self->_cardId = [[coder decodeObjectOfClass:[NSString class] forKey:@"cardId"] copy];
         self->_dbfId = [coder decodeIntegerForKey:@"dbfId"];
-        self->_name = [[coder decodeObjectOfClass:[NSString class] forKey:@"name"] copy];
-        self->_cost = [coder decodeIntegerForKey:@"cost"];
     }
 
     return self;
@@ -87,8 +79,6 @@
 
     [coder encodeObject:self.cardId forKey:@"cardId"];
     [coder encodeInteger:self.dbfId forKey:@"dbfId"];
-    [coder encodeObject:self.name forKey:@"name"];
-    [coder encodeInteger:self.cost forKey:@"cost"];
 }
 
 #pragma mark - NSSecureCoding

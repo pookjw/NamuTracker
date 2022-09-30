@@ -1,7 +1,6 @@
 #import "HSLogService.h"
-#import <UIKit/UIKit.h>
+#import "CardService.h"
 #import <NamuTracker/identifiers.h>
-#import "AlternativeHSCard.h"
 
 typedef NSString * HSLogServiceLogType NS_STRING_ENUM;
 static HSLogServiceLogType const HSLogServiceLogTypeZone = @"Zone";
@@ -10,17 +9,13 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 @interface HSLogService ()
 @property (strong) NSOperationQueue *timerQueue;
 @property (strong) NSOperationQueue *workQueue;
-@property (strong) NSTimer *timer;
+@property (strong) NSTimer * _Nullable timer;
 @property NSUInteger zoneLogCheckpoint;
 @property NSUInteger loadingScreenLogCheckpoint;
-@property (readonly, nonatomic) NSDictionary *allCardsDictionary;
+@property (strong) CardService *cardService;
 @end
 
-@implementation HSLogService {
-    NSDictionary *_allCardsDictionary;
-}
-
-@synthesize allCardsDictionary = _allCardsDictionary;
+@implementation HSLogService
 
 + (HSLogService *)sharedInstance {
     static HSLogService *sharedInstance = nil;
@@ -44,8 +39,11 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         workQueue.maxConcurrentOperationCount = 1;
         workQueue.qualityOfService = NSQualityOfServiceUtility;
 
+        CardService *cardService = [CardService new];
+
         self.timerQueue = timerQueue;
         self.workQueue = workQueue;
+        self.cardService = cardService;
     }
 
     return self;
@@ -72,7 +70,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
     [@[toURL, logsURL] enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([NSFileManager.defaultManager fileExistsAtPath:obj.path isDirectory:NULL]) {
-            NSError *error = nil;
+            NSError * _Nullable error = nil;
             [NSFileManager.defaultManager removeItemAtURL:obj error:&error];
             if (error) {
                 NSLog(@"%@", error);
@@ -80,7 +78,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         }
     }];
     
-    NSError *error = nil;
+    NSError * _Nullable error = nil;
     [NSFileManager.defaultManager copyItemAtURL:fromURL toURL:toURL error:&error];
     if (error) {
         NSLog(@"%@", error);
@@ -117,38 +115,6 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 - (void)stopObserving {
     [self.timer invalidate];
     self.timer = nil;
-}
-
-- (NSDictionary *)allCardsDictionary {
-    if (self->_allCardsDictionary) {
-        return self->_allCardsDictionary;
-    }
-
-    NSURL *allCardsURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLStringHearthstoneHelper] URLByAppendingPathComponent:@"all_cards"] URLByAppendingPathExtension:@"json"];
-    BOOL isDirectory = YES;
-    BOOL doesExist = [NSFileManager.defaultManager fileExistsAtPath:allCardsURL.path isDirectory:&isDirectory];
-
-    if (isDirectory || !doesExist) {
-        NSLog(@"%@ does not exist - this is an error.", allCardsURL);
-        return nil;
-    }
-
-    NSError *error = nil;
-    NSData *data = [[NSData alloc] initWithContentsOfURL:allCardsURL options:NSDataReadingUncached error:&error];
-    if (error) {
-        NSLog(@"An error occured: %@", error);
-        return nil;
-    }
-
-    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&error];
-    
-    if (error) {
-        NSLog(@"An error occured: %@", error);
-        return nil;
-    }
-
-    self->_allCardsDictionary = result;
-    return result;
 }
 
 - (void)triggeredTimer:(NSTimer *)timer {
@@ -219,23 +185,16 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
             if (cardId == nil) return;
 
-            [self.allCardsDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop1) {
-                [(NSArray *)obj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop2) {
-                    NSDictionary *dictionary = (NSDictionary *)obj;
+            AlternativeHSCard *alternativeHSCard = [self.cardService alternativeHSCardWithCardId:cardId];
+            [self.cardService hsCardWithAlternativeHSCard:alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
+                NSLog(@"HSCard: %@, NSError: %@", hsCard, error);
+            }];
 
-                    if ([cardId isEqualToString:dictionary[@"cardId"]]) {
-                        AlternativeHSCard *alternativeHSCard = [AlternativeHSCard objectFromDictionary:dictionary];
-
-                        if (didRemove) {
-                            [removedAlternativeHSCards addObject:alternativeHSCard];
-                        } else {
-                            [addedAlternativeHSCards addObject:alternativeHSCard];
-                        }
-                        *stop1 = YES;
-                        *stop2 = YES;
-                    }
-                }];
-             }];
+            if (didRemove) {
+                [removedAlternativeHSCards addObject:alternativeHSCard];
+            } else {
+                [addedAlternativeHSCards addObject:alternativeHSCard];
+            }
         }];
 
         NSDictionary *userInfo = @{
@@ -264,7 +223,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         return nil;
     }
 
-    NSError *error = nil;
+    NSError * _Nullable error = nil;
     NSData *logData = [[NSData alloc] initWithContentsOfURL:logURL options:NSDataReadingUncached error:&error];
     
     if (error) {
