@@ -88,7 +88,7 @@
     UIWindow * _Nullable __block previousKeyWindow = nil;
     
     if ([self.windowScene respondsToSelector:@selector(keyWindow)]) {
-        // iOS 15.0+ - seems like @available does not work with theos environment...
+        // iOS 15.0+ - seems like @available does not work on theos environment...
         previousKeyWindow = self.windowScene.keyWindow;
     } else {
         [self.windowScene.windows enumerateObjectsUsingBlock:^(UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
