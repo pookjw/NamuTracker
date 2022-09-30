@@ -8,7 +8,7 @@ $(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -Wno-unused-function -I $
 $(TWEAK_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(TWEAK_NAME)_PRIVATE_FRAMEWORKS = AppSupport
 $(TWEAK_NAME)_LIBRARIES = rocketbootstrap
-$(TWEAK_NAME)_FILES = $(shell find . -type f -name  "*.m")
+$(TWEAK_NAME)_FILES = $(shell find . -type f -name  "*.m") $(shell find $(THEOS_PROJECT_DIR)/common/sources -type f -name  "*.m")
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/tweak.mk

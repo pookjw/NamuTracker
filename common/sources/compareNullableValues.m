@@ -1,4 +1,4 @@
-#import "compareNullableValues.m"
+#import "compareNullableValues.h"
 #import <objc/message.h>
 
 BOOL compareNullableValues(id _Nullable lhs, id _Nullable rhs, SEL _Nonnull selector) {
@@ -9,7 +9,7 @@ BOOL compareNullableValues(id _Nullable lhs, id _Nullable rhs, SEL _Nonnull sele
     } else if ((lhs == nil) || (rhs == nil)) {
         result = NO;
     } else {
-        return (BOOL (*)(id, SEL, id)objc_msgSend)(lhs, selector, rhs);
+        result = ((BOOL (*)(id, SEL, id))objc_msgSend)(lhs, selector, rhs);
     }
     
     return result;
@@ -20,10 +20,12 @@ NSComparisonResult comparisonResultNullableValues(id _Nullable lhs, id _Nullable
     
     if ((lhs == nil) && (rhs == nil)) {
         result = NSOrderedSame;
-    } else if ((lhs == nil) || (rhs == nil)) {
-        result = NSOrderedSame;
+    } else if ((lhs == nil) && (rhs != nil)) {
+        result = NSOrderedAscending;
+    } else if ((lhs != nil) && (rhs == nil)) {
+        result = NSOrderedDescending;
     } else {
-        return (BOOL (*)(NSComparisonResult, SEL, id)objc_msgSend)(lhs, selector, rhs);
+        result = ((NSComparisonResult (*)(id, SEL, id))objc_msgSend)(lhs, selector, rhs);
     }
     
     return result;
