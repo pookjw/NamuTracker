@@ -236,8 +236,6 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
                     }
                 }];
              }];
-
-             NSLog(@"%@", obj);
         }];
 
         NSDictionary *userInfo = @{
