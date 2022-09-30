@@ -22,3 +22,4 @@ xcuserdata/
 .theos/
 packages/
 .DS_Store
+common/headers/NamuTracker/keys.h
