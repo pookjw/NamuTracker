@@ -136,11 +136,13 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
     NSArray<NSString *> *newLogStrings = [self newLogStringsForLogType:logType];
 
     if ([HSLogServiceLogTypeLoadingScreen isEqualToString:logType]) {
-        if ([newLogStrings containsObject:@"[LoadingScreen] Gameplay.Unload()"]) {
-            [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidEndTheGame object:self userInfo:nil];
-        } else if ([newLogStrings containsObject:@"[LoadingScreen] Gameplay.Start()"]) {
-            [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidStartTheGame object:self userInfo:nil];
-        }
+        [newLogStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj containsString:@"Gameplay.Unload()"]) {
+                [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidEndTheGame object:self userInfo:nil];
+            } else if ([obj containsString:@"Gameplay.Start()"]) {
+                [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidStartTheGame object:self userInfo:nil];
+            }
+        }];
     } else if ([HSLogServiceLogTypeZone isEqualToString:logType]) {
         NSMutableArray<AlternativeHSCard *> *addedAlternativeHSCards = [NSMutableArray<AlternativeHSCard *> new];
         NSMutableArray<AlternativeHSCard *> *removedAlternativeHSCards = [NSMutableArray<AlternativeHSCard *> new];

@@ -8,7 +8,7 @@
 @end
 
 @implementation CardService {
-    NSDictionary *_allCardsDictionary;
+    NSDictionary * _allCardsDictionary;
 }
 
 @synthesize allCardsDictionary = _allCardsDictionary;
