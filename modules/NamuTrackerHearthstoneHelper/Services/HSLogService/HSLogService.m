@@ -186,9 +186,6 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
             if (cardId == nil) return;
 
             AlternativeHSCard *alternativeHSCard = [self.cardService alternativeHSCardWithCardId:cardId];
-            [self.cardService hsCardWithAlternativeHSCard:alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
-                NSLog(@"HSCard: %@, NSError: %@", hsCard, error);
-            }];
 
             if (didRemove) {
                 [removedAlternativeHSCards addObject:alternativeHSCard];
@@ -205,7 +202,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         if ((addedAlternativeHSCards.count == 0) && (removedAlternativeHSCards.count == 0)) {
             return;
         }
-        NSLog(@"%@ %@", addedAlternativeHSCards, removedAlternativeHSCards);
+        
         [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidChangeCards object:self userInfo:userInfo];
     }
 }

@@ -54,6 +54,13 @@
     [self hsCardWithDbfId:alternativeHSCard.dbfId completionHandler:completionHandler];
 }
 
+- (void)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler {
+    // TODO
+    [self.hsAPIService hsDeckFromDeckCode:NamuTrackerDemoDeckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
+         completionHandler(hsDeck.hsCards, error);
+    }];
+}
+
 - (NSDictionary *)allCardsDictionary {
     if (self->_allCardsDictionary) {
         return self->_allCardsDictionary;

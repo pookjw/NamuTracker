@@ -16,6 +16,7 @@ static BlizzardAPI const BlizzardAPIGetCardBasePath = @"/hearthstone/cards";
 static BlizzardAPI const BlizzardAPIGetDeckBasePath = @"/hearthstone/deck";
 static BlizzardAPI const BlizzardAPIAccessTokenKey = @"access_token";
 static BlizzardAPI const BlizzardAPILocaleKey = @"locale";
+static BlizzardAPI const BlizzardAPICodeKey = @"code";
 
 @implementation HSAPIService
 
@@ -32,16 +33,14 @@ static BlizzardAPI const BlizzardAPILocaleKey = @"locale";
         components.host = BlizzardAPIAPIHost;
         components.path = [NSString stringWithFormat:@"%@/%@", BlizzardAPIGetCardBasePath, idOrSlug];
 
-        NSURLQueryItem *queryItem = [[NSURLQueryItem alloc] initWithName:BlizzardAPIAccessTokenKey value: accessToken];
-        components.queryItems = @[queryItem];
+        components.queryItems = @[
+            [[NSURLQueryItem alloc] initWithName:BlizzardAPIAccessTokenKey value:accessToken],
+            [[NSURLQueryItem alloc] initWithName:BlizzardAPILocaleKey value:@"en_US"] // TODO
+        ];
 
         NSURL *url = components.URL;
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         request.HTTPMethod = @"GET";
-        request.allHTTPHeaderFields = @{
-            BlizzardAPIAccessTokenKey: accessToken,
-            BlizzardAPILocaleKey: @"en_US" // TODO
-        };
 
         NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
         NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -67,8 +66,51 @@ static BlizzardAPI const BlizzardAPILocaleKey = @"locale";
     }];
 }
 
-- (void)hsCardsFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSCardsCompletionHandler)completionHandler {
+- (void)hsDeckFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler {
+    [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
+        if (error) {
+            completionHandler(nil, error);
+            return;
+        }
 
+        NSURLComponents *components = [NSURLComponents new];
+
+        components.scheme = @"https";
+        components.host = BlizzardAPIAPIHost;
+        components.path = BlizzardAPIGetDeckBasePath;
+
+        components.queryItems = @[
+            [[NSURLQueryItem alloc] initWithName:BlizzardAPIAccessTokenKey value: accessToken],
+            [[NSURLQueryItem alloc] initWithName:BlizzardAPILocaleKey value:@"en_US"], // TODO
+            [[NSURLQueryItem alloc] initWithName:BlizzardAPICodeKey value:deckCode]
+        ];
+
+        NSURL *url = components.URL;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+        request.HTTPMethod = @"GET";
+
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
+        NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                completionHandler(nil, error);
+                return;
+            }
+
+            NSError * _Nullable parseError = nil;
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&parseError];
+
+            if (parseError) {
+                completionHandler(nil, parseError);
+                return;
+            }
+
+            HSDeck *hsDeck = [[HSDeck alloc] initWithDictionary:dictionary];
+            completionHandler(hsDeck, nil);
+        }];
+
+        [task resume];
+        [session finishTasksAndInvalidate];
+    }];
 }
 
 - (void)accessTokenWithCompletionHandler:(void (^)(NSString * _Nullable accessToken, NSError * _Nullable error))completionHandler {

@@ -12,6 +12,7 @@ typedef void (^CardServiceHSCardsCompletionHandler)(NSArray<HSCard *> * _Nullabl
 - (void)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
 - (void)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
 - (void)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
+- (void)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

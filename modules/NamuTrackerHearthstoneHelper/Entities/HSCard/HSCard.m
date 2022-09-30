@@ -1,5 +1,6 @@
 #import "HSCard.h"
 #import <compareNullableValues.h>
+#import <nullSafetyHandler.h>
 #import "NSObject+propertiesDictionary.h"
 
 @implementation HSCard
@@ -7,18 +8,6 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [self init]) {
         self->_objectVersion = HSCARD_LATEST_VERSION;
-
-        id _Nullable (^nullSafetyHandler)(id _Nullable) = ^id _Nullable (id _Nullable object) {
-            if (object == nil) {
-                return nil;
-            }
-            
-            if ([object isEqual:[NSNull null]]) {
-                return nil;
-            } else {
-                return object;
-            }
-        };
 
         self->_dbfId = [nullSafetyHandler(dictionary[@"id"]) copy];
         self->_collectible = [nullSafetyHandler(dictionary[@"collectible"]) copy];
