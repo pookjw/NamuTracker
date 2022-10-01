@@ -6,8 +6,7 @@
     BOOL __block pointInside = NO;
     
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (!(obj.isUserInteractionEnabled)) return;
-        if (CGRectContainsPoint(obj.frame, point)) {
+        if (CGRectContainsPoint(obj.frame, point) && (obj.isUserInteractionEnabled)) {
             pointInside = YES;
             *stop = YES;
         }

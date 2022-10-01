@@ -3,8 +3,6 @@
 
 @interface TrackingWindow ()
 @property (strong) TrackingRootViewController *trackingRootViewController;
-@property (weak) UIWindow * _Nullable boundsObservationWindow;
-@property void *keyWindowBoundsObservationContext;
 @end
 
 @implementation TrackingWindow
@@ -15,20 +13,6 @@
     }
 
     return self;
-}
-
-- (void)dealloc {
-    [self.boundsObservationWindow removeObserver:self forKeyPath:@"bounds" context:self.keyWindowBoundsObservationContext];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if (self.keyWindowBoundsObservationContext == context) {
-        [NSOperationQueue.mainQueue addOperationWithBlock:^{
-            [self setCorrectFrame];
-        }];
-    } else {
-        return [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
@@ -71,17 +55,7 @@
 
 - (void)setAttributes {
     TrackingRootViewController *trackingRootViewController = [TrackingRootViewController new];
-    // for passthrough touch, I don't use `-[UIWindow setRootViewContrller:]`
-    [self addSubview:trackingRootViewController.view];
-    trackingRootViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [trackingRootViewController.view.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [trackingRootViewController.view.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [trackingRootViewController.view.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [trackingRootViewController.view.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
-    ]];
-    self.trackingRootViewController = trackingRootViewController;
-    
+    self.rootViewController = trackingRootViewController;
     self.windowLevel = UIWindowLevelAlert;
     [self dismiss:NO];
 
@@ -99,26 +73,8 @@
         }];
     }
 
-    [self setCorrectFrame];
-    [previousKeyWindow addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:self.keyWindowBoundsObservationContext];
-    self.boundsObservationWindow = previousKeyWindow;
-
     [self makeKeyAndVisible];
     [previousKeyWindow makeKeyWindow];
-}
-
-- (void)setCorrectFrame {
-    if (self.boundsObservationWindow == nil) return;
-
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-
-    if ((orientation & UIDeviceOrientationLandscapeLeft) || (orientation & UIDeviceOrientationLandscapeRight)) {
-        CGRect frame = self.boundsObservationWindow.frame;
-        CGRect convertedFrame = CGRectMake(0.0f, 0.0f, frame.size.height, frame.size.width);
-        self.frame = convertedFrame;
-    } else {
-        self.frame = self.boundsObservationWindow.frame;
-    }
 }
 
 @end
