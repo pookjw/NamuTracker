@@ -15,10 +15,6 @@
     return self;
 }
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    return NO;
-}
-
 - (void)present:(BOOL)animated {
     self.userInteractionEnabled = YES;
 
