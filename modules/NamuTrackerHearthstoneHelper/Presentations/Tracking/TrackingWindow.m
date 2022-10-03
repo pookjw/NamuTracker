@@ -1,5 +1,6 @@
 #import "TrackingWindow.h"
 #import "TrackingRootViewController.h"
+#import <checkAvailability.h>
 
 @interface TrackingWindow ()
 @property (strong) TrackingRootViewController *trackingRootViewController;
@@ -15,20 +16,24 @@
     return self;
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    return [self.rootViewController.view pointInside:point withEvent:event];
+}
+
 - (void)present:(BOOL)animated {
     self.userInteractionEnabled = YES;
 
     __weak typeof(self) weakSelf = self;
-    void (^block)() = ^{
+    void (^changesHandler)() = ^{
          weakSelf.layer.opacity = 1.0f;
     };
 
     if (animated) {
         [UIView animateWithDuration:0.3f animations:^{
-            block();
+            changesHandler();
         }];
     } else {
-        block();
+        changesHandler();
     }
 }
 
@@ -36,16 +41,16 @@
     self.userInteractionEnabled = NO;
     
     __weak typeof(self) weakSelf = self;
-    void (^block)() = ^{
-         weakSelf.layer.opacity = 0.0f;
+    void (^changesBlock)() = ^{
+        weakSelf.alpha = 0.0f;
     };
 
     if (animated) {
-        [UIView animateWithDuration:0.3f animations:^{
-            block();
+        [UIView animateWithDuration:0.2f animations:^{
+            changesBlock();
         }];
     } else {
-        block();
+        changesBlock();
     }
 }
 
@@ -57,8 +62,7 @@
 
     UIWindow * _Nullable __block previousKeyWindow = nil;
     
-    if ([self.windowScene respondsToSelector:@selector(keyWindow)]) {
-        // iOS 15.0+ - seems like @available does not work on theos environment...
+    if (checkAvailability(@"15.0")) {
         previousKeyWindow = self.windowScene.keyWindow;
     } else {
         [self.windowScene.windows enumerateObjectsUsingBlock:^(UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -71,6 +75,8 @@
 
     [self makeKeyAndVisible];
     [previousKeyWindow makeKeyWindow];
+
+    self.trackingRootViewController = trackingRootViewController;
 }
 
 @end
