@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (NSComparisonResult)compare:(HSCard *)other;
 @end
 
 NS_ASSUME_NONNULL_END

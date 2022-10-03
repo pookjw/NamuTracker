@@ -42,6 +42,10 @@
     [self setAttributes];
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)configureTrackingListViewController {
     TrackingListViewController *trackingListViewController = [TrackingListViewController new];
     [self addChildViewController:trackingListViewController];

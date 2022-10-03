@@ -3,10 +3,9 @@
 
 @implementation TrackingListCardContentConfiguration
 
-- (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount {
+- (instancetype)initWithItemModel:(TrackingListItemModel *)itemModel {
     if (self = [self init]) {
-        self->_hsCard = [hsCard copy];
-        self->_hsCardCount = [hsCardCount copy];
+        self->_itemModel = [itemModel copy];
     }
 
     return self;
@@ -18,8 +17,7 @@
     if (copy) {
         TrackingListCardContentConfiguration *_copy = (TrackingListCardContentConfiguration *)copy;
 
-        _copy->_hsCard = [self.hsCard copyWithZone:zone];
-        _copy->_hsCardCount = [self.hsCardCount copyWithZone:zone];
+        _copy->_itemModel = [self.itemModel copyWithZone:zone];
     }
     
     return copy;

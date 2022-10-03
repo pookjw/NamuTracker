@@ -54,18 +54,18 @@
 }
 
 - (NSComparisonResult)compare:(HSCard *)other {
-    if (self.manaCost < other.manaCost) {
-        return NSOrderedAscending;
-    } else if (self.manaCost > other.manaCost) {
-        return NSOrderedDescending;
-    } else {
-        NSComparisonResult result = comparisonResultNullableValues(self.name, other.name, @selector(compare:));
+    NSComparisonResult manaCostComparisonResult = comparisonResultNullableValues(self.manaCost, other.manaCost, @selector(compare:));
 
-        if (result == NSOrderedSame) {
-            return [self.dbfId compare:other.dbfId];
+    if (manaCostComparisonResult == NSOrderedSame) {
+        NSComparisonResult nameComparisonResult = comparisonResultNullableValues(self.name, other.name, @selector(compare:));
+
+        if (nameComparisonResult == NSOrderedSame) {
+            return comparisonResultNullableValues(self.dbfId, other.dbfId, @selector(compare:));
         } else {
-            return result;
+            return nameComparisonResult;
         }
+    } else {
+        return manaCostComparisonResult;
     }
 }
 

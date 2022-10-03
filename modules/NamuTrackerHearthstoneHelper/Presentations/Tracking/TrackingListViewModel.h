@@ -7,8 +7,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef UICollectionViewDiffableDataSource<TrackingListSectionModel *, TrackingListItemModel *> TrackingListDataSource;
 
 @interface TrackingListViewModel : NSObject
-// + (instancetype)new NS_UNAVAILABLE;
-// - (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDataSource:(TrackingListDataSource *)dataSource;
 @end
 

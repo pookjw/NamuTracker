@@ -7,4 +7,4 @@ static NamuTrackerIdentifier const NamuTrackerIdentifierAppUserland = @"com.pook
 typedef NSString * NamuTrackerApplicationSupportURLString NS_STRING_ENUM;
 static NamuTrackerApplicationSupportURLString const NamuTrackerApplicationSupportURLStringHearthstoneHelper = @"/Library/Application Support/NamuTrackerHearthstoneHelper";
 
-static NSString * const NamuTrackerDemoDeckCode = @"AAEBAa0GCNYKtxeJzQKK9AOH9wPF+QPY+QObyQQLnAK0AuUExxe/+QPK+QPQ+QOhoASUtASk1AS+3AQA";
+static NSString * const NamuTrackerDemoDeckCode = @"AAEBAa0GCNYKtxeJzQK/4AOK9AOH9wPF+QPY+QMLnAK0AuUExxe/+QPK+QPQ+QOhoASUtASk1AS+3AQA";
