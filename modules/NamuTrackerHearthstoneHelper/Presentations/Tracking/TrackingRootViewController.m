@@ -35,13 +35,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureTrackingListViewController];
+    [self configureToggleButtonBlurView];
+    [self configureToggleButtonVibrancyView];
+    [self configureToggleButton];
     [self setAttributes];
-    [self hideTrackingListView:NO];
 }
 
-- (void)setAttributes {
-    self.view.backgroundColor = UIColor.clearColor;
-
+- (void)configureTrackingListViewController {
     TrackingListViewController *trackingListViewController = [TrackingListViewController new];
     [self addChildViewController:trackingListViewController];
 
@@ -55,9 +56,10 @@
     ]];
 
     self.trackingListViewController = trackingListViewController;
+}
 
-    //
-UIVisualEffectView *toggleButtonBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+- (void)configureToggleButtonBlurView {
+    UIVisualEffectView *toggleButtonBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
     toggleButtonBlurView.layer.masksToBounds = YES;
     toggleButtonBlurView.layer.cornerCurve = kCACornerCurveContinuous;
     [toggleButtonBlurView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:self.toggleButtonBlurViewBoundsObservationContext];
@@ -68,20 +70,26 @@ UIVisualEffectView *toggleButtonBlurView = [[UIVisualEffectView alloc] initWithE
         [toggleButtonBlurView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8.0f],
         [toggleButtonBlurView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-8.0f]
     ]];
+
+    self.toggleButtonBlurView = toggleButtonBlurView;
+}
+
+- (void)configureToggleButtonVibrancyView {
+    UIVisualEffectView *toggleButtonVibrancyView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.toggleButtonBlurView.effect]];
     
-    UIVisualEffectView *toggleButtonVibrancyView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)toggleButtonBlurView.effect]];
-    
-    [toggleButtonBlurView.contentView addSubview:toggleButtonVibrancyView];
+    [self.toggleButtonBlurView.contentView addSubview:toggleButtonVibrancyView];
     toggleButtonVibrancyView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [toggleButtonVibrancyView.topAnchor constraintEqualToAnchor:toggleButtonBlurView.contentView.topAnchor],
-        [toggleButtonVibrancyView.leadingAnchor constraintEqualToAnchor:toggleButtonBlurView.contentView.leadingAnchor],
-        [toggleButtonVibrancyView.trailingAnchor constraintEqualToAnchor:toggleButtonBlurView.contentView.trailingAnchor],
-        [toggleButtonVibrancyView.bottomAnchor constraintEqualToAnchor:toggleButtonBlurView.contentView.bottomAnchor]
+        [toggleButtonVibrancyView.topAnchor constraintEqualToAnchor:self.toggleButtonBlurView.contentView.topAnchor],
+        [toggleButtonVibrancyView.leadingAnchor constraintEqualToAnchor:self.toggleButtonBlurView.contentView.leadingAnchor],
+        [toggleButtonVibrancyView.trailingAnchor constraintEqualToAnchor:self.toggleButtonBlurView.contentView.trailingAnchor],
+        [toggleButtonVibrancyView.bottomAnchor constraintEqualToAnchor:self.toggleButtonBlurView.contentView.bottomAnchor]
     ]];
-    
-    //
-    
+
+    self.toggleButtonVibrancyView = toggleButtonVibrancyView;
+}
+
+- (void)configureToggleButton {
     __weak typeof(self) weakSelf = self;
     UIAction *toggleButtonAction = [UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {
         [weakSelf toggleTrackingListView:YES];
@@ -106,20 +114,21 @@ UIVisualEffectView *toggleButtonBlurView = [[UIVisualEffectView alloc] initWithE
 #pragma clang diagnostic pop
     }
     
-    [toggleButtonVibrancyView.contentView addSubview:toggleButton];
+    [self.toggleButtonVibrancyView.contentView addSubview:toggleButton];
     toggleButton.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [toggleButton.topAnchor constraintEqualToAnchor:toggleButtonVibrancyView.contentView.topAnchor],
-        [toggleButton.leadingAnchor constraintEqualToAnchor:toggleButtonVibrancyView.contentView.leadingAnchor],
-        [toggleButton.trailingAnchor constraintEqualToAnchor:toggleButtonVibrancyView.contentView.trailingAnchor],
-        [toggleButton.bottomAnchor constraintEqualToAnchor:toggleButtonVibrancyView.contentView.bottomAnchor]
+        [toggleButton.topAnchor constraintEqualToAnchor:self.toggleButtonVibrancyView.contentView.topAnchor],
+        [toggleButton.leadingAnchor constraintEqualToAnchor:self.toggleButtonVibrancyView.contentView.leadingAnchor],
+        [toggleButton.trailingAnchor constraintEqualToAnchor:self.toggleButtonVibrancyView.contentView.trailingAnchor],
+        [toggleButton.bottomAnchor constraintEqualToAnchor:self.toggleButtonVibrancyView.contentView.bottomAnchor]
     ]];
-    
-    //
-    
-    self.toggleButtonBlurView = toggleButtonBlurView;
-    self.toggleButtonVibrancyView = toggleButtonVibrancyView;
+
     self.toggleButton = toggleButton;
+}
+
+- (void)setAttributes {
+    self.view.backgroundColor = UIColor.clearColor;
+    [self hideTrackingListView:NO];
 }
 
 - (void)toggleTrackingListView:(BOOL)animated {

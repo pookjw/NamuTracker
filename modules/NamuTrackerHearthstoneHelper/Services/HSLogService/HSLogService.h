@@ -12,6 +12,7 @@ static NSString * const HSLogServiceRemovedAlternativeHSCardsUserInfoKey = @"HSL
 
 @interface HSLogService : NSObject
 @property (class, readonly, strong, nonatomic) HSLogService *sharedInstance;
+@property (readonly, nonatomic) BOOL inGame;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (void)installCustomLogConfiguration;

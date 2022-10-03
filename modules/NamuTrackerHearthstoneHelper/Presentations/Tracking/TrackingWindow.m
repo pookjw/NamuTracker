@@ -10,6 +10,7 @@
 
 - (instancetype)initWithWindowScene:(UIWindowScene *)windowScene {
     if (self = [super initWithWindowScene:windowScene]) {
+        [self configureTrackingRootViewController];
         [self setAttributes];
     }
 
@@ -54,11 +55,14 @@
     }
 }
 
-- (void)setAttributes {
+- (void)configureTrackingRootViewController {
     TrackingRootViewController *trackingRootViewController = [TrackingRootViewController new];
     self.rootViewController = trackingRootViewController;
+    self.trackingRootViewController = trackingRootViewController;
+}
+
+- (void)setAttributes {
     self.windowLevel = UIWindowLevelAlert;
-    [self dismiss:NO];
 
     UIWindow * _Nullable __block previousKeyWindow = nil;
     
@@ -76,7 +80,7 @@
     [self makeKeyAndVisible];
     [previousKeyWindow makeKeyWindow];
 
-    self.trackingRootViewController = trackingRootViewController;
+    [self dismiss:NO];
 }
 
 @end

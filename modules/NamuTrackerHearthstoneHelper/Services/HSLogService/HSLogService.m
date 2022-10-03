@@ -138,8 +138,12 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
     if ([HSLogServiceLogTypeLoadingScreen isEqualToString:logType]) {
         [newLogStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj containsString:@"Gameplay.Unload()"]) {
+                // TODO: Refactor
+                self->_inGame = NO;
                 [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidEndTheGame object:self userInfo:nil];
             } else if ([obj containsString:@"Gameplay.Start()"]) {
+                // TODO: Refactor
+                self->_inGame = YES;
                 [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidStartTheGame object:self userInfo:nil];
             }
         }];
