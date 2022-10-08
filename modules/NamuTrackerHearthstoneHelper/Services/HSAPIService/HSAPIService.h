@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "HSCard.h"
 #import "HSDeck.h"
+#import "CancellableObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -8,9 +9,9 @@ typedef void (^HSAPIServiceHSCardCompletionHandler)(HSCard * _Nullable hsCard, N
 typedef void (^HSAPIServiceHSDeckCompletionHandler)(HSDeck * _Nullable hsDeck, NSError * _Nullable error);
 
 @interface HSAPIService : NSObject
-- (void)hsCardWithIdOrSlug:(NSString *)idOrSlug
+- (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug
               completionHandler:(HSAPIServiceHSCardCompletionHandler)completionHandler;
-- (void)hsDeckFromDeckCode:(NSString *)deckCode
+- (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode
          completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler;
 @end
 

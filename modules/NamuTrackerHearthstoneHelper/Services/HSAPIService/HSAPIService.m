@@ -20,8 +20,10 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 
 @implementation HSAPIService
 
-- (void)hsCardWithIdOrSlug:(NSString *)idOrSlug completionHandler:(HSAPIServiceHSCardCompletionHandler)completionHandler {
-    [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
+- (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug completionHandler:(HSAPIServiceHSCardCompletionHandler)completionHandler {
+    NSURLSessionTask * _Nullable __block curentTask = nil;
+
+    curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {
             completionHandler(nil, error);
             return;
@@ -61,13 +63,23 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             completionHandler(hsCard, nil);
         }];
 
+        curentTask = task;
+
         [task resume];
         [session finishTasksAndInvalidate];
     }];
+
+    CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
+        [curentTask cancel];
+    }];
+
+    return cancellable;
 }
 
-- (void)hsDeckFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler {
-    [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
+- (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler {
+    NSURLSessionTask * _Nullable __block curentTask = nil;
+
+    curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {
             completionHandler(nil, error);
             return;
@@ -108,12 +120,20 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             completionHandler(hsDeck, nil);
         }];
 
+        curentTask = task;
+
         [task resume];
         [session finishTasksAndInvalidate];
     }];
+
+    CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
+        [curentTask cancel];
+    }];
+
+    return cancellable;
 }
 
-- (void)accessTokenWithCompletionHandler:(void (^)(NSString * _Nullable accessToken, NSError * _Nullable error))completionHandler {
+- (NSURLSessionTask *)accessTokenWithCompletionHandler:(void (^)(NSString * _Nullable accessToken, NSError * _Nullable error))completionHandler {
     NSURLComponents *components = [NSURLComponents new];
 
     components.scheme = @"https";
@@ -151,6 +171,8 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 
     [task resume];
     [session finishTasksAndInvalidate];
+
+    return task;
 }
 
 @end

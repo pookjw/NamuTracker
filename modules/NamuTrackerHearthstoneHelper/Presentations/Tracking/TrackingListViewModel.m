@@ -5,6 +5,7 @@
 #import <checkAvailability.h>
 #import <compareNullableValues.h>
 #import "NSDiffableDataSourceSnapshot+Sort.h"
+#import "CancellableBag.h"
 
 @interface NSDiffableDataSourceSnapshot (SortTrackingListModels)
 - (void)sortTrackingListModels;
@@ -56,6 +57,7 @@
 @interface TrackingListViewModel ()
 @property (strong) TrackingListDataSource *dataSource;
 @property (strong) NSOperationQueue *dataSourceQueue;
+@property (strong) CancellableBag *cancellableBag;
 @property (strong) HSLogService *hsLogService;
 @property (strong) CardService *cardService;
 @end
@@ -67,6 +69,7 @@
         self.dataSource = dataSource;
 
         [self configureDataSourceQueue];
+        [self configureCancellableBag];
         [self configureHSLogService];
         [self configureCardService];
 
@@ -87,6 +90,11 @@
     self.dataSourceQueue = dataSourceQueue;
 }
 
+- (void)configureCancellableBag {
+    CancellableBag *cancellableBag = [CancellableBag new];
+    self.cancellableBag = cancellableBag;
+}
+
 - (void)configureHSLogService {
     HSLogService *hsLogService = HSLogService.sharedInstance;
     self.hsLogService = hsLogService;
@@ -105,16 +113,23 @@
 
 - (void)loadItems {
     [self.dataSourceQueue addOperationWithBlock:^{
+        [self.cancellableBag removeAllCancellables];
+
         NSArray<HSCard *> * _Nullable __block hsCards = nil;
         NSError * _Nullable __block error = nil;
 
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [self.cardService hsCardsFromSelectedDeckWithCompletionHandler:^(NSArray<HSCard *> * _Nullable _hsCards, NSError * _Nullable _error) {
+        CancellableObject *cancellable = [self.cardService hsCardsFromSelectedDeckWithCompletionHandler:^(NSArray<HSCard *> * _Nullable _hsCards, NSError * _Nullable _error) {
             hsCards = _hsCards;
             error = _error;
             dispatch_semaphore_signal(semaphore);
         }];
+        
+        [self.cancellableBag addCancellable:cancellable];
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        [self.cancellableBag removeCancellable:cancellable];
+
+        if (error) return;
 
         NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
 
@@ -153,6 +168,8 @@
 
 - (void)unloadItems {
     [self.dataSourceQueue addOperationWithBlock:^{
+        [self.cancellableBag removeAllCancellables];
+
         NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
 
         if (checkAvailability(@"15.0")) {
@@ -244,8 +261,14 @@
 
         // download unknown cards (AlternativeHSCard) and apply them.
         [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.cardService hsCardWithAlternativeHSCard:obj.alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
+            CancellableObject *cancellable;
+
+            cancellable = [self.cardService hsCardWithAlternativeHSCard:obj.alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
                 [self.dataSourceQueue addOperationWithBlock:^{
+                    @synchronized(self) {
+                        [self.cancellableBag removeCancellable:cancellable];
+                    }
+
                     NSDiffableDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 
                     TrackingListSectionModel * _Nullable __block cardsSectionModel = nil;
@@ -280,6 +303,8 @@
                     [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:nil];
                 }];
             }];
+
+            [self.cancellableBag addCancellable:cancellable];
         }];
 
         //

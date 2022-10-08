@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "HSCard.h"
 #import "AlternativeHSCard.h"
+#import "CancellableObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,10 +10,10 @@ typedef void (^CardServiceHSCardsCompletionHandler)(NSArray<HSCard *> * _Nullabl
 
 @interface CardService : NSObject
 - (AlternativeHSCard *)alternativeHSCardWithCardId:(NSString *)cardId;
-- (void)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
-- (void)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
-- (void)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
-- (void)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler;
+- (CancellableObject *)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
+- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
+- (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler;
+- (CancellableObject *)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

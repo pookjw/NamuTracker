@@ -41,22 +41,22 @@
     return result;
 }
 
-- (void)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
+- (CancellableObject *)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
     AlternativeHSCard *alternativeHSCard = [self alternativeHSCardWithCardId:cardId];
-    [self hsCardWithAlternativeHSCard:alternativeHSCard completionHandler:completionHandler];
+    return [self hsCardWithAlternativeHSCard:alternativeHSCard completionHandler:completionHandler];
 }
 
-- (void)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
-    [self.hsAPIService hsCardWithIdOrSlug:[@(dbfId) stringValue] completionHandler:completionHandler];
+- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
+    return [self.hsAPIService hsCardWithIdOrSlug:[@(dbfId) stringValue] completionHandler:completionHandler];
 }
 
-- (void)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
-    [self hsCardWithDbfId:alternativeHSCard.dbfId completionHandler:completionHandler];
+- (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
+    return [self hsCardWithDbfId:alternativeHSCard.dbfId completionHandler:completionHandler];
 }
 
-- (void)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler {
+- (CancellableObject *)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler {
     // TODO
-    [self.hsAPIService hsDeckFromDeckCode:NamuTrackerDemoDeckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
+    return [self.hsAPIService hsDeckFromDeckCode:NamuTrackerDemoDeckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
          completionHandler(hsDeck.hsCards, error);
     }];
 }
