@@ -1,0 +1,27 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean & Build",
+            "type": "shell",
+            "command": "make clean && make package",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Clean & Install",
+            "type": "shell",
+            "command": "make clean && make package install"
+        }
+        {
+            "label": "Install",
+            "type": "shell",
+            "command": "make package install"
+        }
+    ]
+}
