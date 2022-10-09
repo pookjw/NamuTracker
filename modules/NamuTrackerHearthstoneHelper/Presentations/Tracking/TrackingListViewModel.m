@@ -4,6 +4,7 @@
 #import "AlternativeHSCard.h"
 #import <checkAvailability.h>
 #import <compareNullableValues.h>
+#import <UICollectionViewDiffableDataSource+applySnapshotAndWait.h>
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "CancellableBag.h"
 
@@ -149,9 +150,9 @@
         [snapshot sortTrackingListModels];
 
         if (checkAvailability(@"15.0")) {
-            [self.dataSource applySnapshotUsingReloadData:snapshot completion:nil];
+            [self.dataSource applySnapshotUsingReloadDataAndWait:snapshot completion:nil];
         } else {
-            [self.dataSource applySnapshot:snapshot animatingDifferences:NO completion:nil];
+            [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:NO completion:nil];
         }  
     }];
 }
@@ -163,9 +164,9 @@
         NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
 
         if (checkAvailability(@"15.0")) {
-            [self.dataSource applySnapshotUsingReloadData:snapshot completion:nil];
+            [self.dataSource applySnapshotUsingReloadDataAndWait:snapshot completion:nil];
         } else {
-            [self.dataSource applySnapshot:snapshot animatingDifferences:NO completion:nil];
+            [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:NO completion:nil];
         }
     }];
 }
@@ -342,7 +343,7 @@
 
                     [snapshot sortTrackingListModels];
                     
-                    [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:nil];
+                    [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:YES completion:nil];
                 }];
             }];
 
@@ -351,7 +352,7 @@
 
         //
 
-        [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:nil];
+        [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:YES completion:nil];
     }];
 }
 
