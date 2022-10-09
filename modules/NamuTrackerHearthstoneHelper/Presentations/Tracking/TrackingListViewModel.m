@@ -218,14 +218,17 @@
                         if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
                             isValid = YES;
                         }
+                        break;
                     }
                     case TrackingListItemModelTypeAlternativeHSCard: {
                         if (obj1.dbfId == obj2.alternativeHSCard.dbfId) {
                             isValid = YES;
                         }
+                        break;
                     }
                     default: {
                         isValid = NO;
+                        break;
                     }
                 }
 
@@ -268,14 +271,17 @@
                         if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
                             isValid = YES;
                         }
+                        break;
                     }
                     case TrackingListItemModelTypeAlternativeHSCard: {
                         if (obj1.dbfId == obj2.alternativeHSCard.dbfId) {
                             isValid = YES;
                         }
+                        break;
                     }
                     default: {
                         isValid = NO;
+                        break;
                     }
                 }
 
