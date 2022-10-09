@@ -32,18 +32,9 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
     if (self = [super init]) {
         NSLog(@"Started HSLogService with %@", self);
 
-        NSOperationQueue *timerQueue = [NSOperationQueue new];
-        timerQueue.qualityOfService = NSQualityOfServiceBackground;
-
-        NSOperationQueue *workQueue = [NSOperationQueue new];
-        workQueue.maxConcurrentOperationCount = 1;
-        workQueue.qualityOfService = NSQualityOfServiceUtility;
-
-        CardService *cardService = [CardService new];
-
-        self.timerQueue = timerQueue;
-        self.workQueue = workQueue;
-        self.cardService = cardService;
+        [self configureTimerQueue];
+        [self configureWorkQueue];
+        [self configureCardService];
     }
 
     return self;
@@ -115,6 +106,24 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 - (void)stopObserving {
     [self.timer invalidate];
     self.timer = nil;
+}
+
+- (void)configureTimerQueue {
+    NSOperationQueue *timerQueue = [NSOperationQueue new];
+    timerQueue.qualityOfService = NSQualityOfServiceBackground;
+    self.timerQueue = timerQueue;
+}
+
+- (void)configureWorkQueue {
+    NSOperationQueue *workQueue = [NSOperationQueue new];
+    workQueue.maxConcurrentOperationCount = 1;
+    workQueue.qualityOfService = NSQualityOfServiceUtility;
+    self.workQueue = workQueue;
+}
+
+- (void)configureCardService {
+    CardService *cardService = [CardService new];
+    self.cardService = cardService;
 }
 
 - (void)triggeredTimer:(NSTimer *)timer {

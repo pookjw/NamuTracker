@@ -27,8 +27,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        HSLogService *hsLogService = HSLogService.sharedInstance;
-        self.hsLogService = hsLogService;
+        [self configureHSLogService];
     }
 
     return self;
@@ -61,6 +60,11 @@
     TrackingWindow *trackingWindow = [[TrackingWindow alloc] initWithWindowScene:windowScene];
     self->_trackingWindow = trackingWindow;
     return trackingWindow;
+}
+
+- (void)configureHSLogService {
+    HSLogService *hsLogService = HSLogService.sharedInstance;
+    self.hsLogService = hsLogService;
 }
 
 - (void)receivedDidStartTheGameNotification:(NSNotification *)notification {

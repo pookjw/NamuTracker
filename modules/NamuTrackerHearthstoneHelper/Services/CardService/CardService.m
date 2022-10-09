@@ -15,8 +15,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        HSAPIService *hsAPIService = [HSAPIService new];
-        self.hsAPIService = hsAPIService;
+        [self configureHSAPIService];
     }
 
     return self;
@@ -91,6 +90,11 @@
 
     self->_allCardsDictionary = result;
     return result;
+}
+
+- (void)configureHSAPIService {
+    HSAPIService *hsAPIService = [HSAPIService new];
+    self.hsAPIService = hsAPIService;
 }
 
 @end
