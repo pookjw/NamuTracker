@@ -95,25 +95,19 @@
 
         TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
 
-        switch (itemModel.type) {
-            case TrackingListItemModelTypeCard: {
-                UIListContentConfiguration *configuration = [UIListContentConfiguration cellConfiguration];
-                if (itemModel.hsCard) {
-                    configuration.text = [NSString stringWithFormat:@"(%@) %@ (x%@)", itemModel.hsCard.manaCost, itemModel.hsCard.name, itemModel.hsCardCount];
-                } else {
-                    configuration.text = [NSString stringWithFormat:@"Loading: %@", itemModel.alternativeHSCard.cardId];
-                }
-                configuration.textProperties.color = UIColor.whiteColor;
-
-                cell.contentConfiguration = configuration;
-
-                UIBackgroundConfiguration *backgroundConfiguration = [UIBackgroundConfiguration listPlainCellConfiguration];
-                backgroundConfiguration.backgroundColor = UIColor.clearColor;
-                cell.backgroundConfiguration = backgroundConfiguration;
-            }
-            default:
-                break;
+        UIListContentConfiguration *configuration = [UIListContentConfiguration cellConfiguration];
+        if (itemModel.hsCard) {
+            configuration.text = [NSString stringWithFormat:@"(%@) %@ (x%@)", itemModel.hsCard.manaCost, itemModel.hsCard.name, itemModel.hsCardCount];
+        } else {
+            configuration.text = [NSString stringWithFormat:@"Loading: %@", itemModel.alternativeHSCard.cardId];
         }
+        configuration.textProperties.color = UIColor.whiteColor;
+
+        cell.contentConfiguration = configuration;
+
+        UIBackgroundConfiguration *backgroundConfiguration = [UIBackgroundConfiguration listPlainCellConfiguration];
+        backgroundConfiguration.backgroundColor = UIColor.clearColor;
+        cell.backgroundConfiguration = backgroundConfiguration;
     }];
 
     return cellRegistration;

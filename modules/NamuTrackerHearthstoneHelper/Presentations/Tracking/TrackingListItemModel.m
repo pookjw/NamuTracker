@@ -3,10 +3,18 @@
 
 @implementation TrackingListItemModel
 
-- (instancetype)initWithHSCard:(HSCard * _Nullable)hsCard alternativeHSCard:(AlternativeHSCard * _Nullable)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount {
+- (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount {
     if (self = [self init]) {
-        self->_type = TrackingListItemModelTypeCard;
+        self->_type = TrackingListItemModelTypeHSCard;
         self->_hsCard = [hsCard copy];
+        self.hsCardCount = hsCardCount;
+    }
+
+    return self;
+}
+- (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount {
+    if (self = [self init]) {
+        self->_type = TrackingListItemModelTypeAlternativeHSCard;
         self->_alternativeHSCard = [alternativeHSCard copy];
         self.hsCardCount = hsCardCount;
     }
@@ -21,9 +29,10 @@
         return NO;
     }
 
-    if ((self.type == TrackingListItemModelTypeCard) && (other.type == TrackingListItemModelTypeCard)) {
-        return compareNullableValues(self.hsCard, other.hsCard, @selector(isEqual:)) &&
-        compareNullableValues(self.alternativeHSCard, other.alternativeHSCard, @selector(isEqual:));
+    if ((self.type == TrackingListItemModelTypeHSCard) && (other.type == TrackingListItemModelTypeHSCard)) {
+        return compareNullableValues(self.hsCard, other.hsCard, @selector(isEqual:));
+    } else if ((self.type == TrackingListItemModelTypeAlternativeHSCard) && (other.type == TrackingListItemModelTypeAlternativeHSCard)) {
+        return compareNullableValues(self.alternativeHSCard, other.alternativeHSCard, @selector(isEqual:));
     } else {
         return NO;
     }
@@ -41,6 +50,7 @@
     if (copy) {
         TrackingListItemModel *_copy = (TrackingListItemModel *)copy;
 
+        _copy->_type = self.type;
         _copy->_hsCard = [self.hsCard copyWithZone:zone];
         _copy->_alternativeHSCard = [self.alternativeHSCard copyWithZone:zone];
         _copy->_hsCardCount = [self.hsCardCount copyWithZone:zone];

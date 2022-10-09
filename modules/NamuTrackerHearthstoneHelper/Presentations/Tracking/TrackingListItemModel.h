@@ -5,7 +5,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, TrackingListItemModelType) {
-    TrackingListItemModelTypeCard
+    TrackingListItemModelTypeHSCard,
+    TrackingListItemModelTypeAlternativeHSCard
 };
 
 @interface TrackingListItemModel : NSObject <NSCopying>
@@ -15,7 +16,8 @@ typedef NS_ENUM(NSUInteger, TrackingListItemModelType) {
 @property (copy) NSNumber * _Nullable hsCardCount;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithHSCard:(HSCard * _Nullable)hsCard alternativeHSCard:(AlternativeHSCard * _Nullable)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount;
+- (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount;
+- (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount;
 @end
 
 NS_ASSUME_NONNULL_END

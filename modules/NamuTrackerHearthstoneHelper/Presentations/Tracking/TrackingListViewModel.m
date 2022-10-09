@@ -28,24 +28,14 @@
     
     [self sortItemsWithSectionIdentifiers:self.sectionIdentifiers
                           usingComparator:^NSComparisonResult(TrackingListItemModel *obj1, TrackingListItemModel *obj2) {
-        if ((obj1.type == TrackingListItemModelTypeCard) && (obj2.type == TrackingListItemModelTypeCard)) {
-            HSCard * _Nullable obj1_HSCard = obj1.hsCard;
-            HSCard * _Nullable obj2_HSCard = obj2.hsCard;
-            AlternativeHSCard * _Nullable obj1_AlternativeHSCard = obj1.alternativeHSCard;
-            AlternativeHSCard * _Nullable obj2_AlternativeHSCard = obj2.alternativeHSCard;
-
-            if ((obj1_HSCard != nil) && (obj2_HSCard != nil)) {
-                return [obj1_HSCard compare:obj2_HSCard];
-            } else if ((obj1_AlternativeHSCard != nil) && (obj2_AlternativeHSCard != nil)) {
-                return [obj1_AlternativeHSCard compare:obj2_AlternativeHSCard];
-            } else if ((obj1_HSCard != nil) && (obj2_AlternativeHSCard != nil)) {
-                return NSOrderedDescending;
-            } else if ((obj1_AlternativeHSCard == nil) && (obj2_HSCard != nil)) {
-                return NSOrderedAscending;
-            } else {
-                NSLog(@"Unexpected!");
-                return compareNullableValues(obj1_HSCard, obj2_HSCard, @selector(isEqual:));
-            }
+        if ((obj1.type == TrackingListItemModelTypeHSCard) && (obj2.type == TrackingListItemModelTypeHSCard)) {
+            return comparisonResultNullableValues(obj1.hsCard, obj2.hsCard, @selector(compare:));
+        } else if ((obj1.type == TrackingListItemModelTypeHSCard) && (obj2.type == TrackingListItemModelTypeAlternativeHSCard)) {
+            return NSOrderedAscending;
+        } else if ((obj1.type == TrackingListItemModelTypeAlternativeHSCard) && (obj2.type == TrackingListItemModelTypeHSCard)) {
+            return NSOrderedDescending;
+        } else if ((obj1.type == TrackingListItemModelTypeAlternativeHSCard) && (obj2.type == TrackingListItemModelTypeAlternativeHSCard)) {
+            return comparisonResultNullableValues(obj1.alternativeHSCard, obj2.alternativeHSCard, @selector(compare:));
         } else {
             return NSOrderedSame;
         }
@@ -150,7 +140,7 @@
             if (oldCardItemModel) {
                 oldCardItemModel.hsCardCount = @(oldCardItemModel.hsCardCount.unsignedIntegerValue + 1);
             } else {
-                TrackingListItemModel *cardItemModel = [[TrackingListItemModel alloc] initWithHSCard:obj1 alternativeHSCard:nil hsCardCount:@1];
+                TrackingListItemModel *cardItemModel = [[TrackingListItemModel alloc] initWithHSCard:obj1 hsCardCount:@1];
                 [cardItemModels addObject:cardItemModel];
             }
         }];
@@ -220,17 +210,33 @@
             BOOL __block foundExistingItem = NO;
 
             [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop2) {
-                if (obj2.type != TrackingListItemModelTypeCard) return;
+                BOOL isValid = NO;
 
-                if ((obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) || (obj1.dbfId == obj2.alternativeHSCard.dbfId)) {
-                    obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
-                    if (![willReloadItemModels containsObject:obj2]) {
-                        [willReloadItemModels addObject:obj2];
+                switch (obj2.type) {
+                    case TrackingListItemModelTypeHSCard: {
+                        if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
+                            isValid = YES;
+                        }
                     }
-
-                    foundExistingItem = YES;
-                    *stop2 = YES;
+                    case TrackingListItemModelTypeAlternativeHSCard: {
+                        if (obj1.dbfId == obj2.alternativeHSCard.dbfId) {
+                            isValid = YES;
+                        }
+                    }
+                    default: {
+                        isValid = NO;
+                    }
                 }
+
+                if (!isValid) return;
+                
+                obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
+                if (![willReloadItemModels containsObject:obj2]) {
+                    [willReloadItemModels addObject:obj2];
+                }
+
+                foundExistingItem = YES;
+                *stop2 = YES;
             }];
 
             if (!foundExistingItem) {
@@ -246,7 +252,7 @@
                 }];
 
                 if (!foundUnknownExistingItem) {
-                    TrackingListItemModel *itemModel = [[TrackingListItemModel alloc] initWithHSCard:nil alternativeHSCard:obj1 hsCardCount:@1];
+                    TrackingListItemModel *itemModel = [[TrackingListItemModel alloc] initWithAlternativeHSCard:obj1 hsCardCount:@1];
                     [unknownItemModels addObject:itemModel];
                 }
             }
@@ -254,8 +260,25 @@
 
         [removedAlternativeHSCards enumerateObjectsUsingBlock:^(AlternativeHSCard * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop1) {
             [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop2) {
-                if (obj2.type != TrackingListItemModelTypeCard) return;
-                if (obj1.dbfId != obj2.hsCard.dbfId.unsignedIntegerValue) return;
+                BOOL isValid = NO;
+
+                switch (obj2.type) {
+                    case TrackingListItemModelTypeHSCard: {
+                        if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
+                            isValid = YES;
+                        }
+                    }
+                    case TrackingListItemModelTypeAlternativeHSCard: {
+                        if (obj1.dbfId == obj2.alternativeHSCard.dbfId) {
+                            isValid = YES;
+                        }
+                    }
+                    default: {
+                        isValid = NO;
+                    }
+                }
+
+                if (!isValid) return;
 
                 obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue - 1);
 
@@ -304,7 +327,7 @@
 
                     TrackingListItemModel * _Nullable __block oldItemModel = nil;
                     [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (obj.type != TrackingListSectionModelTypeCards) return;
+                        if (obj.type != TrackingListItemModelTypeAlternativeHSCard) return;
                         if (obj.alternativeHSCard.dbfId == hsCard.dbfId.unsignedIntegerValue) {
                             oldItemModel = obj;
                             *stop = YES;
@@ -314,7 +337,7 @@
                     if (oldItemModel == nil) return;
                     [snapshot deleteItemsWithIdentifiers:@[oldItemModel]];
 
-                    TrackingListItemModel *newItemModel = [[TrackingListItemModel alloc] initWithHSCard:hsCard alternativeHSCard:nil hsCardCount:oldItemModel.hsCardCount];
+                    TrackingListItemModel *newItemModel = [[TrackingListItemModel alloc] initWithHSCard:hsCard hsCardCount:oldItemModel.hsCardCount];
                     [snapshot appendItemsWithIdentifiers:@[newItemModel] intoSectionWithIdentifier:cardsSectionModel];
 
                     [snapshot sortTrackingListModels];
