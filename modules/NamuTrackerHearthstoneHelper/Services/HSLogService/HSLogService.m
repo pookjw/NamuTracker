@@ -152,44 +152,59 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         NSMutableArray<AlternativeHSCard *> *removedAlternativeHSCards = [NSMutableArray<AlternativeHSCard *> new];
 
         [newLogStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (![obj containsString:@"ZoneChangeList.ProcessChanges()"]) return;
+            if (![obj containsString:@"ZoneChangeList.ProcessChanges() - processing"]) return;
 
-            BOOL found = NO;
-            BOOL didRemove = NO;
-
-            if (([obj containsString:@"zone=HAND"]) && ([obj containsString:@"dstZoneTag=DECK"])) {
-                /*
-                [Zone] ZoneChangeList.ProcessChanges() - processing index=7 change=powerTask=[power=[type=HIDE_ENTITY entity=[id=24 cardId=ICC_215 name=Archbishop Benedictus] zone=2] complete=False] entity=[entityName=Archbishop Benedictus id=24 zone=HAND zonePos=0 cardId=ICC_215 player=1] srcZoneTag=INVALID srcPos= dstZoneTag=DECK dstPos=
-                */
-                found = YES;
-                didRemove = NO;
-            } else if (([obj containsString:@"zone=DECK"]) && ([obj containsString:@"dstZoneTag=HAND"])) {
-                /*
-                [Zone] ZoneChangeList.ProcessChanges() - processing index=31 change=powerTask=[power=[type=TAG_CHANGE entity=[id=46 cardId= name=UNKNOWN ENTITY [cardType=INVALID]] tag=ZONE value=HAND ] complete=False] entity=[entityName=UNKNOWN ENTITY [cardType=INVALID] id=46 zone=DECK zonePos=0 cardId= player=2] srcZoneTag=INVALID srcPos= dstZoneTag=HAND dstPos=
-                */
-                found = YES;
-                didRemove = YES;
-            }
-
-            if (!found) return;
-
+            NSString * _Nullable __block zone = nil;
+            NSString * _Nullable __block dstZoneTag = nil;
             NSString * _Nullable __block cardId = nil;
 
-            NSArray<NSString *> *array1 = [obj componentsSeparatedByString:@" "];
-            [array1 enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj containsString:@"cardId"]) {
-                    NSArray<NSString *> *array2 = [obj componentsSeparatedByString:@"="];
-                    if (array2.count >= 2) {
-                        NSString * _Nullable _cardId = array2[1];
-                        if (![_cardId isEqualToString:@""]) {
-                            *stop = YES;
-                            cardId = _cardId;
-                        }
-                    }
+            NSArray<NSString *> *separatedStrings = [obj componentsSeparatedByString:@" "];
+            [separatedStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray<NSString *> *keyValue = [obj componentsSeparatedByString:@"="];
+                if (keyValue.count != 2) return;
+
+                NSString *key = keyValue[0];
+                NSString *value = keyValue[1];
+
+                if ((key.length == 0) || (value.length == 0)) return;
+
+                if ([key isEqualToString:@"zone"]) {
+                    zone = value;
+                } else if ([key isEqualToString:@"dstZoneTag"]) {
+                    dstZoneTag = value;
+                } else if ([key isEqualToString:@"cardId"]) {
+                    cardId = value;
+                }
+
+                if ((zone) && (dstZoneTag) && (cardId)) {
+                    *stop = YES;
                 }
             }];
 
-            if (cardId == nil) return;
+            if ((zone == nil) || (dstZoneTag == nil) || (cardId == nil)) {
+                return;
+            }
+
+            //
+
+            BOOL isValid = NO;
+            BOOL didRemove = NO;
+
+            if (([zone isEqualToString:@"HAND"]) && ([dstZoneTag containsString:@"DECK"])) {
+                isValid = YES;
+                didRemove = NO;
+            } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"HAND"])) {
+                isValid = YES;
+                didRemove = YES;
+            }
+
+            /*
+            ZoneChangeList.ProcessChanges() - processing index=10 change=powerTask=[power=[type=TAG_CHANGE entity=[id=70 cardId=DMF_254t5 name=Body of C'Thun] tag=ZONE value=SETASIDE ] complete=False] entity=[entityName=Body of C'Thun id=70 zone=DECK zonePos=0 cardId=DMF_254t5 player=1] srcZoneTag=INVALID srcPos= dstZoneTag=SETASIDE dstPos=
+            */
+
+            //
+
+            if (!isValid) return;
 
             AlternativeHSCard *alternativeHSCard = [self.cardService alternativeHSCardWithCardId:cardId];
 
@@ -208,6 +223,8 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         if ((addedAlternativeHSCards.count == 0) && (removedAlternativeHSCards.count == 0)) {
             return;
         }
+
+        NSLog(@"%@", userInfo);
         
         [NSNotificationCenter.defaultCenter postNotificationName:HSLogServiceNotificationNameDidChangeCards object:self userInfo:userInfo];
     }

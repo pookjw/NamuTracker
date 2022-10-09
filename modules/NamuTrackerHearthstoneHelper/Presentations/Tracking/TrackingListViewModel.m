@@ -136,12 +136,12 @@
         TrackingListSectionModel *cardsSectionModel = [[TrackingListSectionModel alloc] initCardsSection];
         [snapshot appendSectionsWithIdentifiers:@[cardsSectionModel]];
 
-        NSMutableArray<TrackingListItemModel *> *cardItemModels = [NSMutableArray<TrackingListItemModel *> new];
+        NSMutableSet<TrackingListItemModel *> *cardItemModels = [NSMutableSet<TrackingListItemModel *> new];
         [hsCards enumerateObjectsUsingBlock:^(HSCard * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop1) {
             TrackingListItemModel * _Nullable __block oldCardItemModel = nil;
 
-            [cardItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop2) {
-                if ((obj2.hsCard) && ([obj2.hsCard isEqual:obj1])) {
+            [cardItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, BOOL * _Nonnull stop2) {
+                if ([obj1 isEqual:obj2.hsCard]) {
                     oldCardItemModel = obj2;
                     *stop2 = YES;
                 }
@@ -155,7 +155,7 @@
             }
         }];
 
-        [snapshot appendItemsWithIdentifiers:cardItemModels intoSectionWithIdentifier:cardsSectionModel];
+        [snapshot appendItemsWithIdentifiers:cardItemModels.allObjects intoSectionWithIdentifier:cardsSectionModel];
         [snapshot sortTrackingListModels];
 
         if (checkAvailability(@"15.0")) {
@@ -203,34 +203,52 @@
             }
         }];
 
-        if (cardsSectionModel == nil) return;
+        if (cardsSectionModel == nil) {
+            NSLog(@"Cannot find cardsSectionModel.");
+            return;
+        }
 
         //
 
         NSArray<AlternativeHSCard *> *addedAlternativeHSCards = userInfo[HSLogServiceAddedAlternativeHSCardsUserInfoKey];
         NSArray<AlternativeHSCard *> *removedAlternativeHSCards = userInfo[HSLogServiceRemovedAlternativeHSCardsUserInfoKey];
 
-        NSMutableArray<TrackingListItemModel *> *willReloadItemModels = [NSMutableArray<TrackingListItemModel *> new];
-        NSMutableArray<TrackingListItemModel *> *unknownItemModels = [NSMutableArray<TrackingListItemModel *> new];
+        NSMutableSet<TrackingListItemModel *> *willReloadItemModels = [NSMutableSet<TrackingListItemModel *> new];
+        NSMutableSet<TrackingListItemModel *> *unknownItemModels = [NSMutableSet<TrackingListItemModel *> new];
 
         [addedAlternativeHSCards enumerateObjectsUsingBlock:^(AlternativeHSCard * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop1) {
-            BOOL __block found = NO;
+            BOOL __block foundExistingItem = NO;
 
             [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop2) {
                 if (obj2.type != TrackingListItemModelTypeCard) return;
 
                 if ((obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) || (obj1.dbfId == obj2.alternativeHSCard.dbfId)) {
                     obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
-                    [willReloadItemModels addObject:obj2];
+                    if (![willReloadItemModels containsObject:obj2]) {
+                        [willReloadItemModels addObject:obj2];
+                    }
 
-                    found = YES;
+                    foundExistingItem = YES;
                     *stop2 = YES;
                 }
             }];
 
-            if (!found) {
-                TrackingListItemModel *itemModel = [[TrackingListItemModel alloc] initWithHSCard:nil alternativeHSCard:obj1 hsCardCount:@1];
-                [unknownItemModels addObject:itemModel];
+            if (!foundExistingItem) {
+                BOOL __block foundUnknownExistingItem = NO;
+
+                [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, BOOL * _Nonnull stop2) {
+                    if ([obj1 isEqual:obj2.alternativeHSCard]) {
+                        obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
+
+                        foundUnknownExistingItem = YES;
+                        *stop2 = YES;
+                    }
+                }];
+
+                if (!foundUnknownExistingItem) {
+                    TrackingListItemModel *itemModel = [[TrackingListItemModel alloc] initWithHSCard:nil alternativeHSCard:obj1 hsCardCount:@1];
+                    [unknownItemModels addObject:itemModel];
+                }
             }
         }];
 
@@ -240,7 +258,10 @@
                 if (obj1.dbfId != obj2.hsCard.dbfId.unsignedIntegerValue) return;
 
                 obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue - 1);
-                [willReloadItemModels addObject:obj2];
+
+                if (![willReloadItemModels containsObject:obj2]) {
+                    [willReloadItemModels addObject:obj2];
+                }
 
                 *stop2 = YES;
             }];
@@ -249,25 +270,23 @@
         //
 
         if (checkAvailability(@"15.0")) {
-            [snapshot reconfigureItemsWithIdentifiers:willReloadItemModels];
+            [snapshot reconfigureItemsWithIdentifiers:willReloadItemModels.allObjects];
         } else {
-            [snapshot reloadItemsWithIdentifiers:willReloadItemModels];
+            [snapshot reloadItemsWithIdentifiers:willReloadItemModels.allObjects];
         }
 
-        [snapshot appendItemsWithIdentifiers:unknownItemModels intoSectionWithIdentifier:cardsSectionModel];
+        [snapshot appendItemsWithIdentifiers:unknownItemModels.allObjects intoSectionWithIdentifier:cardsSectionModel];
         [snapshot sortTrackingListModels];
 
         //
 
         // download unknown cards (AlternativeHSCard) and apply them.
-        [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, BOOL * _Nonnull stop) {
             CancellableObject *cancellable;
 
             cancellable = [self.cardService hsCardWithAlternativeHSCard:obj.alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
                 [self.dataSourceQueue addOperationWithBlock:^{
-                    @synchronized(self) {
-                        [self.cancellableBag removeCancellable:cancellable];
-                    }
+                    [self.cancellableBag removeCancellable:cancellable];
 
                     NSDiffableDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 

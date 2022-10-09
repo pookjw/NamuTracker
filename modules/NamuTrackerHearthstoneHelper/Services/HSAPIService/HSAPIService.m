@@ -21,7 +21,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 @implementation HSAPIService
 
 - (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug completionHandler:(HSAPIServiceHSCardCompletionHandler)completionHandler {
-    NSURLSessionTask * _Nullable __block curentTask = nil;
+    __weak NSURLSessionTask * _Nullable __block curentTask = nil;
 
     curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {
@@ -77,7 +77,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 }
 
 - (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler {
-    NSURLSessionTask * _Nullable __block curentTask = nil;
+    __weak NSURLSessionTask * _Nullable __block curentTask = nil;
 
     curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {

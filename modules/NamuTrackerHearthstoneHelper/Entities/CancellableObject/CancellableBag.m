@@ -17,12 +17,16 @@
 }
 
 - (void)addCancellable:(CancellableObject *)cancellable {
+    if (cancellable == nil) return;
+
     [self.queue addOperationWithBlock:^{
         [self.bag addObject:cancellable];
     }];
 }
 
 - (void)removeCancellable:(CancellableObject *)cancellable {
+    if (cancellable == nil) return;
+    
     [self.queue addOperationWithBlock:^{
         [self.bag removeObject:cancellable];
     }];
