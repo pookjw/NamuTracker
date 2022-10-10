@@ -213,30 +213,41 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
             BOOL didRemove = NO;
             
             if ([@"SHOW_ENTITY" isEqualToString:type]) {
-                if (([@"DECK" isEqualToString:zone]) && (![@"DECK" isEqualToString:dstZoneTag])) { // when draws a card (DECK / HAND), or burned (DECK / GRAVEYARD)
+                if (([@"DECK" isEqualToString:zone]) && (![@"DECK" isEqualToString:dstZoneTag])) {
+                    // when draws a card (DECK / HAND), or burned (DECK / GRAVEYARD)
                     isValid = YES;
                     didRemove = YES;
-                } else if ([@"DECK" isEqualToString:dstZoneTag]) { // when put a card to deck.
+                } else if ([@"DECK" isEqualToString:dstZoneTag]) {
+                    // when put a card to deck.
                     isValid = YES;
                     didRemove = NO;
                 }
             } else if ([@"HIDE_ENTITY" isEqualToString:type]) {
-                if ((![@"DECK" isEqualToString:zone]) && ([@"DECK" isEqualToString:dstZoneTag])) { // when exchange a card start of the game (HAND / DECK).
+                if ((![@"DECK" isEqualToString:zone]) && ([@"DECK" isEqualToString:dstZoneTag])) {
+                    // when exchange a card start of the game (HAND / DECK).
                     isValid = YES;
                     didRemove = NO;
                 }
-            } else if ([@"META_DATA" isEqualToString:type]) {
-                if (([@"DECK" isEqualToString:zone]) && ([@"OVERRIDE_HISTORY" isEqualToString:metaType])) { // C'Thun, the Shattered - remove from the deck start of the game.
+            } else if ([@"TAG_CHANGE" isEqualToString:type]) {
+                if (([@"DECK" isEqualToString:zone]) && ([@"HAND" isEqualToString:dstZoneTag]) && [@"HAND" isEqualToString:entityValue]) {
+                    // when draws dreged cards.
                     isValid = YES;
                     didRemove = YES;
-                } else if (([@"DECK" isEqualToString:zone]) && ([@"SLUSH_TIME" isEqualToString:metaType])) { // Tradeable
+                }
+            } else if ([@"META_DATA" isEqualToString:type]) {
+                if (([@"DECK" isEqualToString:zone]) && ([@"OVERRIDE_HISTORY" isEqualToString:metaType])) {
+                    // C'Thun, the Shattered - remove from the deck start of the game.
+                    isValid = YES;
+                    didRemove = YES;
+                } else if (([@"DECK" isEqualToString:zone]) && ([@"SLUSH_TIME" isEqualToString:metaType])) {
+                    // Tradeable
                     isValid = YES;
                     didRemove = NO;
+                } else if (([@"DECK" isEqualToString:zone]) && ([@"INVALID" isEqualToString:dstZoneTag]) && ([@"HISTORY_TARGET" isEqualToString:metaType])) {
+                    // when drege a card, SHOW_ENTITY / DECK / DECK will occur, so have to remove it.
+                    isValid = YES;
+                    didRemove = YES;
                 }
-                // } else if ([@"BURNED_CARD" isEqualToString:metaType]) { // Burned
-                //     isValid = YES;
-                //     didRemove = YES;
-                // }
             }
 
             //
