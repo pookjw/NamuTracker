@@ -163,26 +163,37 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         [newLogStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (![obj containsString:@"ZoneChangeList.ProcessChanges() - processing"]) return;
 
+            NSString * _Nullable __block type = nil;
             NSString * _Nullable __block zone = nil;
             NSString * _Nullable __block dstZoneTag = nil;
             NSString * _Nullable __block cardId = nil;
 
+            NSString * _Nullable __block entityValue = nil;
+            NSString * _Nullable __block metaType = nil;
+
             NSArray<NSString *> *separatedStrings = [obj componentsSeparatedByString:@" "];
             [separatedStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSArray<NSString *> *keyValue = [obj componentsSeparatedByString:@"="];
-                if (keyValue.count != 2) return;
+                NSString *filteredString = [[obj stringByReplacingOccurrencesOfString:@"[" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""];
+                NSArray<NSString *> *keyValue = [filteredString componentsSeparatedByString:@"="];
+                if (keyValue.count < 2) return;
 
-                NSString *key = keyValue[0];
-                NSString *value = keyValue[1];
+                NSString *key = keyValue[keyValue.count - 2];
+                NSString *value = keyValue.lastObject;
 
                 if ((key.length == 0) || (value.length == 0)) return;
 
-                if ([key isEqualToString:@"zone"]) {
+                if ([key isEqualToString:@"type"]) {
+                    type = value;
+                } else if ([key isEqualToString:@"zone"]) {
                     zone = value;
                 } else if ([key isEqualToString:@"dstZoneTag"]) {
                     dstZoneTag = value;
                 } else if ([key isEqualToString:@"cardId"]) {
                     cardId = value;
+                } else if ([key isEqualToString:@"value"]) {
+                    entityValue = value;
+                } else if ([key isEqualToString:@"metaType"]) {
+                    metaType = value;
                 }
 
                 if ((zone) && (dstZoneTag) && (cardId)) {
@@ -190,31 +201,43 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
                 }
             }];
 
-            if ((dstZoneTag == nil) || (cardId == nil)) {
+            if ((type == nil) || (zone == nil) || (dstZoneTag == nil) || (cardId == nil)) {
                 return;
             }
 
-            NSLog(@"zone = %@, dstZoneTag = %@, cardId = %@", zone, dstZoneTag, cardId);
-
             //
+
+            NSLog(@"type: %@, zone: %@, dstZoneTag: %@, cardId: %@, entityValue: %@, metaType: %@", type, zone, dstZoneTag, cardId, entityValue, metaType);
 
             BOOL isValid = NO;
             BOOL didRemove = NO;
-
-            if (([zone isEqualToString:@"HAND"]) && ([dstZoneTag containsString:@"DECK"])) {
-                isValid = YES;
-                didRemove = NO;
-            } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"HAND"])) {
-                isValid = YES;
-                didRemove = YES;
-            // } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"DECK"])) {
-            //     isValid = YES;
-            //     didRemove = YES;
-            } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"SETASIDE"])) {
-                isValid = YES;
-                didRemove = NO;
+            
+            if ([@"SHOW_ENTITY" isEqualToString:type]) {
+                if (([@"DECK" isEqualToString:zone]) && (![@"DECK" isEqualToString:dstZoneTag])) { // when draws a card (DECK / HAND), or burned (DECK / GRAVEYARD)
+                    isValid = YES;
+                    didRemove = YES;
+                } else if ([@"DECK" isEqualToString:dstZoneTag]) { // when put a card to deck.
+                    isValid = YES;
+                    didRemove = NO;
+                }
+            } else if ([@"HIDE_ENTITY" isEqualToString:type]) {
+                if ((![@"DECK" isEqualToString:zone]) && ([@"DECK" isEqualToString:dstZoneTag])) { // when exchange a card start of the game (HAND / DECK).
+                    isValid = YES;
+                    didRemove = NO;
+                }
+            } else if ([@"META_DATA" isEqualToString:type]) {
+                if (([@"DECK" isEqualToString:zone]) && ([@"OVERRIDE_HISTORY" isEqualToString:metaType])) { // C'Thun, the Shattered - remove from the deck start of the game.
+                    isValid = YES;
+                    didRemove = YES;
+                } else if (([@"DECK" isEqualToString:zone]) && ([@"SLUSH_TIME" isEqualToString:metaType])) { // Tradeable
+                    isValid = YES;
+                    didRemove = NO;
+                }
+                // } else if ([@"BURNED_CARD" isEqualToString:metaType]) { // Burned
+                //     isValid = YES;
+                //     didRemove = YES;
+                // }
             }
-
 
             //
 
@@ -253,7 +276,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
     BOOL doesLogURLExist = [NSFileManager.defaultManager fileExistsAtPath:logURL.path isDirectory:&isLogURLDirectory];
 
     if (isLogURLDirectory || !doesLogURLExist) {
-        NSLog(@"%@ does not exist yet. Waiting...", logURL);
+        // NSLog(@"%@ does not exist yet. Waiting...", logURL);
         return nil;
     }
 
