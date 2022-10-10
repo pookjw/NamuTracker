@@ -139,7 +139,7 @@
             }];
 
             if (oldCardItemModel) {
-                oldCardItemModel.hsCardCount = @(oldCardItemModel.hsCardCount.unsignedIntegerValue + 1);
+                oldCardItemModel.hsCardCount = @(oldCardItemModel.hsCardCount.integerValue + 1);
             } else {
                 TrackingListItemModel *cardItemModel = [[TrackingListItemModel alloc] initWithHSCard:obj1 hsCardCount:@1];
                 [cardItemModels addObject:cardItemModel];
@@ -234,7 +234,7 @@
 
                 if (!isValid) return;
                 
-                obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
+                obj2.hsCardCount = @(obj2.hsCardCount.integerValue + 1);
                 if (![willReloadItemModels containsObject:obj2]) {
                     [willReloadItemModels addObject:obj2];
                 }
@@ -248,7 +248,7 @@
 
                 [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, BOOL * _Nonnull stop2) {
                     if ([obj1 isEqual:obj2.alternativeHSCard]) {
-                        obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue + 1);
+                        obj2.hsCardCount = @(obj2.hsCardCount.integerValue + 1);
 
                         foundUnknownExistingItem = YES;
                         *stop2 = YES;
@@ -287,7 +287,7 @@
 
                 if (!isValid) return;
 
-                obj2.hsCardCount = @(obj2.hsCardCount.unsignedIntegerValue - 1);
+                obj2.hsCardCount = @(obj2.hsCardCount.integerValue - 1);
 
                 if (![willReloadItemModels containsObject:obj2]) {
                     [willReloadItemModels addObject:obj2];

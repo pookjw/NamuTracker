@@ -190,9 +190,11 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
                 }
             }];
 
-            if ((zone == nil) || (dstZoneTag == nil) || (cardId == nil)) {
+            if ((dstZoneTag == nil) || (cardId == nil)) {
                 return;
             }
+
+            NSLog(@"zone = %@, dstZoneTag = %@, cardId = %@", zone, dstZoneTag, cardId);
 
             //
 
@@ -205,11 +207,14 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
             } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"HAND"])) {
                 isValid = YES;
                 didRemove = YES;
+            // } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"DECK"])) {
+            //     isValid = YES;
+            //     didRemove = YES;
+            } else if (([zone isEqualToString:@"DECK"]) && ([dstZoneTag containsString:@"SETASIDE"])) {
+                isValid = YES;
+                didRemove = NO;
             }
 
-            /*
-            ZoneChangeList.ProcessChanges() - processing index=10 change=powerTask=[power=[type=TAG_CHANGE entity=[id=70 cardId=DMF_254t5 name=Body of C'Thun] tag=ZONE value=SETASIDE ] complete=False] entity=[entityName=Body of C'Thun id=70 zone=DECK zonePos=0 cardId=DMF_254t5 player=1] srcZoneTag=INVALID srcPos= dstZoneTag=SETASIDE dstPos=
-            */
 
             //
 
