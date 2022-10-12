@@ -6,4 +6,10 @@
   
 */
 
+"ERROR" = "Error";
+
+"DONE" = "Done";
+
+"NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken.";
+
 "DECKS" = "Decks";

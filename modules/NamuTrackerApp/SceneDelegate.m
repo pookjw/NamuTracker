@@ -7,9 +7,12 @@
 
 #import "SceneDelegate.h"
 #import "DecksViewController.h"
+#import "LocalizableService.h"
+#import "UIApplication+Private.h"
 
 @interface SceneDelegate ()
 @property (readonly) BOOL needsHSHelperAlert;
+@property BOOL didSuspend;
 @end
 
 @implementation SceneDelegate
@@ -41,20 +44,25 @@
 }
 
 - (void)presentHSHelperAlert:(UIViewController *)viewController {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error (TBT)"
-                                                                   message:@"Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken."
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[LocalizableService localizableForKey:LocalizableKeyError]
+                                                                   message:[LocalizableService localizableForKey:LocalizableKeyNamuTrackerHearthstoneHelperIsNotInstalled]
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"DONE (TBT)"
+    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:[LocalizableService localizableForKey:LocalizableKeyDone]
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * _Nonnull action) {
-        exit(0);
+        self.didSuspend = YES;
+        [UIApplication.sharedApplication suspend];
     }];
     
     [alert addAction:doneAction];
     [viewController presentViewController:alert animated:YES completion:^{
         
     }];
+}
+
+- (void)sceneDidEnterBackground:(UIScene *)scene {
+    if (self.didSuspend) exit(0);
 }
 
 @end

@@ -6,4 +6,10 @@
   
 */
 
+"ERROR" = "오류";
+
+"DONE" = "완료";
+
+"NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "NamuTrackerHearthstoneHelper가 설치되지 않았거나, 해당 기기는 탈옥되지 않은 것으로 보입니다.";
+
 "DECKS" = "덱";

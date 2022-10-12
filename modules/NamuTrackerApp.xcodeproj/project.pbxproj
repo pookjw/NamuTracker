@@ -51,6 +51,7 @@
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
+		4FD4E4A128F682A9006EBA86 /* UIApplication+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 			children = (
 				4FD4E47B28F67868006EBA86 /* Resources */,
 				4FD4E49A28F67B6E006EBA86 /* Services */,
+				4FD4E4A028F68299006EBA86 /* Categories */,
 				4F30287328DB4D4800702FDD /* Info.plist */,
 				4F30284B28DB0A0800702FDD /* AppDelegate.h */,
 				4F30284C28DB0A0800702FDD /* AppDelegate.m */,
@@ -141,6 +143,14 @@
 				4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		4FD4E4A028F68299006EBA86 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4FD4E4A128F682A9006EBA86 /* UIApplication+Private.h */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
