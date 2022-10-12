@@ -6,6 +6,7 @@
 //
 
 #import "DecksViewController.h"
+#import "LocalizableService.h"
 
 @interface DecksViewController ()
 
@@ -15,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"ViewController";
+    self.title = [LocalizableService localizableForKey:LocalizableKeyDecks];
     self.view.backgroundColor = UIColor.clearColor;
     self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
     

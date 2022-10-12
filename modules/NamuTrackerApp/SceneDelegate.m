@@ -9,6 +9,7 @@
 #import "DecksViewController.h"
 
 @interface SceneDelegate ()
+@property (readonly) BOOL needsHSHelperAlert;
 @end
 
 @implementation SceneDelegate
@@ -17,37 +18,43 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     UIWindow *window = [[UIWindow alloc] initWithWindowScene:windowScene];
     window.backgroundColor = UIColor.clearColor;
-    DecksViewController *viewController = [DecksViewController new];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.navigationBar.prefersLargeTitles = YES;
-    window.rootViewController = navigationController;
-    [window makeKeyAndVisible];
+    
+    if (self.needsHSHelperAlert) {
+        UIViewController *viewController = [UIViewController new];
+        viewController.view.backgroundColor = UIColor.systemBackgroundColor;
+        window.rootViewController = viewController;
+        [window makeKeyAndVisible];
+        [self presentHSHelperAlert:viewController];
+    } else {
+        DecksViewController *viewController = [DecksViewController new];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        navigationController.navigationBar.prefersLargeTitles = YES;
+        window.rootViewController = navigationController;
+        [window makeKeyAndVisible];
+    }
+    
     self.window = window;
-
-    [self presentHSHelperAlertIfNeeded];
 }
 
-- (BOOL)presentHSHelperAlertIfNeeded {
-    BOOL exists = [NSFileManager.defaultManager fileExistsAtPath:@"/usr/lib/TweakInject/NamuTrackerHearthstoneHelper.dylib" isDirectory:NULL];
+- (BOOL)needsHSHelperAlert {
+    return ![NSFileManager.defaultManager fileExistsAtPath:@"/usr/lib/TweakInject/NamuTrackerHearthstoneHelper.dylib" isDirectory:NULL];
+}
 
-    if (exists) return NO;
-
+- (void)presentHSHelperAlert:(UIViewController *)viewController {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error (TBT)"
                                                                    message:@"Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken."
                                                             preferredStyle:UIAlertControllerStyleAlert];
-
+    
     UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"DONE (TBT)"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * _Nonnull action) {
         exit(0);
     }];
-
+    
     [alert addAction:doneAction];
-    [self.window.rootViewController presentViewController:alert animated:YES completion:^{
-
+    [viewController presentViewController:alert animated:YES completion:^{
+        
     }];
-
-    return YES;
 }
 
 @end
