@@ -4,7 +4,7 @@
 @implementation TrackingListItemModel
 
 - (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_type = TrackingListItemModelTypeHSCard;
         self->_hsCard = [hsCard copy];
         self.hsCardCount = hsCardCount;
@@ -13,7 +13,7 @@
     return self;
 }
 - (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_type = TrackingListItemModelTypeAlternativeHSCard;
         self->_alternativeHSCard = [alternativeHSCard copy];
         self.hsCardCount = hsCardCount;

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, copy) NSNumber * _Nullable parentCardId;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 - (NSComparisonResult)compare:(HSCard *)other;
 @end
 

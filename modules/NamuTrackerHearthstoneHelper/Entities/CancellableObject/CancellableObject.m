@@ -7,7 +7,7 @@
 @implementation CancellableObject
 
 - (instancetype)initWithCancellationHandler:(void (^)(void))cancellationHandler {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self.cancellationHandler = cancellationHandler;
     }
 

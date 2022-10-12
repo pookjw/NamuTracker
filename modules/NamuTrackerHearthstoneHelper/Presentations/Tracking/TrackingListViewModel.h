@@ -9,7 +9,7 @@ typedef UICollectionViewDiffableDataSource<TrackingListSectionModel *, TrackingL
 @interface TrackingListViewModel : NSObject
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(TrackingListDataSource *)dataSource;
+- (instancetype)initWithDataSource:(TrackingListDataSource *)dataSource NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

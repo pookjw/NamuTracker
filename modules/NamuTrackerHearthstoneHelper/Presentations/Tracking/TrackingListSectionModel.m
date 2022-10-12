@@ -3,7 +3,7 @@
 @implementation TrackingListSectionModel
 
 - (instancetype)initCardsSection {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_type = TrackingListSectionModelTypeCards;
     }
 

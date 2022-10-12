@@ -7,7 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, copy) TrackingListItemModel *itemModel;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithItemModel:(TrackingListItemModel *)itemModel;
+- (instancetype)initWithItemModel:(TrackingListItemModel *)itemModel NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

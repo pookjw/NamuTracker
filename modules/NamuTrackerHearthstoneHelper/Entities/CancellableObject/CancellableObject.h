@@ -6,7 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL isCancelled;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCancellationHandler:(void (^)(void))cancellationHandler;
+- (instancetype)initWithCancellationHandler:(void (^)(void))cancellationHandler NS_DESIGNATED_INITIALIZER;
 - (void)cancel;
 @end
 

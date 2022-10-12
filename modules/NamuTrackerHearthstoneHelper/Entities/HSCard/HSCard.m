@@ -6,7 +6,7 @@
 @implementation HSCard
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_objectVersion = HSCARD_LATEST_VERSION;
 
         self->_dbfId = [nullSafetyHandler(dictionary[@"id"]) copy];

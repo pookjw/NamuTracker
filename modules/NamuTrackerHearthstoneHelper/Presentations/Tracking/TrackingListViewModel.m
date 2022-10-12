@@ -56,7 +56,7 @@
 @implementation TrackingListViewModel
 
 - (instancetype)initWithDataSource:(TrackingListDataSource *)dataSource {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self.dataSource = dataSource;
 
         [self configureDataSourceQueue];

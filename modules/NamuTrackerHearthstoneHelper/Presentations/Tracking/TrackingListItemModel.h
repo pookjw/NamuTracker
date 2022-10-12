@@ -16,8 +16,8 @@ typedef NS_ENUM(NSUInteger, TrackingListItemModelType) {
 @property (copy) NSNumber * _Nullable hsCardCount;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount;
-- (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount;
+- (instancetype)initWithHSCard:(HSCard *)hsCard hsCardCount:(NSNumber *)hsCardCount NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

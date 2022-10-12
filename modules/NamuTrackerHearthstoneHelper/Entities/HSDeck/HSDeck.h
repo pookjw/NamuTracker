@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, copy) NSArray<HSCard *> * _Nullable hsCards;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -5,7 +5,7 @@
 @implementation AlternativeHSCard
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [self init]) {
+    if (self = [super init]) {
         NSString *cardId = dictionary[@"cardId"];
 
         NSNumberFormatter *numberFormatter = [NSNumberFormatter new];

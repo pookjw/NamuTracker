@@ -6,7 +6,7 @@
 @implementation HSDeck
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_objectVersion = HSDECK_LATEST_VERSION;
 
         self->_deckCode = [nullSafetyHandler(dictionary[@"deckCode"]) copy];

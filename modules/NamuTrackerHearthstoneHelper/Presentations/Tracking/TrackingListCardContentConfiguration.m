@@ -4,7 +4,7 @@
 @implementation TrackingListCardContentConfiguration
 
 - (instancetype)initWithItemModel:(TrackingListItemModel *)itemModel {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self->_itemModel = [itemModel copy];
     }
 
