@@ -6,7 +6,7 @@
 //
 
 #import "SceneDelegate.h"
-#import "ViewController.h"
+#import "DecksViewController.h"
 
 @interface SceneDelegate ()
 @end
@@ -17,38 +17,37 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     UIWindow *window = [[UIWindow alloc] initWithWindowScene:windowScene];
     window.backgroundColor = UIColor.clearColor;
-    ViewController *viewController = [ViewController new];
-    window.rootViewController = viewController;
+    DecksViewController *viewController = [DecksViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationController.navigationBar.prefersLargeTitles = YES;
+    window.rootViewController = navigationController;
     [window makeKeyAndVisible];
     self.window = window;
+
+    [self presentHSHelperAlertIfNeeded];
 }
 
-- (void)sceneDidDisconnect:(UIScene *)scene {
-    // Called as the scene is being released by the system.
-    // This occurs shortly after the scene enters the background, or when its session is discarded.
-    // Release any resources associated with this scene that can be re-created the next time the scene connects.
-    // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-}
+- (BOOL)presentHSHelperAlertIfNeeded {
+    BOOL exists = [NSFileManager.defaultManager fileExistsAtPath:@"/usr/lib/TweakInject/NamuTrackerHearthstoneHelper.dylib" isDirectory:NULL];
 
-- (void)sceneDidBecomeActive:(UIScene *)scene {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-}
+    if (exists) return NO;
 
-- (void)sceneWillResignActive:(UIScene *)scene {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
-}
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error (TBT)"
+                                                                   message:@"Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
 
-- (void)sceneWillEnterForeground:(UIScene *)scene {
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
-}
+    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"DONE (TBT)"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+        exit(0);
+    }];
 
-- (void)sceneDidEnterBackground:(UIScene *)scene {
-    // Called as the scene transitions from the foreground to the background.
-    // Use this method to save data, release shared resources, and store enough scene-specific state information
-    // to restore the scene back to its current state.
+    [alert addAction:doneAction];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:^{
+
+    }];
+
+    return YES;
 }
 
 @end

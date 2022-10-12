@@ -1,21 +1,23 @@
 //
-//  ViewController.m
+//  DecksViewController.m
 //  NamuTracker
 //
 //  Created by Jinwoo Kim on 9/21/22.
 //
 
-#import "ViewController.h"
+#import "DecksViewController.h"
 
-@interface ViewController ()
+@interface DecksViewController ()
 
 @end
 
-@implementation ViewController
+@implementation DecksViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"ViewController";
     self.view.backgroundColor = UIColor.clearColor;
+    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect style:UIVibrancyEffectStyleLabel];

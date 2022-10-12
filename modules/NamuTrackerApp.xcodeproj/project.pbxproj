@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284C28DB0A0800702FDD /* AppDelegate.m */; };
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
-		4F30285328DB0A0800702FDD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* ViewController.m */; };
+		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -19,8 +19,8 @@
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4F30284E28DB0A0800702FDD /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		4F30284F28DB0A0800702FDD /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		4F30285128DB0A0800702FDD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4F30285228DB0A0800702FDD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4F30285128DB0A0800702FDD /* DecksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksViewController.h; sourceTree = "<group>"; };
+		4F30285228DB0A0800702FDD /* DecksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksViewController.m; sourceTree = "<group>"; };
 		4F30285D28DB0A0800702FDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F30287328DB4D4800702FDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,8 +60,8 @@
 				4F30284C28DB0A0800702FDD /* AppDelegate.m */,
 				4F30284E28DB0A0800702FDD /* SceneDelegate.h */,
 				4F30284F28DB0A0800702FDD /* SceneDelegate.m */,
-				4F30285128DB0A0800702FDD /* ViewController.h */,
-				4F30285228DB0A0800702FDD /* ViewController.m */,
+				4F30285128DB0A0800702FDD /* DecksViewController.h */,
+				4F30285228DB0A0800702FDD /* DecksViewController.m */,
 				4F30285D28DB0A0800702FDD /* main.m */,
 			);
 			path = NamuTrackerApp;
@@ -134,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F30285328DB0A0800702FDD /* ViewController.m in Sources */,
+				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
