@@ -1,6 +1,6 @@
 #import "HSLogService.h"
 #import "CardService.h"
-#import <NamuTracker/identifiers.h>
+#import "identifiers.h"
 
 typedef NSString * HSLogServiceLogType NS_STRING_ENUM;
 static HSLogServiceLogType const HSLogServiceLogTypeZone = @"Zone";

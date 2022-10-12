@@ -1,4 +1,4 @@
-#import <FrontBoardServices/FBSApplicationInfo.h>
+#import "FBSApplicationInfo.h"
 
 @interface _UIApplicationInfo : FBSApplicationInfo
 @property (readonly, nonatomic) int ignoredOverrides;  // (@synthesize ignoredOverrides = _ignoredOverrides;)
@@ -19,7 +19,7 @@
 @property (readonly, nonatomic) NSArray* folderNames;
 @property (readonly, nonatomic) NSString* fallbackFolderName;
 + (id)_genreNameForID:(long)arg1;
-+ (id)_localizedFolderNameForName:(id)arg1
++ (id)_localizedFolderNameForName:(id)arg1;
 - (long)xb_userInterfaceStyleForRequestedUserInterfaceStyle:(long)arg1;
 - (BOOL)xb_supportsUserInterfaceStyle:(long)arg1;
 - (void)_loadFromProxy:(id)arg1;

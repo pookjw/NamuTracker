@@ -1,6 +1,6 @@
 #import "CardService.h"
-#import <NamuTracker/identifiers.h>
-#import <HSAPIService.h>
+#import "identifiers.h"
+#import "HSAPIService.h"
 
 @interface CardService ()
 @property (strong) HSAPIService *hsAPIService;

@@ -1,6 +1,6 @@
 #import "TrackingListCardContentView.h"
 #import "TrackingListCardContentConfiguration.h"
-#import <checkAvailability.h>
+#import "checkAvailability.h"
 
 @interface TrackingListCardContentView ()
 @property (readonly, nonatomic) TrackingListCardContentConfiguration *contentConfiguration;

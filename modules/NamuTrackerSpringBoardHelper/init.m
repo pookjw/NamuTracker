@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <libhooker/libhooker.h>
-#import <SpringBoard/SBApplicationInfo.h>
-#import <NamuTracker/identifiers.h>
+#import "SBApplicationInfo.h"
+#import "identifiers.h"
 
 static NSUInteger (*original_SBApplicationInfo_backgroundStyle)(SBApplicationInfo *self, SEL selector);
 static NSUInteger custom_SBApplicationInfo_backgroundStyle(SBApplicationInfo *self, SEL selector) {

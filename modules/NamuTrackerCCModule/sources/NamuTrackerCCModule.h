@@ -1,4 +1,4 @@
-#import <ControlCenterUIKit/CCUIToggleModule.h>
+#import "CCUIToggleModule.h"
 
 @interface NamuTrackerCCModule : CCUIToggleModule
 @end

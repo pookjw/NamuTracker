@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import <ControlCenterUIKit/CCUIContentModuleContentViewController.h>
+#import "CCUIContentModuleContentViewController.h"
 
 @interface CCUIToggleModule : NSObject
 @property (nonatomic, getter=isSelected) BOOL selected;

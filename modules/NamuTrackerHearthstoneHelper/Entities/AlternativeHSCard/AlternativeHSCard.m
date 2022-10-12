@@ -1,6 +1,6 @@
-#import <AlternativeHSCard.h>
+#import "AlternativeHSCard.h"
 #import "NSObject+propertiesDictionary.h"
-#import <compareNullableValues.h>
+#import "compareNullableValues.h"
 
 @implementation AlternativeHSCard
 

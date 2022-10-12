@@ -2,11 +2,11 @@
 #import "HSLogService.h"
 #import "CardService.h"
 #import "AlternativeHSCard.h"
-#import <checkAvailability.h>
-#import <compareNullableValues.h>
-#import <UICollectionViewDiffableDataSource+applySnapshotAndWait.h>
+#import "checkAvailability.h"
+#import "compareNullableValues.h"
+#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
 #import "NSDiffableDataSourceSnapshot+Sort.h"
-#import <CancellableBag.h>
+#import "CancellableBag.h"
 
 @interface NSDiffableDataSourceSnapshot (SortTrackingListModels)
 - (void)sortTrackingListModels;

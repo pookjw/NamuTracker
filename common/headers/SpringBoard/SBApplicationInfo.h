@@ -1,4 +1,7 @@
-#import <SpringBoard/_UIApplicationInfo.h>
+#import "_UIApplicationInfo.h"
+
+@class XBSnapshotContainerIdentity;
+@class CRCarPlayAppDeclaration;
 
 @interface SBApplicationInfo : _UIApplicationInfo
 @property (readonly, nonatomic) BOOL supportsDirectToAirplayOrIsAllowListed;

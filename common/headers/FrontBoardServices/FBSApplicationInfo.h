@@ -1,4 +1,4 @@
-#import <FrontBoardServices/FBSBundleInfo.h>
+#import "FBSBundleInfo.h"
 
 @class _FBSCDHashCacheInfo;
 

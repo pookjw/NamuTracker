@@ -1,7 +1,7 @@
 #import "TrackingRootViewController.h"
 #import "PassthroughView.h"
 #import "TrackingListViewController.h"
-#import <checkAvailability.h>
+#import "checkAvailability.h"
 
 @interface TrackingRootViewController ()
 @property (strong) TrackingListViewController *trackingListViewController;

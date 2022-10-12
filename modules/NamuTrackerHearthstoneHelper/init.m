@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <dlfcn.h>
 #import <libhooker/libhooker.h>
-#import <UnityFramework/UnityAppController.h>
+#import "UnityAppController.h"
 #import "HSLogService.h"
 #import "TrackingService.h"
 
