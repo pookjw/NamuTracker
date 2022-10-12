@@ -39,6 +39,10 @@
     self.window = window;
 }
 
+- (void)sceneDidEnterBackground:(UIScene *)scene {
+    if (self.didSuspend) exit(0);
+}
+
 - (BOOL)needsHSHelperAlert {
     return ![NSFileManager.defaultManager fileExistsAtPath:@"/usr/lib/TweakInject/NamuTrackerHearthstoneHelper.dylib" isDirectory:NULL];
 }
@@ -59,10 +63,6 @@
     [viewController presentViewController:alert animated:YES completion:^{
         
     }];
-}
-
-- (void)sceneDidEnterBackground:(UIScene *)scene {
-    if (self.didSuspend) exit(0);
 }
 
 @end
