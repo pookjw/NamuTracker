@@ -31,7 +31,11 @@
     
     UILabel *testLabel = [UILabel new];
     testLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle1];
-    testLabel.text = @"Hello World!";
+#if USERLAND_MODE
+    testLabel.text = @"userland!";
+#elif SYSTEMLAND_MODE
+    testLabel.text = @"systemland!";
+#endif
     [visualEffectView.contentView addSubview:testLabel];
     testLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[

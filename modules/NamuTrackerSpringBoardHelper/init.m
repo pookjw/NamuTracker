@@ -5,7 +5,7 @@
 
 static NSUInteger (*original_SBApplicationInfo_backgroundStyle)(SBApplicationInfo *self, SEL selector);
 static NSUInteger custom_SBApplicationInfo_backgroundStyle(SBApplicationInfo *self, SEL selector) {
-    if (([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierApp]) || ([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppUserland])) {
+    if (([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppSystemland]) || ([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppUserland])) {
         return 4; // like com.apple.mobilesafari
     } else {
         return original_SBApplicationInfo_backgroundStyle(self, selector);
@@ -14,7 +14,7 @@ static NSUInteger custom_SBApplicationInfo_backgroundStyle(SBApplicationInfo *se
 
 static BOOL (*original_SBApplicationInfo_canChangeBackgroundStyle)(SBApplicationInfo *self, SEL selector);
 static BOOL custom_SBApplicationInfo_canChangeBackgroundStyle(SBApplicationInfo *self, SEL selector) {
-    if (([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierApp]) || ([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppUserland])) {
+    if (([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppSystemland]) || ([self.bundleIdentifier isEqualToString:NamuTrackerIdentifierAppUserland])) {
         return YES; // like com.apple.mobilesafari
     } else {
         return original_SBApplicationInfo_canChangeBackgroundStyle(self, selector);

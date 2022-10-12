@@ -4,7 +4,7 @@ export ARCHS=arm64 arm64e
 
 TWEAK_NAME = NamuTrackerHearthstoneHelper
 
-$(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable -Wno-unused-value -Wno-unused-function -I $(addprefix -I,$(shell find . -type d)) -I $(THEOS_PROJECT_DIR)/common/headers -I $(THEOS_PROJECT_DIR)/common/sources
+$(TWEAK_NAME)_CFLAGS = -fobjc-arc -fobjc-weak -Wno-unused-variable -Wno-unused-value -Wno-unused-function -I $(addprefix -I,$(shell find . -type d)) -I$(THEOS_PROJECT_DIR)/common/headers -I$(THEOS_PROJECT_DIR)/common/sources
 $(TWEAK_NAME)_FRAMEWORKS = UIKit CoreGraphics
 $(TWEAK_NAME)_PRIVATE_FRAMEWORKS = AppSupport
 $(TWEAK_NAME)_LIBRARIES = rocketbootstrap
