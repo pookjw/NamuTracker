@@ -14,7 +14,9 @@ static BOOL custom_UnityAppController_application_willFinishLaunchingWithOptions
 }
 
 __attribute__((constructor)) static void init() {
-    // seems like hearthstone loads UnityFramework lazily, and libhooker cannot hook lazy framework unlike substrate. Load it immediately.
-    void *handle = dlopen("./UnityFramework.framework/UnityFramework", RTLD_NOW);
-    LBHookMessage(NSClassFromString(@"UnityAppController"), @selector(application:willFinishLaunchingWithOptions:), &custom_UnityAppController_application_willFinishLaunchingWithOptions, &original_UnityAppController_application_willFinishLaunchingWithOptions);
+    @autoreleasepool {
+        // seems like hearthstone loads UnityFramework lazily, and libhooker cannot hook lazy framework unlike substrate. Load it immediately.
+        void *handle = dlopen("./UnityFramework.framework/UnityFramework", RTLD_NOW);
+        LBHookMessage(NSClassFromString(@"UnityAppController"), @selector(application:willFinishLaunchingWithOptions:), &custom_UnityAppController_application_willFinishLaunchingWithOptions, &original_UnityAppController_application_willFinishLaunchingWithOptions);
+    }
 }

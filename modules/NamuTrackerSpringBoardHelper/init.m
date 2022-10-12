@@ -22,6 +22,8 @@ static BOOL custom_SBApplicationInfo_canChangeBackgroundStyle(SBApplicationInfo 
 }
 
 __attribute__((constructor)) static void init() {
-    LBHookMessage(NSClassFromString(@"SBApplicationInfo"), @selector(backgroundStyle), &custom_SBApplicationInfo_backgroundStyle, &original_SBApplicationInfo_backgroundStyle);
-    LBHookMessage(NSClassFromString(@"SBApplicationInfo"), @selector(canChangeBackgroundStyle), &custom_SBApplicationInfo_canChangeBackgroundStyle, &original_SBApplicationInfo_canChangeBackgroundStyle);
+    @autoreleasepool {
+        LBHookMessage(NSClassFromString(@"SBApplicationInfo"), @selector(backgroundStyle), &custom_SBApplicationInfo_backgroundStyle, &original_SBApplicationInfo_backgroundStyle);
+        LBHookMessage(NSClassFromString(@"SBApplicationInfo"), @selector(canChangeBackgroundStyle), &custom_SBApplicationInfo_canChangeBackgroundStyle, &original_SBApplicationInfo_canChangeBackgroundStyle);
+    }
 }

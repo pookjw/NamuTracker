@@ -1,5 +1,5 @@
 #import "HSAPIService.h"
-#import <NamuTracker/keys.h>
+#import "keys.h"
 
 typedef NSString * BlizzardTokenAPI NS_STRING_ENUM;
 

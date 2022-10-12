@@ -1,7 +1,7 @@
 #import "HSDeck.h"
 #import "NSObject+propertiesDictionary.h"
-#import <compareNullableValues.h>
-#import <nullSafetyHandler.h>
+#import "compareNullableValues.h"
+#import "nullSafetyHandler.h"
 
 @implementation HSDeck
 

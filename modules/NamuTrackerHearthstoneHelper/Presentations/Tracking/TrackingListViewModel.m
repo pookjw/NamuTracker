@@ -6,7 +6,7 @@
 #import <compareNullableValues.h>
 #import <UICollectionViewDiffableDataSource+applySnapshotAndWait.h>
 #import "NSDiffableDataSourceSnapshot+Sort.h"
-#import "CancellableBag.h"
+#import <CancellableBag.h>
 
 @interface NSDiffableDataSourceSnapshot (SortTrackingListModels)
 - (void)sortTrackingListModels;

@@ -11,24 +11,25 @@
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
-		4FD4E48028F67880006EBA86 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD4E48228F67880006EBA86 /* Localizable.strings */; };
-		4FD4E48628F67A0D006EBA86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD4E48828F67A0D006EBA86 /* InfoPlist.strings */; };
-		4FD4E49828F67B0F006EBA86 /* NSString+convertToCamelCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49528F67B0F006EBA86 /* NSString+convertToCamelCase.m */; };
-		4FD4E49928F67B0F006EBA86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49628F67B0F006EBA86 /* main.m */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
+		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
+		4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11528F7079600726235 /* DecksItemModel.m */; };
+		4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11828F7079E00726235 /* DecksSectionModel.m */; };
+		4FFBE14528F7090000726235 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13D28F7090000726235 /* Localizable.strings */; };
+		4FFBE14628F7090000726235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13F28F7090000726235 /* InfoPlist.strings */; };
+		4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16528F70E3800726235 /* checkAvailability.m */; };
+		4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */; };
+		4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */; };
+		4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */; };
+		4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16F28F70E3800726235 /* HSAPIService.m */; };
+		4FFBE18428F70E3800726235 /* HSDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE17428F70E3800726235 /* HSDeck.m */; };
+		4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE17728F70E3800726235 /* CancellableBag.m */; };
+		4FFBE18628F70E3800726235 /* CancellableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE17828F70E3800726235 /* CancellableObject.m */; };
+		4FFBE18728F70E3800726235 /* HSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE17C28F70E3800726235 /* HSCard.m */; };
+		4FFBE18928F7114100726235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE18828F7114100726235 /* Assets.xcassets */; };
+		4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16128F70E3800726235 /* compareNullableValues.m */; };
+		4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16428F70E3800726235 /* nullSafetyHandler.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4FD4E48C28F67AD0006EBA86 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,29 +41,58 @@
 		4F30285228DB0A0800702FDD /* DecksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksViewController.m; sourceTree = "<group>"; };
 		4F30285D28DB0A0800702FDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F30287328DB4D4800702FDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FD4E48128F67880006EBA86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4FD4E48328F6788F006EBA86 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4FD4E48728F67A0D006EBA86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4FD4E48928F67A10006EBA86 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4FD4E48E28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NamuTrackerAppResourcesScript; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FD4E49528F67B0F006EBA86 /* NSString+convertToCamelCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+convertToCamelCase.m"; sourceTree = "<group>"; };
-		4FD4E49628F67B0F006EBA86 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4FD4E49728F67B0F006EBA86 /* NSString+convertToCamelCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+convertToCamelCase.h"; sourceTree = "<group>"; };
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
 		4FD4E4A128F682A9006EBA86 /* UIApplication+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Private.h"; sourceTree = "<group>"; };
+		4FFBE11128F7076C00726235 /* DecksViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksViewModel.h; sourceTree = "<group>"; };
+		4FFBE11228F7076C00726235 /* DecksViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksViewModel.m; sourceTree = "<group>"; };
+		4FFBE11428F7079600726235 /* DecksItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksItemModel.h; sourceTree = "<group>"; };
+		4FFBE11528F7079600726235 /* DecksItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksItemModel.m; sourceTree = "<group>"; };
+		4FFBE11728F7079E00726235 /* DecksSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksSectionModel.h; sourceTree = "<group>"; };
+		4FFBE11828F7079E00726235 /* DecksSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksSectionModel.m; sourceTree = "<group>"; };
+		4FFBE13E28F7090000726235 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FFBE14028F7090000726235 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4FFBE14228F7090000726235 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FFBE14328F7090000726235 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4FFBE14E28F70E3700726235 /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keys.h; sourceTree = "<group>"; };
+		4FFBE14F28F70E3700726235 /* identifiers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = identifiers.h; sourceTree = "<group>"; };
+		4FFBE15128F70E3700726235 /* FBSApplicationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSApplicationInfo.h; sourceTree = "<group>"; };
+		4FFBE15228F70E3700726235 /* FBSBundleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSBundleInfo.h; sourceTree = "<group>"; };
+		4FFBE15428F70E3700726235 /* CCUIContentModuleContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIContentModuleContentViewController.h; sourceTree = "<group>"; };
+		4FFBE15528F70E3700726235 /* CCUIToggleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIToggleModule.h; sourceTree = "<group>"; };
+		4FFBE15728F70E3700726235 /* SBApplicationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBApplicationInfo.h; sourceTree = "<group>"; };
+		4FFBE15828F70E3700726235 /* _UIApplicationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _UIApplicationInfo.h; sourceTree = "<group>"; };
+		4FFBE15A28F70E3700726235 /* rocketbootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rocketbootstrap.h; sourceTree = "<group>"; };
+		4FFBE15B28F70E3700726235 /* bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bootstrap.h; sourceTree = "<group>"; };
+		4FFBE15D28F70E3700726235 /* UnityAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnityAppController.h; sourceTree = "<group>"; };
+		4FFBE16028F70E3800726235 /* nullSafetyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nullSafetyHandler.h; sourceTree = "<group>"; };
+		4FFBE16128F70E3800726235 /* compareNullableValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = compareNullableValues.m; sourceTree = "<group>"; };
+		4FFBE16228F70E3800726235 /* checkAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkAvailability.h; sourceTree = "<group>"; };
+		4FFBE16328F70E3800726235 /* compareNullableValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compareNullableValues.h; sourceTree = "<group>"; };
+		4FFBE16428F70E3800726235 /* nullSafetyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nullSafetyHandler.m; sourceTree = "<group>"; };
+		4FFBE16528F70E3800726235 /* checkAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkAvailability.m; sourceTree = "<group>"; };
+		4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+propertiesDictionary.m"; sourceTree = "<group>"; };
+		4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewDiffableDataSource+applySnapshotAndWait.m"; sourceTree = "<group>"; };
+		4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDiffableDataSourceSnapshot+Sort.m"; sourceTree = "<group>"; };
+		4FFBE16A28F70E3800726235 /* NSObject+propertiesDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+propertiesDictionary.h"; sourceTree = "<group>"; };
+		4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"; sourceTree = "<group>"; };
+		4FFBE16C28F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDiffableDataSourceSnapshot+Sort.h"; sourceTree = "<group>"; };
+		4FFBE16F28F70E3800726235 /* HSAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAPIService.m; sourceTree = "<group>"; };
+		4FFBE17028F70E3800726235 /* HSAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAPIService.h; sourceTree = "<group>"; };
+		4FFBE17328F70E3800726235 /* HSDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDeck.h; sourceTree = "<group>"; };
+		4FFBE17428F70E3800726235 /* HSDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDeck.m; sourceTree = "<group>"; };
+		4FFBE17628F70E3800726235 /* CancellableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancellableObject.h; sourceTree = "<group>"; };
+		4FFBE17728F70E3800726235 /* CancellableBag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancellableBag.m; sourceTree = "<group>"; };
+		4FFBE17828F70E3800726235 /* CancellableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancellableObject.m; sourceTree = "<group>"; };
+		4FFBE17928F70E3800726235 /* CancellableBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancellableBag.h; sourceTree = "<group>"; };
+		4FFBE17B28F70E3800726235 /* HSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCard.h; sourceTree = "<group>"; };
+		4FFBE17C28F70E3800726235 /* HSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCard.m; sourceTree = "<group>"; };
+		4FFBE18828F7114100726235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F30284528DB0A0800702FDD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD4E48B28F67AD0006EBA86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				4F30284A28DB0A0800702FDD /* NamuTrackerApp */,
-				4FD4E48F28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */,
 				4F30284928DB0A0800702FDD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				4F30284828DB0A0800702FDD /* NamuTrackerApp.app */,
-				4FD4E48E28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,38 +121,20 @@
 		4F30284A28DB0A0800702FDD /* NamuTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
-				4FD4E47B28F67868006EBA86 /* Resources */,
+				4FFBE14B28F70E3700726235 /* common */,
+				4FFBE13C28F7090000726235 /* Resources */,
 				4FD4E49A28F67B6E006EBA86 /* Services */,
 				4FD4E4A028F68299006EBA86 /* Categories */,
+				4FFBE10F28F7073500726235 /* Presentations */,
 				4F30287328DB4D4800702FDD /* Info.plist */,
+				4FFBE18828F7114100726235 /* Assets.xcassets */,
 				4F30284B28DB0A0800702FDD /* AppDelegate.h */,
 				4F30284C28DB0A0800702FDD /* AppDelegate.m */,
 				4F30284E28DB0A0800702FDD /* SceneDelegate.h */,
 				4F30284F28DB0A0800702FDD /* SceneDelegate.m */,
-				4F30285128DB0A0800702FDD /* DecksViewController.h */,
-				4F30285228DB0A0800702FDD /* DecksViewController.m */,
 				4F30285D28DB0A0800702FDD /* main.m */,
 			);
 			path = NamuTrackerApp;
-			sourceTree = "<group>";
-		};
-		4FD4E47B28F67868006EBA86 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4FD4E48228F67880006EBA86 /* Localizable.strings */,
-				4FD4E48828F67A0D006EBA86 /* InfoPlist.strings */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		4FD4E48F28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */ = {
-			isa = PBXGroup;
-			children = (
-				4FD4E49628F67B0F006EBA86 /* main.m */,
-				4FD4E49728F67B0F006EBA86 /* NSString+convertToCamelCase.h */,
-				4FD4E49528F67B0F006EBA86 /* NSString+convertToCamelCase.m */,
-			);
-			path = NamuTrackerAppResourcesScript;
 			sourceTree = "<group>";
 		};
 		4FD4E49A28F67B6E006EBA86 /* Services */ = {
@@ -153,6 +163,207 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		4FFBE10F28F7073500726235 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE11028F7074000726235 /* Decks */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		4FFBE11028F7074000726235 /* Decks */ = {
+			isa = PBXGroup;
+			children = (
+				4F30285128DB0A0800702FDD /* DecksViewController.h */,
+				4F30285228DB0A0800702FDD /* DecksViewController.m */,
+				4FFBE11128F7076C00726235 /* DecksViewModel.h */,
+				4FFBE11228F7076C00726235 /* DecksViewModel.m */,
+				4FFBE11728F7079E00726235 /* DecksSectionModel.h */,
+				4FFBE11828F7079E00726235 /* DecksSectionModel.m */,
+				4FFBE11428F7079600726235 /* DecksItemModel.h */,
+				4FFBE11528F7079600726235 /* DecksItemModel.m */,
+			);
+			path = Decks;
+			sourceTree = "<group>";
+		};
+		4FFBE13C28F7090000726235 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE13D28F7090000726235 /* Localizable.strings */,
+				4FFBE13F28F7090000726235 /* InfoPlist.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FFBE14B28F70E3700726235 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE14C28F70E3700726235 /* headers */,
+				4FFBE15E28F70E3800726235 /* sources */,
+			);
+			name = common;
+			path = ../../common;
+			sourceTree = "<group>";
+		};
+		4FFBE14C28F70E3700726235 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE14D28F70E3700726235 /* NamuTracker */,
+				4FFBE15028F70E3700726235 /* FrontBoardServices */,
+				4FFBE15328F70E3700726235 /* ControlCenterUIKit */,
+				4FFBE15628F70E3700726235 /* SpringBoard */,
+				4FFBE15928F70E3700726235 /* rocketbootstrap */,
+				4FFBE15C28F70E3700726235 /* UnityFramework */,
+			);
+			path = headers;
+			sourceTree = "<group>";
+		};
+		4FFBE14D28F70E3700726235 /* NamuTracker */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE14E28F70E3700726235 /* keys.h */,
+				4FFBE14F28F70E3700726235 /* identifiers.h */,
+			);
+			path = NamuTracker;
+			sourceTree = "<group>";
+		};
+		4FFBE15028F70E3700726235 /* FrontBoardServices */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15128F70E3700726235 /* FBSApplicationInfo.h */,
+				4FFBE15228F70E3700726235 /* FBSBundleInfo.h */,
+			);
+			path = FrontBoardServices;
+			sourceTree = "<group>";
+		};
+		4FFBE15328F70E3700726235 /* ControlCenterUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15428F70E3700726235 /* CCUIContentModuleContentViewController.h */,
+				4FFBE15528F70E3700726235 /* CCUIToggleModule.h */,
+			);
+			path = ControlCenterUIKit;
+			sourceTree = "<group>";
+		};
+		4FFBE15628F70E3700726235 /* SpringBoard */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15728F70E3700726235 /* SBApplicationInfo.h */,
+				4FFBE15828F70E3700726235 /* _UIApplicationInfo.h */,
+			);
+			path = SpringBoard;
+			sourceTree = "<group>";
+		};
+		4FFBE15928F70E3700726235 /* rocketbootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15A28F70E3700726235 /* rocketbootstrap.h */,
+				4FFBE15B28F70E3700726235 /* bootstrap.h */,
+			);
+			path = rocketbootstrap;
+			sourceTree = "<group>";
+		};
+		4FFBE15C28F70E3700726235 /* UnityFramework */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15D28F70E3700726235 /* UnityAppController.h */,
+			);
+			path = UnityFramework;
+			sourceTree = "<group>";
+		};
+		4FFBE15E28F70E3800726235 /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE15F28F70E3800726235 /* Utils */,
+				4FFBE16628F70E3800726235 /* Categories */,
+				4FFBE16D28F70E3800726235 /* Services */,
+				4FFBE17128F70E3800726235 /* Entities */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		4FFBE15F28F70E3800726235 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE16028F70E3800726235 /* nullSafetyHandler.h */,
+				4FFBE16428F70E3800726235 /* nullSafetyHandler.m */,
+				4FFBE16228F70E3800726235 /* checkAvailability.h */,
+				4FFBE16528F70E3800726235 /* checkAvailability.m */,
+				4FFBE16328F70E3800726235 /* compareNullableValues.h */,
+				4FFBE16128F70E3800726235 /* compareNullableValues.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FFBE16628F70E3800726235 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */,
+				4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */,
+				4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */,
+				4FFBE16A28F70E3800726235 /* NSObject+propertiesDictionary.h */,
+				4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.h */,
+				4FFBE16C28F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4FFBE16D28F70E3800726235 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE16E28F70E3800726235 /* HSAPIService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4FFBE16E28F70E3800726235 /* HSAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE16F28F70E3800726235 /* HSAPIService.m */,
+				4FFBE17028F70E3800726235 /* HSAPIService.h */,
+			);
+			path = HSAPIService;
+			sourceTree = "<group>";
+		};
+		4FFBE17128F70E3800726235 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE17228F70E3800726235 /* HSDeck */,
+				4FFBE17528F70E3800726235 /* CancellableObject */,
+				4FFBE17A28F70E3800726235 /* HSCard */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		4FFBE17228F70E3800726235 /* HSDeck */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE17328F70E3800726235 /* HSDeck.h */,
+				4FFBE17428F70E3800726235 /* HSDeck.m */,
+			);
+			path = HSDeck;
+			sourceTree = "<group>";
+		};
+		4FFBE17528F70E3800726235 /* CancellableObject */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE17628F70E3800726235 /* CancellableObject.h */,
+				4FFBE17728F70E3800726235 /* CancellableBag.m */,
+				4FFBE17828F70E3800726235 /* CancellableObject.m */,
+				4FFBE17928F70E3800726235 /* CancellableBag.h */,
+			);
+			path = CancellableObject;
+			sourceTree = "<group>";
+		};
+		4FFBE17A28F70E3800726235 /* HSCard */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE17B28F70E3800726235 /* HSCard.h */,
+				4FFBE17C28F70E3800726235 /* HSCard.m */,
+			);
+			path = HSCard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,23 +384,6 @@
 			productReference = 4F30284828DB0A0800702FDD /* NamuTrackerApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FD4E48D28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4FD4E49228F67AD0006EBA86 /* Build configuration list for PBXNativeTarget "NamuTrackerAppResourcesScript" */;
-			buildPhases = (
-				4FD4E48A28F67AD0006EBA86 /* Sources */,
-				4FD4E48B28F67AD0006EBA86 /* Frameworks */,
-				4FD4E48C28F67AD0006EBA86 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NamuTrackerAppResourcesScript;
-			productName = NamuTrackerAppResourcesScript;
-			productReference = 4FD4E48E28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,9 +395,6 @@
 				TargetAttributes = {
 					4F30284728DB0A0800702FDD = {
 						CreatedOnToolsVersion = 14.1;
-					};
-					4FD4E48D28F67AD0006EBA86 = {
-						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
@@ -222,7 +413,6 @@
 			projectRoot = "";
 			targets = (
 				4F30284728DB0A0800702FDD /* NamuTrackerApp */,
-				4FD4E48D28F67AD0006EBA86 /* NamuTrackerAppResourcesScript */,
 			);
 		};
 /* End PBXProject section */
@@ -232,8 +422,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FD4E48028F67880006EBA86 /* Localizable.strings in Resources */,
-				4FD4E48628F67A0D006EBA86 /* InfoPlist.strings in Resources */,
+				4FFBE14628F7090000726235 /* InfoPlist.strings in Resources */,
+				4FFBE18928F7114100726235 /* Assets.xcassets in Resources */,
+				4FFBE14528F7090000726235 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,40 +435,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */,
+				4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */,
 				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
+				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
+				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
+				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
+				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
+				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
+				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
+				4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */,
+				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
 				4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */,
+				4FFBE18628F70E3800726235 /* CancellableObject.m in Sources */,
+				4FFBE18728F70E3800726235 /* HSCard.m in Sources */,
+				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
+				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4FD4E48A28F67AD0006EBA86 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4FD4E49928F67B0F006EBA86 /* main.m in Sources */,
-				4FD4E49828F67B0F006EBA86 /* NSString+convertToCamelCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4FD4E48228F67880006EBA86 /* Localizable.strings */ = {
+		4FFBE13D28F7090000726235 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4FD4E48128F67880006EBA86 /* en */,
-				4FD4E48328F6788F006EBA86 /* ko */,
+				4FFBE13E28F7090000726235 /* en */,
+				4FFBE14228F7090000726235 /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		4FD4E48828F67A0D006EBA86 /* InfoPlist.strings */ = {
+		4FFBE13F28F7090000726235 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4FD4E48728F67A0D006EBA86 /* en */,
-				4FD4E48928F67A10006EBA86 /* ko */,
+				4FFBE14028F7090000726235 /* en */,
+				4FFBE14328F7090000726235 /* ko */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -324,7 +520,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -386,7 +582,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "USERLAND_MODE=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -459,34 +655,6 @@
 			};
 			name = Release;
 		};
-		4FD4E49328F67AD0006EBA86 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		4FD4E49428F67AD0006EBA86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -504,15 +672,6 @@
 			buildConfigurations = (
 				4F30286228DB0A0800702FDD /* Debug */,
 				4F30286328DB0A0800702FDD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4FD4E49228F67AD0006EBA86 /* Build configuration list for PBXNativeTarget "NamuTrackerAppResourcesScript" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4FD4E49328F67AD0006EBA86 /* Debug */,
-				4FD4E49428F67AD0006EBA86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

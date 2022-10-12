@@ -1,6 +1,6 @@
 #import "HSCard.h"
-#import <compareNullableValues.h>
-#import <nullSafetyHandler.h>
+#import "compareNullableValues.h"
+#import "nullSafetyHandler.h"
 #import "NSObject+propertiesDictionary.h"
 
 @implementation HSCard

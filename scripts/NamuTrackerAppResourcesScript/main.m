@@ -17,11 +17,11 @@ void createLocalizableKeys(void) {
     NSURL *localizableKeyURL = [[[[appURL URLByAppendingPathComponent:@"Services" isDirectory:YES] URLByAppendingPathComponent:@"Localizable" isDirectory:YES] URLByAppendingPathComponent:@"LocalizableKey" isDirectory:NO] URLByAppendingPathExtension:@"h"];
     
     if (![fileManager fileExistsAtPath:appURL.path]) {
-        [NSException raise:@"StoneNamuResources was not found." format:@"Please check current directory."];
+        [NSException raise:@"Not found." format:@"Please check current directory."];
     }
     
     if (![fileManager fileExistsAtPath:localizableStringsURL.path]) {
-        [NSException raise:@"StoneNamuResources/en.lproj/Localizable.strings was not found." format:@"File is missing."];
+        [NSException raise:@"Not found." format:@"File is missing."];
     }
     
     //
