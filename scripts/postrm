@@ -2,6 +2,6 @@
 
 LIBRARY_DIR="/var/mobile/Library/NamuTracker"
 
-if [ -d LIBRARY_DIR ]]; then
+if [ -d LIBRARY_DIR ]; then
     rm -rm LIBRARY_DIR
 fi

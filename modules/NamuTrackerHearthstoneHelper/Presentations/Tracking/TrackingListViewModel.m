@@ -120,7 +120,10 @@
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         [self.cancellableBag removeCancellable:cancellable];
 
-        if (error) return;
+        if (error) {
+            NSLog(@"%@", error);
+            return;
+        }
 
         NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
 

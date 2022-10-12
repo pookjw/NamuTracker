@@ -10,6 +10,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 @property (strong) NSOperationQueue *timerQueue;
 @property (strong) NSOperationQueue *workQueue;
 @property (strong) NSTimer * _Nullable timer;
+@property CFRunLoopRef timerRunLoop;
 @property NSUInteger zoneLogCheckpoint;
 @property NSUInteger loadingScreenLogCheckpoint;
 @property (strong) CardService *cardService;
@@ -89,6 +90,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
     [self.timerQueue addOperationWithBlock:^{
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        weakSelf.timerRunLoop = [runLoop getCFRunLoop];
         
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                           target:weakSelf
@@ -106,6 +108,10 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 - (void)stopObserving {
     [self.timer invalidate];
     self.timer = nil;
+    if (self.timerRunLoop) {
+        CFRunLoopStop(self.timerRunLoop);
+        self.timerRunLoop = NULL;
+    }
 }
 
 - (void)configureTimerQueue {
@@ -127,8 +133,8 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 }
 
 - (void)triggeredTimer:(NSTimer *)timer {
-    if (!(timer.isValid)) {
-        CFRunLoopStop(CFRunLoopGetCurrent());
+    if (!(timer.isValid) && (self.timerRunLoop)) {
+        CFRunLoopStop(self.timerRunLoop);
     }
 
     __weak typeof(self) weakSelf = self;
