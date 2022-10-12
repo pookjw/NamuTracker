@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <HSCard.h>
+#import "HSCard.h"
 #import "AlternativeHSCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
