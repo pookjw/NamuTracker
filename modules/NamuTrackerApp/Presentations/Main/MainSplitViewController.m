@@ -60,10 +60,11 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (animated) {
+        CGFloat originalAlpha = viewController.view.alpha;
         viewController.view.alpha = 0.0f;
         
         [viewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-            viewController.view.alpha = 1.0f;
+            viewController.view.alpha = originalAlpha;
         } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             
         }];
@@ -74,11 +75,12 @@
         if ((index == 0) || (index == NSNotFound)) return;
         
         UIViewController *previousViewController = navigationController.viewControllers[index - 1];
+        CGFloat originalPreviousAlpha = previousViewController.view.alpha;
         
         [previousViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             previousViewController.view.alpha = 0.0f;
         } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-            
+            previousViewController.view.alpha = originalPreviousAlpha;
         }];
     }
 }
