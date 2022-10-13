@@ -10,6 +10,12 @@
 
 "DONE" = "Done";
 
+"EXIT" = "Exit";
+
 "NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken.";
+
+"HEARHSTONE_IS_NOT_INSTALLED" = "Hearthstone is not installed. Please install it.";
+
+"OPEN_THE_APP_STORE" = "Open the App Store";
 
 "DECKS" = "Decks";

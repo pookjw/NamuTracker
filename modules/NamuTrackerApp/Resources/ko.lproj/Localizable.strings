@@ -10,6 +10,12 @@
 
 "DONE" = "완료";
 
+"EXIT" = "종료";
+
 "NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "NamuTrackerHearthstoneHelper가 설치되지 않았거나, 해당 기기는 탈옥되지 않은 것으로 보입니다.";
+
+"HEARHSTONE_IS_NOT_INSTALLED" = "하스스톤이 설치되지 않았습니다. 설치해 주세요.";
+
+"OPEN_THE_APP_STORE" = "App Store 열기";
 
 "DECKS" = "덱";
