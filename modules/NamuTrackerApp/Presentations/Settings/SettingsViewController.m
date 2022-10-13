@@ -27,6 +27,7 @@
 
 - (void)setAttributes {
     self.title = [LocalizableService localizableForKey:LocalizableKeySettings];
+    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAlways;
 }
 
 - (void)configureCollectionView {
