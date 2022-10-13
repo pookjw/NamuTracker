@@ -60,8 +60,9 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (animated) {
-        if (navigationController.viewControllers.count > 1) {
-            UIViewController *previousViewController = navigationController.viewControllers[navigationController.viewControllers.count - 2];
+        NSUInteger index = [navigationController.viewControllers indexOfObject:viewController];
+        if ((index != NSNotFound) && ((index - 1) < navigationController.viewControllers.count)) {
+            UIViewController *previousViewController = navigationController.viewControllers[index - 1];
             
             [previousViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
                 previousViewController.view.alpha = 0.0f;
