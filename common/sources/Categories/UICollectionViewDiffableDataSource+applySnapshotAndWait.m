@@ -19,6 +19,8 @@
     }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability-new"
 - (void)applySnapshotUsingReloadDataAndWait:(NSDiffableDataSourceSnapshot *)snapshot completion:(void (^ _Nullable)(void))completion {
     if (NSThread.isMainThread) {
         [self applySnapshotUsingReloadData:snapshot completion:completion];
@@ -35,5 +37,6 @@
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
 }
+#pragma clang diagnostic pop
 
 @end

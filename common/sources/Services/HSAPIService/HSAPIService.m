@@ -52,7 +52,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             }
 
             NSError * _Nullable parseError = nil;
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&parseError];
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
             if (parseError) {
                 completionHandler(nil, parseError);
@@ -109,7 +109,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             }
 
             NSError * _Nullable parseError = nil;
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&parseError];
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
             if (parseError) {
                 completionHandler(nil, parseError);
@@ -158,7 +158,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
         }
 
         NSError * _Nullable parseError = nil;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&parseError];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
         if (parseError) {
             completionHandler(nil, parseError);

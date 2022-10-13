@@ -1,6 +1,6 @@
 #import "TrackingWindow.h"
 #import "TrackingRootViewController.h"
-#import "checkAvailability.h"
+#import "UIWindowScene+keyWindowAlt.h"
 
 @interface TrackingWindow ()
 @property (strong) TrackingRootViewController *trackingRootViewController;
@@ -64,18 +64,7 @@
 - (void)setAttributes {
     self.windowLevel = UIWindowLevelAlert;
 
-    UIWindow * _Nullable __block previousKeyWindow = nil;
-    
-    if (checkAvailability(@"15.0")) {
-        previousKeyWindow = self.windowScene.keyWindow;
-    } else {
-        [self.windowScene.windows enumerateObjectsUsingBlock:^(UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.isKeyWindow) {
-                previousKeyWindow = obj;
-                *stop = YES;
-            }
-        }];
-    }
+    UIWindow * _Nullable previousKeyWindow = self.windowScene.keyWindowAlt;
 
     [self makeKeyAndVisible];
     [previousKeyWindow makeKeyWindow];

@@ -29,6 +29,9 @@
 		4FFBE18928F7114100726235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE18828F7114100726235 /* Assets.xcassets */; };
 		4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16128F70E3800726235 /* compareNullableValues.m */; };
 		4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16428F70E3800726235 /* nullSafetyHandler.m */; };
+		4FFFFD5528F808B900401470 /* isMockMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5428F808B900401470 /* isMockMode.m */; };
+		4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5828F8099900401470 /* PrerequisiteService.m */; };
+		4FFFFD5C28F80AE100401470 /* UIWindowScene+keyWindowAlt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +92,12 @@
 		4FFBE17B28F70E3800726235 /* HSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCard.h; sourceTree = "<group>"; };
 		4FFBE17C28F70E3800726235 /* HSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCard.m; sourceTree = "<group>"; };
 		4FFBE18828F7114100726235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FFFFD5328F808B300401470 /* isMockMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = isMockMode.h; sourceTree = "<group>"; };
+		4FFFFD5428F808B900401470 /* isMockMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = isMockMode.m; sourceTree = "<group>"; };
+		4FFFFD5728F8099900401470 /* PrerequisiteService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrerequisiteService.h; sourceTree = "<group>"; };
+		4FFFFD5828F8099900401470 /* PrerequisiteService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrerequisiteService.m; sourceTree = "<group>"; };
+		4FFFFD5A28F80AD700401470 /* UIWindowScene+keyWindowAlt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindowScene+keyWindowAlt.h"; sourceTree = "<group>"; };
+		4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindowScene+keyWindowAlt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +132,9 @@
 			children = (
 				4FFBE14B28F70E3700726235 /* common */,
 				4FFBE13C28F7090000726235 /* Resources */,
+				4FFFFD5228F808A200401470 /* Utils */,
 				4FD4E49A28F67B6E006EBA86 /* Services */,
-				4FD4E4A028F68299006EBA86 /* Categories */,
+				4FD4E4A028F68299006EBA86 /* Private */,
 				4FFBE10F28F7073500726235 /* Presentations */,
 				4F30287328DB4D4800702FDD /* Info.plist */,
 				4FFBE18828F7114100726235 /* Assets.xcassets */,
@@ -140,6 +150,7 @@
 		4FD4E49A28F67B6E006EBA86 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4FFFFD5628F8095A00401470 /* Prerequisite */,
 				4FD4E49B28F67B76006EBA86 /* Localizable */,
 			);
 			path = Services;
@@ -155,12 +166,12 @@
 			path = Localizable;
 			sourceTree = "<group>";
 		};
-		4FD4E4A028F68299006EBA86 /* Categories */ = {
+		4FD4E4A028F68299006EBA86 /* Private */ = {
 			isa = PBXGroup;
 			children = (
 				4FD4E4A128F682A9006EBA86 /* UIApplication+Private.h */,
 			);
-			path = Categories;
+			path = Private;
 			sourceTree = "<group>";
 		};
 		4FFBE10F28F7073500726235 /* Presentations */ = {
@@ -298,12 +309,14 @@
 		4FFBE16628F70E3800726235 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */,
-				4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */,
-				4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */,
 				4FFBE16A28F70E3800726235 /* NSObject+propertiesDictionary.h */,
+				4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */,
 				4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.h */,
+				4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */,
 				4FFBE16C28F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.h */,
+				4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */,
+				4FFFFD5A28F80AD700401470 /* UIWindowScene+keyWindowAlt.h */,
+				4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -319,8 +332,8 @@
 		4FFBE16E28F70E3800726235 /* HSAPIService */ = {
 			isa = PBXGroup;
 			children = (
-				4FFBE16F28F70E3800726235 /* HSAPIService.m */,
 				4FFBE17028F70E3800726235 /* HSAPIService.h */,
+				4FFBE16F28F70E3800726235 /* HSAPIService.m */,
 			);
 			path = HSAPIService;
 			sourceTree = "<group>";
@@ -348,9 +361,9 @@
 			isa = PBXGroup;
 			children = (
 				4FFBE17628F70E3800726235 /* CancellableObject.h */,
-				4FFBE17728F70E3800726235 /* CancellableBag.m */,
 				4FFBE17828F70E3800726235 /* CancellableObject.m */,
 				4FFBE17928F70E3800726235 /* CancellableBag.h */,
+				4FFBE17728F70E3800726235 /* CancellableBag.m */,
 			);
 			path = CancellableObject;
 			sourceTree = "<group>";
@@ -362,6 +375,24 @@
 				4FFBE17C28F70E3800726235 /* HSCard.m */,
 			);
 			path = HSCard;
+			sourceTree = "<group>";
+		};
+		4FFFFD5228F808A200401470 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4FFFFD5328F808B300401470 /* isMockMode.h */,
+				4FFFFD5428F808B900401470 /* isMockMode.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FFFFD5628F8095A00401470 /* Prerequisite */ = {
+			isa = PBXGroup;
+			children = (
+				4FFFFD5728F8099900401470 /* PrerequisiteService.h */,
+				4FFFFD5828F8099900401470 /* PrerequisiteService.m */,
+			);
+			path = Prerequisite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +472,7 @@
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
+				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
@@ -450,9 +482,11 @@
 				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
 				4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */,
 				4FFBE18628F70E3800726235 /* CancellableObject.m in Sources */,
+				4FFFFD5C28F80AE100401470 /* UIWindowScene+keyWindowAlt.m in Sources */,
 				4FFBE18728F70E3800726235 /* HSCard.m in Sources */,
 				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
 				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
+				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,7 +639,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
@@ -632,7 +665,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
