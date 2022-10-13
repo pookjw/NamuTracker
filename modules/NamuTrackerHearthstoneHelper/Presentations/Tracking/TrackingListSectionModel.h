@@ -10,7 +10,7 @@ typedef NS_ENUM(NSUInteger, TrackingListSectionModelType) {
 @property (readonly) TrackingListSectionModelType type;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initCardsSection NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(TrackingListSectionModelType)type NS_DESIGNATED_INITIALIZER;
 @end
 
 NS_ASSUME_NONNULL_END

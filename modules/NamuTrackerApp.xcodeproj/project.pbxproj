@@ -29,6 +29,11 @@
 		4FFBE18928F7114100726235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE18828F7114100726235 /* Assets.xcassets */; };
 		4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16128F70E3800726235 /* compareNullableValues.m */; };
 		4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16428F70E3800726235 /* nullSafetyHandler.m */; };
+		4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE1A428F8405900726235 /* SettingsViewController.m */; };
+		4FFBE1A928F8406800726235 /* MainSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE1A828F8406800726235 /* MainSplitViewController.m */; };
+		4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE1AB28F84FC500726235 /* SettingsViewModel.m */; };
+		4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE1AE28F84FD500726235 /* SettingsSectionModel.m */; };
+		4FFBE1B228F84FE800726235 /* SettingsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE1B128F84FE800726235 /* SettingsItemModel.m */; };
 		4FFFFD5528F808B900401470 /* isMockMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5428F808B900401470 /* isMockMode.m */; };
 		4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5828F8099900401470 /* PrerequisiteService.m */; };
 		4FFFFD5C28F80AE100401470 /* UIWindowScene+keyWindowAlt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */; };
@@ -92,6 +97,16 @@
 		4FFBE17B28F70E3800726235 /* HSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCard.h; sourceTree = "<group>"; };
 		4FFBE17C28F70E3800726235 /* HSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCard.m; sourceTree = "<group>"; };
 		4FFBE18828F7114100726235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FFBE1A328F8405900726235 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		4FFBE1A428F8405900726235 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		4FFBE1A728F8406800726235 /* MainSplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainSplitViewController.h; sourceTree = "<group>"; };
+		4FFBE1A828F8406800726235 /* MainSplitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainSplitViewController.m; sourceTree = "<group>"; };
+		4FFBE1AA28F84FC500726235 /* SettingsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewModel.h; sourceTree = "<group>"; };
+		4FFBE1AB28F84FC500726235 /* SettingsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewModel.m; sourceTree = "<group>"; };
+		4FFBE1AD28F84FD500726235 /* SettingsSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsSectionModel.h; sourceTree = "<group>"; };
+		4FFBE1AE28F84FD500726235 /* SettingsSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsSectionModel.m; sourceTree = "<group>"; };
+		4FFBE1B028F84FE800726235 /* SettingsItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsItemModel.h; sourceTree = "<group>"; };
+		4FFBE1B128F84FE800726235 /* SettingsItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsItemModel.m; sourceTree = "<group>"; };
 		4FFFFD5328F808B300401470 /* isMockMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = isMockMode.h; sourceTree = "<group>"; };
 		4FFFFD5428F808B900401470 /* isMockMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = isMockMode.m; sourceTree = "<group>"; };
 		4FFFFD5728F8099900401470 /* PrerequisiteService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrerequisiteService.h; sourceTree = "<group>"; };
@@ -177,6 +192,8 @@
 		4FFBE10F28F7073500726235 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				4FFBE1A628F8405F00726235 /* Main */,
+				4FFBE1A228F8403D00726235 /* Settings */,
 				4FFBE11028F7074000726235 /* Decks */,
 			);
 			path = Presentations;
@@ -377,6 +394,30 @@
 			path = HSCard;
 			sourceTree = "<group>";
 		};
+		4FFBE1A228F8403D00726235 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE1A328F8405900726235 /* SettingsViewController.h */,
+				4FFBE1A428F8405900726235 /* SettingsViewController.m */,
+				4FFBE1AA28F84FC500726235 /* SettingsViewModel.h */,
+				4FFBE1AB28F84FC500726235 /* SettingsViewModel.m */,
+				4FFBE1AD28F84FD500726235 /* SettingsSectionModel.h */,
+				4FFBE1AE28F84FD500726235 /* SettingsSectionModel.m */,
+				4FFBE1B028F84FE800726235 /* SettingsItemModel.h */,
+				4FFBE1B128F84FE800726235 /* SettingsItemModel.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		4FFBE1A628F8405F00726235 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4FFBE1A728F8406800726235 /* MainSplitViewController.h */,
+				4FFBE1A828F8406800726235 /* MainSplitViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		4FFFFD5228F808A200401470 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,19 +512,24 @@
 				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
+				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
 				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
 				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
+				4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */,
 				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
+				4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */,
 				4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */,
 				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
 				4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */,
+				4FFBE1B228F84FE800726235 /* SettingsItemModel.m in Sources */,
 				4FFBE18628F70E3800726235 /* CancellableObject.m in Sources */,
 				4FFFFD5C28F80AE100401470 /* UIWindowScene+keyWindowAlt.m in Sources */,
 				4FFBE18728F70E3800726235 /* HSCard.m in Sources */,
+				4FFBE1A928F8406800726235 /* MainSplitViewController.m in Sources */,
 				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
 				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,

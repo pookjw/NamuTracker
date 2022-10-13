@@ -33,8 +33,8 @@
 }
 
 - (void)configureCollectionView {
-    UICollectionLayoutListConfiguration *layoutConfiguration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearancePlain];
-    layoutConfiguration.backgroundColor = UIColor.clearColor;
+    UICollectionLayoutListConfiguration *listConfiguration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearancePlain];
+    listConfiguration.backgroundColor = UIColor.clearColor;
     
     if (checkAvailability(@"14.5")) {
         UIListSeparatorConfiguration *separatorConfiguration = [[NSClassFromString(@"UIListSeparatorConfiguration") alloc] initWithListAppearance:UICollectionLayoutListAppearancePlain];
@@ -43,10 +43,10 @@
         if (checkAvailability(@"15.0")) {
             separatorConfiguration.visualEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark] style:UIVibrancyEffectStyleSeparator];
         }
-        layoutConfiguration.separatorConfiguration = separatorConfiguration;
+        listConfiguration.separatorConfiguration = separatorConfiguration;
     }
     
-    UICollectionViewCompositionalLayout *collectionViewLayout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:layoutConfiguration];
+    UICollectionViewCompositionalLayout *collectionViewLayout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:listConfiguration];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectNull collectionViewLayout:collectionViewLayout];
 
     collectionView.backgroundColor = UIColor.clearColor;
@@ -90,20 +90,19 @@
 }
 
 - (UICollectionViewCellRegistration *)cellRegistration {
-    UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(__kindof UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
+    UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
+        TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
         if (![item isKindOfClass:[TrackingListItemModel class]]) return;
 
-        TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
-
-        UIListContentConfiguration *configuration = [UIListContentConfiguration cellConfiguration];
+        UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration cellConfiguration];
         if (itemModel.hsCard) {
-            configuration.text = [NSString stringWithFormat:@"(%@) %@ (x%@)", itemModel.hsCard.manaCost, itemModel.hsCard.name, itemModel.hsCardCount];
+            contentConfiguration.text = [NSString stringWithFormat:@"(%@) %@ (x%@)", itemModel.hsCard.manaCost, itemModel.hsCard.name, itemModel.hsCardCount];
         } else {
-            configuration.text = [NSString stringWithFormat:@"Loading: %@", itemModel.alternativeHSCard.cardId];
+            contentConfiguration.text = [NSString stringWithFormat:@"Loading: %@", itemModel.alternativeHSCard.cardId];
         }
-        configuration.textProperties.color = UIColor.whiteColor;
+        contentConfiguration.textProperties.color = UIColor.whiteColor;
 
-        cell.contentConfiguration = configuration;
+        cell.contentConfiguration = contentConfiguration;
 
         UIBackgroundConfiguration *backgroundConfiguration = [UIBackgroundConfiguration listPlainCellConfiguration];
         backgroundConfiguration.backgroundColor = UIColor.clearColor;

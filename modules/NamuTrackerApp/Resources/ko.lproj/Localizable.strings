@@ -19,3 +19,13 @@
 "OPEN_THE_APP_STORE" = "App Store 열기";
 
 "DECKS" = "덱";
+
+"SETTINGS" = "설정";
+
+"RUNNING_AS_USERLAND" = "userland로 실행 중";
+
+"RUNNING_AS_USERLAND_DESCRIPTION" = "기능이 제한될 수 있습니다.";
+
+"ENABLED_MOCK_MODE" = "mock mode 활성화됨";
+
+"ENABLED_MOCK_MODE_DESCRIPTION" = "개발자 전용 기능입니다. 읽기/쓰기 작업이 App Sandbox 내에서만 발생하며, Helper와 통신하지 않습니다.";

@@ -19,3 +19,13 @@
 "OPEN_THE_APP_STORE" = "Open the App Store";
 
 "DECKS" = "Decks";
+
+"SETTINGS" = "Settings";
+
+"RUNNING_AS_USERLAND" = "Running as userland";
+
+"RUNNING_AS_USERLAND_DESCRIPTION" = "It may have limited features.";
+
+"ENABLED_MOCK_MODE" = "Enabled mock mode";
+
+"ENABLED_MOCK_MODE_DESCRIPTION" = "Only for developers. It doesn't occur read or write transactions outside of App Sandbox, and doesn't communicate with the Helper.";

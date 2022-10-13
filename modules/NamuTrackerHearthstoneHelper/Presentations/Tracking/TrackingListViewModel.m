@@ -8,6 +8,8 @@
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "CancellableBag.h"
 
+typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListItemModel *> TrackingListDataSourceSnapshot;
+
 @interface NSDiffableDataSourceSnapshot (SortTrackingListModels)
 - (void)sortTrackingListModels;
 @end
@@ -125,9 +127,9 @@
             return;
         }
 
-        NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
+        TrackingListDataSourceSnapshot *snapshot = [TrackingListDataSourceSnapshot new];
 
-        TrackingListSectionModel *cardsSectionModel = [[TrackingListSectionModel alloc] initCardsSection];
+        TrackingListSectionModel *cardsSectionModel = [[TrackingListSectionModel alloc] initWithType:TrackingListSectionModelTypeCards];
         [snapshot appendSectionsWithIdentifiers:@[cardsSectionModel]];
 
         NSMutableSet<TrackingListItemModel *> *cardItemModels = [NSMutableSet<TrackingListItemModel *> new];
@@ -164,7 +166,7 @@
     [self.dataSourceQueue addOperationWithBlock:^{
         [self.cancellableBag removeAllCancellables];
 
-        NSDiffableDataSourceSnapshot *snapshot = [NSDiffableDataSourceSnapshot new];
+        TrackingListDataSourceSnapshot *snapshot = [TrackingListDataSourceSnapshot new];
 
         if (checkAvailability(@"15.0")) {
             [self.dataSource applySnapshotUsingReloadDataAndWait:snapshot completion:nil];
@@ -187,7 +189,7 @@
     if (userInfo == nil) return;
 
     [self.dataSourceQueue addOperationWithBlock:^{
-        NSDiffableDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
+        TrackingListDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 
         TrackingListSectionModel * _Nullable __block cardsSectionModel = nil;
         [snapshot.sectionIdentifiers enumerateObjectsUsingBlock:^(TrackingListSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -321,7 +323,7 @@
                 [self.dataSourceQueue addOperationWithBlock:^{
                     [self.cancellableBag removeCancellable:cancellable];
 
-                    NSDiffableDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
+                    TrackingListDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 
                     TrackingListSectionModel * _Nullable __block cardsSectionModel = nil;
                     [snapshot.sectionIdentifiers enumerateObjectsUsingBlock:^(TrackingListSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

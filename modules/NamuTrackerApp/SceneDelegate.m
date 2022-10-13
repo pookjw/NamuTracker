@@ -6,8 +6,8 @@
 //
 
 #import "SceneDelegate.h"
-#import "DecksViewController.h"
 #import "PrerequisiteService.h"
+#import "MainSplitViewController.h"
 
 @interface SceneDelegate ()
 @property (strong) PrerequisiteService *prerequisiteService;
@@ -19,17 +19,15 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     UIWindow *window = [[UIWindow alloc] initWithWindowScene:windowScene];
     self.window = window;
-    window.backgroundColor = UIColor.clearColor;
+    window.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.1f];
     [window makeKeyAndVisible];
     
     PrerequisiteService *prerequisiteService = [[PrerequisiteService alloc] initWithWindowScene:windowScene];
     self.prerequisiteService = prerequisiteService;
     if ([prerequisiteService presentAlertIfNeeded]) return;
     
-    DecksViewController *viewController = [DecksViewController new];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.navigationBar.prefersLargeTitles = YES;
-    window.rootViewController = navigationController;
+    MainSplitViewController *rootViewController = [MainSplitViewController new];
+    window.rootViewController = rootViewController;
 }
 
 @end

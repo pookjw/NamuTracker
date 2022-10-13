@@ -15,9 +15,9 @@
 #import <StoreKit/StoreKit.h>
 
 @interface PrerequisiteService () <SKStoreProductViewControllerDelegate>
-@property (nonatomic, readonly) BOOL isHelperInstalled;
-@property (nonatomic, readonly) BOOL isHearthstoneInstalled;
-@property (nonatomic, readonly) UIViewController * _Nullable rootViewController;
+@property (readonly, nonatomic) BOOL isHelperInstalled;
+@property (readonly, nonatomic) BOOL isHearthstoneInstalled;
+@property (readonly, nonatomic) UIViewController * _Nullable rootViewController;
 @property (weak) UIWindowScene * _Nullable windowScene;
 @end
 

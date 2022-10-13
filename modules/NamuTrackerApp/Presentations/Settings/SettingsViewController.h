@@ -1,5 +1,5 @@
 //
-//  UIWindowScene+keyWindowAlt.h
+//  SettingsViewController.h
 //  NamuTrackerApp
 //
 //  Created by Jinwoo Kim on 10/13/22.
@@ -9,8 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIWindowScene (KeyWindowAlt)
-@property (readonly, nonatomic) UIWindow * _Nullable keyWindowAlt;
+@interface SettingsViewController : UIViewController
+
 @end
 
 NS_ASSUME_NONNULL_END

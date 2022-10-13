@@ -8,7 +8,7 @@
 #import "UIWindowScene+keyWindowAlt.h"
 #import "checkAvailability.h"
 
-@implementation UIWindowScene (keyWindowAlt)
+@implementation UIWindowScene (KeyWindowAlt)
 
 - (UIWindow *)keyWindowAlt {
     if (checkAvailability(@"15.0")) {

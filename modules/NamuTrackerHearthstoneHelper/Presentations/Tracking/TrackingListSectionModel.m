@@ -2,9 +2,9 @@
 
 @implementation TrackingListSectionModel
 
-- (instancetype)initCardsSection {
+- (instancetype)initWithType:(TrackingListSectionModelType)type {
     if (self = [super init]) {
-        self->_type = TrackingListSectionModelTypeCards;
+        self->_type = type;
     }
 
     return self;
