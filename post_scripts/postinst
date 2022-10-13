@@ -1,3 +1,4 @@
 #!/bin/sh
 
 uicache
+exit 0
