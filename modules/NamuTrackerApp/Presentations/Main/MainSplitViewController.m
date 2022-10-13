@@ -60,23 +60,23 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (animated) {
-        NSUInteger index = [navigationController.viewControllers indexOfObject:viewController];
-        if ((index != NSNotFound) && ((index - 1) < navigationController.viewControllers.count)) {
-            UIViewController *previousViewController = navigationController.viewControllers[index - 1];
-            
-            [previousViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                previousViewController.view.alpha = 0.0f;
-            } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                
-            }];
-        }
-        
-        //
-        
         viewController.view.alpha = 0.0f;
         
         [viewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             viewController.view.alpha = 1.0f;
+        } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            
+        }];
+        
+        //
+        
+        NSUInteger index = [navigationController.viewControllers indexOfObject:viewController];
+        if ((index == 0) || (index == NSNotFound)) return;
+        
+        UIViewController *previousViewController = navigationController.viewControllers[index - 1];
+        
+        [previousViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            previousViewController.view.alpha = 0.0f;
         } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             
         }];
