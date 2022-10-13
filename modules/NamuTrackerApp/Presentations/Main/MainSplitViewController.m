@@ -29,6 +29,14 @@
     [self configureSettingsViewController];
 }
 
+- (void)setViewController:(UIViewController *)vc forColumn:(UISplitViewControllerColumn)column {
+    [super setViewController:vc forColumn:column];
+    
+    UINavigationController *navigationController = vc.navigationController;
+    navigationController.delegate = self;
+    navigationController.navigationBar.prefersLargeTitles = (column == UISplitViewControllerColumnPrimary);
+}
+
 - (void)setAttributes {
     self.view.backgroundColor = UIColor.clearColor;
     self.primaryBackgroundStyle = UISplitViewControllerBackgroundStyleNone;
@@ -45,8 +53,6 @@
 - (void)configureSettingsViewController {
     SettingsViewController *settingsViewController = [SettingsViewController new];
     [self setViewController:settingsViewController forColumn:UISplitViewControllerColumnPrimary];
-    settingsViewController.navigationController.navigationBar.prefersLargeTitles = YES;
-    settingsViewController.navigationController.delegate = self;
     self.settingsViewController = settingsViewController;
 }
 
