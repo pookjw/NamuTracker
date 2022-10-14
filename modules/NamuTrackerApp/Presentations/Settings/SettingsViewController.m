@@ -33,6 +33,8 @@
 - (void)configureCollectionView {
     UICollectionLayoutListConfiguration *listConfiguration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceInsetGrouped];
     listConfiguration.backgroundColor = UIColor.clearColor;
+    listConfiguration.headerMode = UICollectionLayoutListHeaderModeSupplementary;
+    listConfiguration.footerMode = UICollectionLayoutListFooterModeSupplementary;
     
     UICollectionViewCompositionalLayout *collectionViewLayout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:listConfiguration];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectNull collectionViewLayout:collectionViewLayout];
@@ -72,6 +74,27 @@
         return cell;
     }];
     
+    __weak typeof(self) weakSelf = self;
+    
+    UICollectionViewSupplementaryRegistration *headerRegistration = [self headerRegistration];
+    UICollectionViewSupplementaryRegistration *footerRegistration = [self footerRegistration];
+    
+    dataSource.supplementaryViewProvider = ^UICollectionReusableView * _Nullable(UICollectionView * _Nonnull collectionView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
+        if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+            SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
+//            if (sectionModel.headerText == nil) return nil;
+            
+            return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:headerRegistration forIndexPath:indexPath];
+        } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+            SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
+//            if (sectionModel.footerText == nil) return nil;
+            
+            return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:footerRegistration forIndexPath:indexPath];
+        } else {
+            return nil;
+        }
+    };
+    
     return dataSource;
 }
 
@@ -97,6 +120,43 @@
     }];
     
     return cellRegistration;
+}
+
+- (UICollectionViewSupplementaryRegistration *)headerRegistration {
+    __weak typeof(self) weakSelf = self;
+    
+    UICollectionViewSupplementaryRegistration *headerResgistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]
+                                                                                                                                       elementKind:UICollectionElementKindSectionHeader
+                                                                                                                              configurationHandler:^(UICollectionViewListCell * _Nonnull supplementaryView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
+        SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
+        NSString * _Nullable headerText = sectionModel.headerText;
+        
+        UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration groupedHeaderConfiguration];
+        contentConfiguration.text = headerText;
+        
+        supplementaryView.contentConfiguration = contentConfiguration;
+    }];
+    
+    return headerResgistration;
+}
+
+- (UICollectionViewSupplementaryRegistration *)footerRegistration {
+    __weak typeof(self) weakSelf = self;
+    
+    UICollectionViewSupplementaryRegistration *footerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]
+                                                                                                                                       elementKind:UICollectionElementKindSectionFooter
+                                                                                                                              configurationHandler:^(UICollectionViewListCell * _Nonnull supplementaryView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
+        SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
+        NSString * _Nullable footerText = sectionModel.footerText;
+        
+        UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration groupedHeaderConfiguration];
+        contentConfiguration.text = footerText;
+        contentConfiguration.textProperties.alignment = UIListContentTextAlignmentCenter;
+        
+        supplementaryView.contentConfiguration = contentConfiguration;
+    }];
+    
+    return footerRegistration;
 }
 
 - (void)receivedSelectedItemModelNotification:(NSNotification *)notification {

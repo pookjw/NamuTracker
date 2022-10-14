@@ -22,6 +22,8 @@
 
 "SETTINGS" = "Settings";
 
+"NOTICES" = "Notices";
+
 "RUNNING_AS_USERLAND" = "Running as userland";
 
 "RUNNING_AS_USERLAND_DESCRIPTION" = "It may have limited features.";

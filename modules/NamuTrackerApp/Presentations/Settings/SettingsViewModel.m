@@ -9,6 +9,7 @@
 #import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "isMockMode.h"
+#import "checkAvailability.h"
 
 typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *> SettingsDataSourceSnapshot;
 
@@ -59,6 +60,17 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
     }
     
     return self;
+}
+
+- (SettingsSectionModel *)sectionModelForIndexPath:(NSIndexPath *)indexPath {
+    if (checkAvailability(@"15.0")) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability-new"
+        return [self.dataSource sectionIdentifierForIndex:indexPath.section];
+#pragma clang diagnostic pop
+    } else {
+        return self.dataSource.snapshot.sectionIdentifiers[indexPath.section];
+    }
 }
 
 - (void)handleSelectedIndexPath:(NSIndexPath *)selectedIndexPath {

@@ -20,6 +20,7 @@ static NSString * const SettingsViewModelSelectedItemModelKey = @"SettingsViewMo
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDataSource:(SettingsDataSource *)dataSource NS_DESIGNATED_INITIALIZER;
+- (SettingsSectionModel *)sectionModelForIndexPath:(NSIndexPath *)indexPath;
 - (void)handleSelectedIndexPath:(NSIndexPath *)selectedIndexPath;
 - (BOOL)canHandleIndexPath:(NSIndexPath *)indexPath;
 @end

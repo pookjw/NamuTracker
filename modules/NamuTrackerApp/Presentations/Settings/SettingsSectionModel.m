@@ -6,6 +6,7 @@
 //
 
 #import "SettingsSectionModel.h"
+#import "LocalizableService.h"
 
 @implementation SettingsSectionModel
 
@@ -35,6 +36,28 @@
 
 - (NSUInteger)hash {
     return self.type;
+}
+
+- (NSString *)headerText {
+    switch (self.type) {
+        case SettingsSectionModelTypeNotices:
+            return [LocalizableService localizableForKey:LocalizableKeyNotices];
+        default:
+            return nil;
+    }
+}
+
+- (NSString *)footerText {
+    switch (self.type) {
+        case SettingsSectionModelTypeNavigations: {
+            NSString *bundleIdentifier = NSBundle.mainBundle.bundleIdentifier;
+            NSString *buildVersion = NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];
+            NSString *shortVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
+            return [NSString stringWithFormat:@"%@ | %@ (%@)", bundleIdentifier, buildVersion, shortVersionString];
+        }
+        default:
+            return nil;
+    }
 }
 
 @end
