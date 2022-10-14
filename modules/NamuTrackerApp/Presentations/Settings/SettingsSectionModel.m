@@ -27,7 +27,7 @@
     
     if ((self.type == SettingsSectionModelTypeNotices) && (other.type == SettingsSectionModelTypeNotices)) {
         return YES;
-    } else if ((self.type == SettingsSectionModelTypeNavigations) && (other.type == SettingsSectionModelTypeNavigations)) {
+    } else if ((self.type == SettingsSectionModelTypeGeneral) && (other.type == SettingsSectionModelTypeGeneral)) {
         return YES;
     } else {
         return NO;
@@ -42,6 +42,8 @@
     switch (self.type) {
         case SettingsSectionModelTypeNotices:
             return [LocalizableService localizableForKey:LocalizableKeyNotices];
+        case SettingsSectionModelTypeGeneral:
+            return [LocalizableService localizableForKey:LocalizableKeyGeneral];
         default:
             return nil;
     }
@@ -49,7 +51,7 @@
 
 - (NSString *)footerText {
     switch (self.type) {
-        case SettingsSectionModelTypeNavigations: {
+        case SettingsSectionModelTypeGeneral: {
             NSString *bundleIdentifier = NSBundle.mainBundle.bundleIdentifier;
             NSString *buildVersion = NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];
             NSString *shortVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];

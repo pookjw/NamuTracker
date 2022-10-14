@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, SettingsSectionModelType) {
     SettingsSectionModelTypeNotices,
-    SettingsSectionModelTypeNavigations
+    SettingsSectionModelTypeGeneral
 };
 
 @interface SettingsSectionModel : NSObject

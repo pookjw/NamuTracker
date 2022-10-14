@@ -124,12 +124,12 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         
         //
         
-        SettingsSectionModel *itemsSectionModel = [[SettingsSectionModel alloc] initWithType:SettingsSectionModelTypeNavigations];
-        [snapshot appendSectionsWithIdentifiers:@[itemsSectionModel]];
+        SettingsSectionModel *generalSectionModel = [[SettingsSectionModel alloc] initWithType:SettingsSectionModelTypeGeneral];
+        [snapshot appendSectionsWithIdentifiers:@[generalSectionModel]];
         [snapshot appendItemsWithIdentifiers:@[
             [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDecks]
         ]
-                   intoSectionWithIdentifier:itemsSectionModel];
+                   intoSectionWithIdentifier:generalSectionModel];
         
         //
     
