@@ -7,8 +7,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self->_objectVersion = HSCARD_LATEST_VERSION;
-
         self->_dbfId = [nullSafetyHandler(dictionary[@"id"]) copy];
         self->_collectible = [nullSafetyHandler(dictionary[@"collectible"]) copy];
         self->_slug = [nullSafetyHandler(dictionary[@"slug"]) copy];
@@ -77,7 +75,6 @@
     if (copy) {
         HSCard *_copy = (HSCard *)copy;
 
-        _copy->_objectVersion = self.objectVersion;
         _copy->_dbfId = [self.dbfId copyWithZone:zone];
         _copy->_slug = [self.slug copyWithZone:zone];
         _copy->_classId = [self.classId copyWithZone:zone];
@@ -110,9 +107,8 @@
     self = [self init];
     
     if (self) {
-        NSUInteger objectVersion = [coder decodeIntegerForKey:@"objectVersion"];
+        // NSUInteger objectVersion = [coder decodeIntegerForKey:@"objectVersion"];
 
-        self->_objectVersion = HSCARD_LATEST_VERSION;
         self->_dbfId = [coder decodeObjectOfClass:[NSNumber class] forKey:@"dbfId"];
         self->_collectible = [coder decodeObjectOfClass:[NSNumber class] forKey:@"collectible"];
         self->_slug = [[coder decodeObjectOfClass:[NSString class] forKey:@"slug"] copy];
@@ -141,7 +137,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeInteger:self.objectVersion forKey:@"objectVersion"];
+    [coder encodeInteger:HSCARD_LATEST_VERSION forKey:@"objectVersion"];
     [coder encodeObject:self.dbfId forKey:@"dbfId"];
     [coder encodeObject:self.collectible forKey:@"collectible"];
     [coder encodeObject:self.slug forKey:@"slug"];

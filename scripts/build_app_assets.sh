@@ -1,7 +1,7 @@
 #!/bin/sh
 
 INPUT_DIR="modules/NamuTrackerApp/Assets.xcassets"
-OUTPUT_DIR="modules/NamuTrackerApp/Resources"
+OUTPUT_DIR=".theos/_/Applications/NamuTrackerApp.app"
 PARTIAL_INFO_PLIST="Info_partial.plist"
 FINAL_INFO_PLIST="modules/NamuTrackerApp/Resources/Info.plist"
 

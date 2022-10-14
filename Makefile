@@ -11,3 +11,5 @@ clean::
 	rm -rf $(THEOS_PROJECT_DIR)/packages/* 
 before-package::
 	cp $(THEOS_PROJECT_DIR)/post_scripts/* $(THEOS_PROJECT_DIR)/.theos/_/DEBIAN/
+	cd $(THEOS_PROJECT_DIR) && $(THEOS_PROJECT_DIR)/scripts/build_app_assets.sh
+	cd $(THEOS_PROJECT_DIR) && $(THEOS_PROJECT_DIR)/scripts/build_cd_moms.sh

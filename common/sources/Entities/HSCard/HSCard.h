@@ -5,7 +5,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HSCard : NSObject <NSCopying, NSCoding, NSSecureCoding>
-@property (readonly) NSUInteger objectVersion;
 @property (readonly, copy) NSNumber * _Nullable dbfId;
 @property (readonly, copy) NSNumber * _Nullable collectible;
 @property (readonly, copy) NSString * _Nullable slug;

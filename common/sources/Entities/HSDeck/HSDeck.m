@@ -7,8 +7,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
-        self->_objectVersion = HSDECK_LATEST_VERSION;
-
         self->_deckCode = [nullSafetyHandler(dictionary[@"deckCode"]) copy];
         self->_version = [nullSafetyHandler(dictionary[@"version"]) copy];
         self->_format = [nullSafetyHandler(dictionary[@"format"]) copy];
@@ -82,8 +80,6 @@
     if (self) {
         // NSUInteger objectVersion = [coder decodeIntegerForKey:@"objectVersion"];
 
-        self->_objectVersion = HSDECK_LATEST_VERSION;
-
         self->_deckCode = [[coder decodeObjectOfClass:[NSString class] forKey:@"deckCode"] copy];
         self->_version = [[coder decodeObjectOfClass:[NSNumber class] forKey:@"version"] copy];
         self->_format = [[coder decodeObjectOfClass:[NSString class] forKey:@"format"] copy];
@@ -95,8 +91,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeInteger:self.objectVersion forKey:@"objectVersion"];
-
+    [coder encodeInteger:HSDECK_LATEST_VERSION forKey:@"objectVersion"];
     [coder encodeObject:self.deckCode forKey:@"deckCode"];
     [coder encodeObject:self.version forKey:@"version"];
     [coder encodeObject:self.format forKey:@"format"];

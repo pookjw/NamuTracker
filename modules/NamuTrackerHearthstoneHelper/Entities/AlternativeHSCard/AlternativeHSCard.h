@@ -5,7 +5,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AlternativeHSCard : NSObject <NSCopying, NSCoding, NSSecureCoding>
-@property (readonly) NSUInteger objectVersion;
 @property (readonly, copy) NSString *cardId; // REV_018
 @property (readonly) NSUInteger dbfId; // 79767
 + (instancetype)new NS_UNAVAILABLE;

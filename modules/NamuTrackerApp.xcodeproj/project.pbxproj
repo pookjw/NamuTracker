@@ -11,6 +11,8 @@
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
+		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
+		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
 		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
 		4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11528F7079600726235 /* DecksItemModel.m */; };
@@ -51,6 +53,9 @@
 		4F30287328DB4D4800702FDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F4416C328F949EB009240BC /* LSApplicationWorkspace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSApplicationWorkspace.h; sourceTree = "<group>"; };
 		4F4416C428F94B27009240BC /* LSApplicationProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSApplicationProxy.h; sourceTree = "<group>"; };
+		4F4416DA28F94FD5009240BC /* LocalDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeck.h; sourceTree = "<group>"; };
+		4F4416DB28F94FD5009240BC /* LocalDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeck.m; sourceTree = "<group>"; };
+		4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDeck.xcdatamodel; sourceTree = "<group>"; };
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
@@ -162,6 +167,16 @@
 				4F30285D28DB0A0800702FDD /* main.m */,
 			);
 			path = NamuTrackerApp;
+			sourceTree = "<group>";
+		};
+		4F4416D928F94FA4009240BC /* LocalDeck */ = {
+			isa = PBXGroup;
+			children = (
+				4F4416DA28F94FD5009240BC /* LocalDeck.h */,
+				4F4416DB28F94FD5009240BC /* LocalDeck.m */,
+				4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */,
+			);
+			path = LocalDeck;
 			sourceTree = "<group>";
 		};
 		4FD4E49A28F67B6E006EBA86 /* Services */ = {
@@ -362,6 +377,7 @@
 		4FFBE17128F70E3800726235 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				4F4416D928F94FA4009240BC /* LocalDeck */,
 				4FFBE17228F70E3800726235 /* HSDeck */,
 				4FFBE17528F70E3800726235 /* CancellableObject */,
 				4FFBE17A28F70E3800726235 /* HSCard */,
@@ -535,9 +551,11 @@
 				4FFBE18728F70E3800726235 /* HSCard.m in Sources */,
 				4FFBE1A928F8406800726235 /* MainSplitViewController.m in Sources */,
 				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
+				4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */,
 				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
+				4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,6 +777,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */,
+			);
+			currentVersion = 4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */;
+			path = LocalDeck.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4F30284028DB0A0800702FDD /* Project object */;
 }

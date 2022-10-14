@@ -12,8 +12,6 @@
         numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
         NSUInteger dbfId = [[numberFormatter numberFromString:dictionary[@"dbfId"]] unsignedIntegerValue];
 
-        self->_objectVersion = ALTERNATIVEHSCARD_LATEST_VERSION;
-
         self->_cardId = [cardId copy];
         self->_dbfId = dbfId;
     }
@@ -65,8 +63,6 @@
     if (self) {
         // NSUInteger objectVersion = [coder decodeIntegerForKey:@"objectVersion"];
 
-        self->_objectVersion = ALTERNATIVEHSCARD_LATEST_VERSION;
-
         self->_cardId = [[coder decodeObjectOfClass:[NSString class] forKey:@"cardId"] copy];
         self->_dbfId = [coder decodeIntegerForKey:@"dbfId"];
     }
@@ -75,7 +71,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeInteger:self.objectVersion forKey:@"objectVersion"];
+    [coder encodeInteger:ALTERNATIVEHSCARD_LATEST_VERSION forKey:@"objectVersion"];
 
     [coder encodeObject:self.cardId forKey:@"cardId"];
     [coder encodeInteger:self.dbfId forKey:@"dbfId"];

@@ -6,7 +6,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HSDeck : NSObject <NSCopying, NSCoding, NSSecureCoding>
-@property (readonly) NSUInteger objectVersion;
 @property (readonly, copy) NSString * _Nullable deckCode;
 @property (readonly, copy) NSNumber * _Nullable version;
 @property (readonly, copy) NSString * _Nullable format;
