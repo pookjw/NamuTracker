@@ -11,6 +11,7 @@
 #import "isMockMode.h"
 #import "LocalizableService.h"
 #import "UIApplication+Private.h"
+#import "LSApplicationWorkspace.h"
 #import <objc/message.h>
 #import <StoreKit/StoreKit.h>
 
@@ -50,14 +51,14 @@
 }
 
 - (BOOL)isHearthstoneInstalled {
-    id defaultWorkspace = ((id (*)(id, SEL))objc_msgSend)(NSClassFromString(@"LSApplicationWorkspace"), NSSelectorFromString(@"defaultWorkspace"));
-    NSArray *allApplications = ((NSArray *(*)(id, SEL))objc_msgSend)(defaultWorkspace, NSSelectorFromString(@"allApplications")); // NSArray<LSApplicationProxy *>
+    LSApplicationWorkspace * defaultWorkspace = [NSClassFromString(@"LSApplicationWorkspace") defaultWorkspace];
+    NSArray<LSApplicationProxy *> *allApplications = [defaultWorkspace allApplications];
     
     BOOL __block isHearthstoneInstalled = NO;
     
-    [allApplications enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *bundleIdentifier = ((NSString *(*)(id, SEL))objc_msgSend)(obj, NSSelectorFromString(@"un_applicationBundleIdentifier"));
-        BOOL isInstalled = ((BOOL (*)(id, SEL))objc_msgSend)(obj, NSSelectorFromString(@"isInstalled"));
+    [allApplications enumerateObjectsUsingBlock:^(LSApplicationProxy * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *bundleIdentifier = [obj un_applicationBundleIdentifier];
+        BOOL isInstalled = obj.isInstalled;
         
         if (([@"com.blizzard.wtcg.hearthstone" isEqualToString:bundleIdentifier]) && (isInstalled)) {
             isHearthstoneInstalled = YES;
