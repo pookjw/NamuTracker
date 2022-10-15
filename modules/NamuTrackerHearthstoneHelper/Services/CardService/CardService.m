@@ -43,20 +43,20 @@
     return result;
 }
 
-- (CancellableObject *)hsCardWithCardId:(NSString *)cardId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
+- (CancellableObject *)hsCardWithCardId:(NSString *)cardId completion:(CardServiceHSCardCompletion)completion {
     AlternativeHSCard *alternativeHSCard = [self alternativeHSCardWithCardId:cardId];
-    return [self hsCardWithAlternativeHSCard:alternativeHSCard completionHandler:completionHandler];
+    return [self hsCardWithAlternativeHSCard:alternativeHSCard completion:completion];
 }
 
-- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
-    return [self.hsAPIService hsCardWithIdOrSlug:[@(dbfId) stringValue] completionHandler:completionHandler];
+- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completion:(CardServiceHSCardCompletion)completion {
+    return [self.hsAPIService hsCardWithIdOrSlug:[@(dbfId) stringValue] completion:completion];
 }
 
-- (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completionHandler:(CardServiceHSCardCompletionHandler)completionHandler {
-    return [self hsCardWithDbfId:alternativeHSCard.dbfId completionHandler:completionHandler];
+- (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completion:(CardServiceHSCardCompletion)completion{
+    return [self hsCardWithDbfId:alternativeHSCard.dbfId completion:completion];
 }
 
-- (CancellableObject *)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler {
+- (CancellableObject *)hsCardsFromSelectedDeckWithCompletion:(CardServiceHSCardsCompletion)completion {
     CancellableObject * _Nullable __block hsDeckCancellable;
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [hsDeckCancellable cancel];
@@ -64,12 +64,12 @@
 
     [self.localDeckService fetchSelectedLocalDeckWithCompletion:^(LocalDeck * _Nullable localDeck, NSError * _Nullable error) {
         if (error) {
-            completionHandler(nil, error);
+            completion(nil, error);
             return;
         }
 
-        hsDeckCancellable = [self.hsAPIService hsDeckFromDeckCode:localDeck.deckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
-            completionHandler(hsDeck.hsCards, error);
+        hsDeckCancellable = [self.hsAPIService hsDeckFromDeckCode:localDeck.deckCode completion:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
+            completion(hsDeck.hsCards, error);
         }];
     }];
 

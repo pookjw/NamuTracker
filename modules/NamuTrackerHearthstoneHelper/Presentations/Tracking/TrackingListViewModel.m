@@ -117,7 +117,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
         NSError * _Nullable __block error = nil;
 
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        CancellableObject *cancellable = [self.cardService hsCardsFromSelectedDeckWithCompletionHandler:^(NSArray<HSCard *> * _Nullable _hsCards, NSError * _Nullable _error) {
+        CancellableObject *cancellable = [self.cardService hsCardsFromSelectedDeckWithCompletion:^(NSArray<HSCard *> * _Nullable _hsCards, NSError * _Nullable _error) {
             hsCards = _hsCards;
             error = _error;
             dispatch_semaphore_signal(semaphore);
@@ -324,7 +324,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
         [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, BOOL * _Nonnull stop) {
             CancellableObject *cancellable;
 
-            cancellable = [self.cardService hsCardWithAlternativeHSCard:obj.alternativeHSCard completionHandler:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
+            cancellable = [self.cardService hsCardWithAlternativeHSCard:obj.alternativeHSCard completion:^(HSCard * _Nullable hsCard, NSError * _Nullable error) {
                 [self.dataSourceQueue addOperationWithBlock:^{
                     [self.cancellableBag removeCancellable:cancellable];
 

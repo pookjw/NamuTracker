@@ -76,7 +76,7 @@
     [self.backgroundQueue addOperationWithBlock:^{
         CancellableObject *cancellable;
         
-        cancellable = [weakSelf.hsAPIService hsDeckFromDeckCode:deckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
+        cancellable = [weakSelf.hsAPIService hsDeckFromDeckCode:deckCode completion:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
             [weakSelf.cancellableBag removeCancellable:cancellable];
             
             if (error) {

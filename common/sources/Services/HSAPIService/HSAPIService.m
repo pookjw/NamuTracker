@@ -20,12 +20,12 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 
 @implementation HSAPIService
 
-- (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug completionHandler:(HSAPIServiceHSCardCompletionHandler)completionHandler {
+- (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug completion:(HSAPIServiceHSCardCompletion)completion {
     __weak NSURLSessionTask * _Nullable __block curentTask = nil;
 
-    curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
+    curentTask = [self accessTokenWithCompletion:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {
-            completionHandler(nil, error);
+            completion(nil, error);
             return;
         }
 
@@ -47,7 +47,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
         NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
         NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error) {
-                completionHandler(nil, error);
+                completion(nil, error);
                 return;
             }
 
@@ -55,12 +55,12 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
             if (parseError) {
-                completionHandler(nil, parseError);
+                completion(nil, parseError);
                 return;
             }
 
             HSCard *hsCard = [[HSCard alloc] initWithDictionary:dictionary];
-            completionHandler(hsCard, nil);
+            completion(hsCard, nil);
         }];
 
         curentTask = task;
@@ -76,12 +76,12 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
     return cancellable;
 }
 
-- (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode completionHandler:(HSAPIServiceHSDeckCompletionHandler)completionHandler {
+- (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode completion:(HSAPIServiceHSDeckCompletion)completion {
     __weak NSURLSessionTask * _Nullable __block curentTask = nil;
 
-    curentTask = [self accessTokenWithCompletionHandler:^(NSString * _Nullable accessToken, NSError * _Nullable error){
+    curentTask = [self accessTokenWithCompletion:^(NSString * _Nullable accessToken, NSError * _Nullable error){
         if (error) {
-            completionHandler(nil, error);
+            completion(nil, error);
             return;
         }
 
@@ -104,7 +104,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
         NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
         NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error) {
-                completionHandler(nil, error);
+                completion(nil, error);
                 return;
             }
 
@@ -112,12 +112,12 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
             if (parseError) {
-                completionHandler(nil, parseError);
+                completion(nil, parseError);
                 return;
             }
 
             HSDeck *hsDeck = [[HSDeck alloc] initWithDictionary:dictionary];
-            completionHandler(hsDeck, nil);
+            completion(hsDeck, nil);
         }];
 
         curentTask = task;
@@ -133,7 +133,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
     return cancellable;
 }
 
-- (NSURLSessionTask *)accessTokenWithCompletionHandler:(void (^)(NSString * _Nullable accessToken, NSError * _Nullable error))completionHandler {
+- (NSURLSessionTask *)accessTokenWithCompletion:(void (^)(NSString * _Nullable accessToken, NSError * _Nullable error))completion {
     NSURLComponents *components = [NSURLComponents new];
 
     components.scheme = @"https";
@@ -153,7 +153,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
     NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
     NSURLSessionTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
-            completionHandler(nil, error);
+            completion(nil, error);
             return;
         }
 
@@ -161,12 +161,12 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
 
         if (parseError) {
-            completionHandler(nil, parseError);
+            completion(nil, parseError);
             return;
         }
 
         NSString *accessToken = dictionary[@"access_token"];
-        completionHandler(accessToken, nil);
+        completion(accessToken, nil);
     }];
 
     [task resume];
