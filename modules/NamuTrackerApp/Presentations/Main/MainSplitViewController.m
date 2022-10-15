@@ -42,12 +42,12 @@
     self.primaryBackgroundStyle = UISplitViewControllerBackgroundStyleNone;
     self.preferredDisplayMode = UISplitViewControllerDisplayModeOneBesideSecondary;
     
-    if (checkAvailability(@"14.5")) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability-new"
-        self.displayModeButtonVisibility = UISplitViewControllerDisplayModeButtonVisibilityNever;
-#pragma clang diagnostic pop
-    }
+//    if (checkAvailability(@"14.5")) {
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wunguarded-availability-new"
+//        self.displayModeButtonVisibility = UISplitViewControllerDisplayModeButtonVisibilityNever;
+//#pragma clang diagnostic pop
+//    }
 }
 
 - (void)configureSettingsViewController {

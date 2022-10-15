@@ -76,6 +76,11 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
     return self;
 }
 
+
+- (void)dealloc {
+    [self.dataSourceQueue cancelAllOperations];
+}
+
 - (void)configureDataSourceQueue {
     NSOperationQueue *dataSourceQueue = [NSOperationQueue new];
     dataSourceQueue.qualityOfService = NSQualityOfServiceUserInitiated;

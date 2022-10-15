@@ -13,6 +13,7 @@
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
 		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
 		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
+		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
 		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
 		4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11528F7079600726235 /* DecksItemModel.m */; };
@@ -56,6 +57,8 @@
 		4F4416DA28F94FD5009240BC /* LocalDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeck.h; sourceTree = "<group>"; };
 		4F4416DB28F94FD5009240BC /* LocalDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeck.m; sourceTree = "<group>"; };
 		4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDeck.xcdatamodel; sourceTree = "<group>"; };
+		4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeckService.h; sourceTree = "<group>"; };
+		4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeckService.m; sourceTree = "<group>"; };
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
@@ -179,9 +182,19 @@
 			path = LocalDeck;
 			sourceTree = "<group>";
 		};
+		4F9D3E6328FA48FD004E3FB1 /* LocalDeck */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */,
+				4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */,
+			);
+			path = LocalDeck;
+			sourceTree = "<group>";
+		};
 		4FD4E49A28F67B6E006EBA86 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
 				4FFFFD5628F8095A00401470 /* Prerequisite */,
 				4FD4E49B28F67B76006EBA86 /* Localizable */,
 			);
@@ -537,6 +550,7 @@
 				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
+				4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
 				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
 				4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */,

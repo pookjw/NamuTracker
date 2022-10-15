@@ -9,11 +9,13 @@
 
 @implementation LocalDeck
 
+@dynamic selected;
 @dynamic hsCardsData;
 @dynamic format;
 @dynamic classId;
 @dynamic deckCode;
 @dynamic name;
+@dynamic index;
 @dynamic timestamp;
 
 - (NSArray<HSCard *> *)hsCards {
@@ -48,7 +50,10 @@
 }
 
 - (void)synchronizeWithHSDeck:(HSDeck *)hsDeck {
-    NSLog(@"TODO");
+    self.deckCode = hsDeck.deckCode;
+    self.format = hsDeck.format;
+    self.classId = hsDeck.classId;
+    self.hsCards = hsDeck.hsCards;
 }
 
 @end

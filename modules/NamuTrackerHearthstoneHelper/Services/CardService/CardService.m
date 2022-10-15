@@ -65,7 +65,7 @@
         return self->_allCardsDictionary;
     }
 
-    NSURL *allCardsURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLStringHearthstoneHelper] URLByAppendingPathComponent:@"all_cards"] URLByAppendingPathExtension:@"json"];
+    NSURL *allCardsURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"all_cards"] URLByAppendingPathExtension:@"json"];
     BOOL isDirectory = YES;
     BOOL doesExist = [NSFileManager.defaultManager fileExistsAtPath:allCardsURL.path isDirectory:&isDirectory];
 

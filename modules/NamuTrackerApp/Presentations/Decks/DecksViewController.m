@@ -7,9 +7,10 @@
 
 #import "DecksViewController.h"
 #import "LocalizableService.h"
+#import "DecksViewModel.h"
 
 @interface DecksViewController ()
-
+@property (strong) DecksViewModel *viewModel;
 @end
 
 @implementation DecksViewController
@@ -45,6 +46,13 @@
         [testLabel.centerXAnchor constraintEqualToAnchor:visualEffectView.contentView.centerXAnchor],
         [testLabel.centerYAnchor constraintEqualToAnchor:visualEffectView.contentView.centerYAnchor]
     ]];
+    
+    [self configureViewModel];
+}
+
+- (void)configureViewModel {
+//    DecksViewModel *viewModel = [[DecksViewModel alloc] initWithDataSource:nil];
+//    self.viewModel = viewModel;
 }
 
 @end

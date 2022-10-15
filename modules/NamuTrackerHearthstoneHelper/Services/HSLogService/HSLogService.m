@@ -50,9 +50,9 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 - (void)installCustomLogConfiguration {
     NSAssert([NSThread isMainThread], @"Should be run on Main Thread.");
 
-    NSURL *fromURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLStringHearthstoneHelper] URLByAppendingPathComponent:@"log"] URLByAppendingPathExtension:@"config"];
+    NSURL *fromURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"log"] URLByAppendingPathExtension:@"config"];
     if (![NSFileManager.defaultManager fileExistsAtPath:fromURL.path isDirectory:NULL]) {
-        NSLog(@"Not found: %@", NamuTrackerApplicationSupportURLStringHearthstoneHelper);
+        NSLog(@"Not found: %@", NamuTrackerApplicationSupportURLString);
         return;
     }
     

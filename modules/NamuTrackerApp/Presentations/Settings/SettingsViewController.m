@@ -55,7 +55,7 @@
 }
 
 - (void)configureViewModel {
-    SettingsViewModel *viewModel = [[SettingsViewModel alloc] initWithDataSource:[self dataSource]];
+    SettingsViewModel *viewModel = [[SettingsViewModel alloc] initWithDataSource:[self createDataSource]];
     self.viewModel = viewModel;
 }
 
@@ -66,29 +66,21 @@
                                              object:self.viewModel];
 }
 
-- (SettingsDataSource *)dataSource {
-    UICollectionViewCellRegistration *cellRegistration = [self cellRegistration];
+- (SettingsDataSource *)createDataSource {
+    UICollectionViewCellRegistration *cellRegistration = [self createCellRegistration];
     
     SettingsDataSource *dataSource = [[SettingsDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell * _Nullable(UICollectionView * _Nonnull collectionView, NSIndexPath * _Nonnull indexPath, id  _Nonnull itemIdentifier) {
         UICollectionViewCell *cell = [collectionView dequeueConfiguredReusableCellWithRegistration:cellRegistration forIndexPath:indexPath item:itemIdentifier];
         return cell;
     }];
     
-    __weak typeof(self) weakSelf = self;
-    
-    UICollectionViewSupplementaryRegistration *headerRegistration = [self headerRegistration];
-    UICollectionViewSupplementaryRegistration *footerRegistration = [self footerRegistration];
+    UICollectionViewSupplementaryRegistration *headerRegistration = [self createHeaderRegistration];
+    UICollectionViewSupplementaryRegistration *footerRegistration = [self createFooterRegistration];
     
     dataSource.supplementaryViewProvider = ^UICollectionReusableView * _Nullable(UICollectionView * _Nonnull collectionView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
         if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
-            SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
-//            if (sectionModel.headerText == nil) return nil;
-            
             return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:headerRegistration forIndexPath:indexPath];
         } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
-            SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
-//            if (sectionModel.footerText == nil) return nil;
-            
             return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:footerRegistration forIndexPath:indexPath];
         } else {
             return nil;
@@ -98,7 +90,7 @@
     return dataSource;
 }
 
-- (UICollectionViewCellRegistration *)cellRegistration {
+- (UICollectionViewCellRegistration *)createCellRegistration {
     UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
         SettingsItemModel *itemModel = (SettingsItemModel *)item;
         if (![itemModel isKindOfClass:[SettingsItemModel class]]) return;
@@ -122,7 +114,7 @@
     return cellRegistration;
 }
 
-- (UICollectionViewSupplementaryRegistration *)headerRegistration {
+- (UICollectionViewSupplementaryRegistration *)createHeaderRegistration {
     __weak typeof(self) weakSelf = self;
     
     UICollectionViewSupplementaryRegistration *headerResgistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]
@@ -140,7 +132,7 @@
     return headerResgistration;
 }
 
-- (UICollectionViewSupplementaryRegistration *)footerRegistration {
+- (UICollectionViewSupplementaryRegistration *)createFooterRegistration {
     __weak typeof(self) weakSelf = self;
     
     UICollectionViewSupplementaryRegistration *footerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]

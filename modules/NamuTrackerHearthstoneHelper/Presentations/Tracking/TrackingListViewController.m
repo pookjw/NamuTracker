@@ -74,12 +74,12 @@
 }
 
 - (void)configureViewModel {
-    TrackingListViewModel *viewModel = [[TrackingListViewModel alloc] initWithDataSource:[self dataSource]];
+    TrackingListViewModel *viewModel = [[TrackingListViewModel alloc] initWithDataSource:[self createDataSource]];
     self.viewModel = viewModel;
 }
 
-- (TrackingListDataSource *)dataSource {
-    UICollectionViewCellRegistration *cellRegistration = [self cellRegistration];
+- (TrackingListDataSource *)createDataSource {
+    UICollectionViewCellRegistration *cellRegistration = [self createCellRegistration];
 
     TrackingListDataSource *dataSource = [[TrackingListDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell * _Nullable(UICollectionView * _Nonnull collectionView, NSIndexPath * _Nonnull indexPath, id _Nonnull itemIdentifier) {
         UICollectionViewCell *cell = [collectionView dequeueConfiguredReusableCellWithRegistration:cellRegistration forIndexPath:indexPath item:itemIdentifier];
@@ -89,7 +89,7 @@
     return dataSource;
 }
 
-- (UICollectionViewCellRegistration *)cellRegistration {
+- (UICollectionViewCellRegistration *)createCellRegistration {
     UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
         TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
         if (![item isKindOfClass:[TrackingListItemModel class]]) return;
