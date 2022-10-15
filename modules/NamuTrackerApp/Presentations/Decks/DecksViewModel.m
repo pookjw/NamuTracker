@@ -10,6 +10,7 @@
 #import "HSAPIService.h"
 #import "identifiers.h"
 #import "CancellableBag.h"
+#import "LocalizableService.h"
 
 @interface DecksViewModel () <NSFetchedResultsControllerDelegate>
 @property (strong) DecksDataSource *dataSource;
@@ -69,7 +70,7 @@
     }];
 }
 
-- (void)addNewDeckFromDeckCode:(NSString *)deckCode name:(NSString *)name {
+- (void)createLocalDeckFromDeckCode:(NSString *)deckCode name:(NSString *)name {
     __weak typeof(self) weakSelf = self;
     
     [self.backgroundQueue addOperationWithBlock:^{
@@ -85,7 +86,15 @@
             
             [weakSelf.localDeckService createLocalDeckWithCompletion:^(LocalDeck * _Nullable localDeck, NSError * _Nullable error) {
                 [localDeck synchronizeWithHSDeck:hsDeck];
-                localDeck.name = name;
+                
+                NSString *_name;
+                if ((name) && (name.length > 0)) {
+                    _name = name;
+                } else {
+                    _name = [LocalizableService localizableForKey:LocalizableKeyUntitledDeck];
+                }
+                localDeck.name = _name;
+                
                 localDeck.timestamp = [NSDate new];
                 [weakSelf.localDeckService saveChanges];
             }];

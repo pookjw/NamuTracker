@@ -175,8 +175,15 @@
                 
                 if ((deckCode == nil) || (deckCode.length == 0)) return;
                 
-                [weakSelf.viewModel addNewDeckFromDeckCode:deckCode name:name];
+                [weakSelf.viewModel createLocalDeckFromDeckCode:deckCode name:name];
             }];
+            fetchDeckCodeAlertAction.enabled = ^BOOL(void) {
+                if (deckCode) {
+                    return (deckCode.length > 0);
+                } else {
+                    return NO;
+                }
+            }();
             weakSelf.fetchDeckCodeAlertAction = fetchDeckCodeAlertAction;
             
             [alert addAction:cancelAction];
