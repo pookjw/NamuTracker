@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LocalDeck : NSManagedObject
-@property (strong) NSNumber * _Nullable selected;
+@property (strong, getter=isSelected) NSNumber * _Nullable selected;
 @property (strong) NSData * _Nullable hsCardsData;
 @property (strong) NSString * _Nullable format;
 @property (strong) NSNumber * _Nullable classId;

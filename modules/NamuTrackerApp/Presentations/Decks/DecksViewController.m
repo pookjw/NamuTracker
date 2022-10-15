@@ -102,11 +102,11 @@
         UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration cellConfiguration];
         NSMutableArray<UICellAccessory *> *accessories = [NSMutableArray<UICellAccessory *> new];
         
-        LocalDeck * _Nullable localDeck = [weakSelf.viewModel localDeckFromObjectID:objectID];
+        LocalDeck * _Nullable localDeck = [weakSelf.viewModel localDeckFromIndexPath:indexPath];
         if (localDeck) {
             contentConfiguration.text = localDeck.name;
             
-            if (localDeck.selected) {
+            if (localDeck.isSelected.boolValue) {
                 [accessories addObject:[UICellAccessoryCheckmark new]];
             }
         }
@@ -192,7 +192,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.viewModel setSelectedWithIndexPath:indexPath];
 }
 
 #pragma mark - UITextFieldDelegate

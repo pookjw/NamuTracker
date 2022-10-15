@@ -30,7 +30,6 @@ typedef void (^LocalDeckServiceRefreshLocalDeckCompletion)(void);
 - (void)deleteLocalDecksWithObjectIds:(NSSet<NSManagedObjectID *> *)objectIds;
 - (void)saveChanges;
 - (NSFetchedResultsController *)createFetchedResultsController;
-- (LocalDeck * _Nullable)localDeckFromObjectID:(NSManagedObjectID *)objectID;
 @end
 
 NS_ASSUME_NONNULL_END

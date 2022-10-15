@@ -126,7 +126,12 @@
         NSMutableSet<LocalDeck *> *localDecks = [NSMutableSet<LocalDeck *> new];
         
         [objectIds enumerateObjectsUsingBlock:^(NSManagedObjectID * _Nonnull obj, BOOL * _Nonnull stop) {
-            LocalDeck * _Nullable localDeck = [self localDeckFromObjectID:obj];
+            NSError * _Nullable error = nil;
+            LocalDeck * _Nullable localDeck = [self.context existingObjectWithID:obj error:&error];
+            if (error) {
+                NSLog(@"%@", error);
+                return;
+            }
             [localDecks addObject:localDeck];
         }];
         
@@ -153,16 +158,6 @@
                                                                                                  sectionNameKeyPath:nil
                                                                                                           cacheName:nil];
     return fetchedResultsController;
-}
-
-- (LocalDeck *)localDeckFromObjectID:(NSManagedObjectID *)objectID {
-    NSError * _Nullable error = nil;
-    LocalDeck * _Nullable result = [self.context existingObjectWithID:objectID error:&error];
-    if (error) {
-        NSLog(@"%@", error);
-        return nil;
-    }
-    return result;
 }
 
 - (NSFetchRequest *)fetchRequest {

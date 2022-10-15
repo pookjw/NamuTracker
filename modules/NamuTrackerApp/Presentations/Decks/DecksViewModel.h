@@ -19,9 +19,10 @@ typedef void (^DecksViewModelParseClipboardCompletion)(NSString * _Nullable name
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDataSource:(DecksDataSource *)dataSource NS_DESIGNATED_INITIALIZER;
-- (LocalDeck * _Nullable)localDeckFromObjectID:(NSManagedObjectID *)objectID;
+- (LocalDeck * _Nullable)localDeckFromIndexPath:(NSIndexPath *)indexPath;
 - (void)parseClipboardForDeckCodeWithCompletion:(DecksViewModelParseClipboardCompletion)completion;
 - (void)addNewDeckFromDeckCode:(NSString *)deckCode name:(NSString * _Nullable)name;
+- (void)setSelectedWithIndexPath:(NSIndexPath *)indexPath;
 @end
 
 NS_ASSUME_NONNULL_END

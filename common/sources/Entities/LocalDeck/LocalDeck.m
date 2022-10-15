@@ -49,6 +49,10 @@
     }
 }
 
+- (NSNumber *)isSelected {
+    return [self primitiveValueForKey:@"selected"];
+}
+
 - (void)synchronizeWithHSDeck:(HSDeck *)hsDeck {
     self.deckCode = hsDeck.deckCode;
     self.format = hsDeck.format;

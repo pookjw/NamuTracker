@@ -42,8 +42,8 @@
     [self.dataSourceQueue cancelAllOperations];
 }
 
-- (LocalDeck *)localDeckFromObjectID:(NSManagedObjectID *)objectID {
-    return [self.localDeckService localDeckFromObjectID:objectID];
+- (LocalDeck * _Nullable)localDeckFromIndexPath:(NSIndexPath *)indexPath {
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 - (void)parseClipboardForDeckCodeWithCompletion:(DecksViewModelParseClipboardCompletion)completion {
@@ -95,6 +95,19 @@
     }];
 }
 
+- (void)setSelectedWithIndexPath:(NSIndexPath *)indexPath {
+    [self.backgroundQueue addOperationWithBlock:^{
+        LocalDeck *selectedLocalDeck = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.localDeckService fetchLocalDecksWithCompletion:^(NSArray<LocalDeck *> * _Nullable localDecks, NSError * _Nullable error) {
+            [localDecks enumerateObjectsUsingBlock:^(LocalDeck * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                obj.selected = @([obj isEqual:selectedLocalDeck]);
+            }];
+            
+            [self.localDeckService saveChanges];
+        }];
+    }];
+}
+
 - (void)configureDataSourceQueue {
     NSOperationQueue *dataSourceQueue = [NSOperationQueue new];
     dataSourceQueue.qualityOfService = NSQualityOfServiceUserInitiated;
@@ -143,11 +156,9 @@
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeContentWithSnapshot:(NSDiffableDataSourceSnapshot<NSString *,NSManagedObjectID *> *)snapshot {
-    [self.localDeckService.contextQueue addOperationWithBlock:^{
-        [self.dataSourceQueue addOperationWithBlock:^{
-            [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:^{
-                
-            }];
+    [self.dataSourceQueue addOperationWithBlock:^{
+        [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:^{
+            
         }];
     }];
 }
