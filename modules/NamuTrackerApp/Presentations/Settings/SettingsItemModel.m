@@ -30,6 +30,8 @@
         return YES;
     } else if ((self.type == SettingsItemModelTypeDecks) && (other.type == SettingsItemModelTypeDecks)) {
         return YES;
+    } else if ((self.type == SettingsItemModelTypeHSAPIPreferences) && (other.type == SettingsItemModelTypeHSAPIPreferences)) {
+        return YES;
     } else {
         return NO;
     }
@@ -47,6 +49,8 @@
             return [LocalizableService localizableForKey:LocalizableKeyEnabledMockMode];
         case SettingsItemModelTypeDecks:
             return [LocalizableService localizableForKey:LocalizableKeyDecks];
+        case SettingsItemModelTypeHSAPIPreferences:
+            return [LocalizableService localizableForKey:LocalizableKeyServerAndCardLanguage];
         default:
             return nil;
     }
@@ -67,6 +71,8 @@
     switch (self.type) {
         case SettingsItemModelTypeDecks:
             return [UIImage systemImageNamed:@"books.vertical"];
+        case SettingsItemModelTypeHSAPIPreferences:
+            return [UIImage systemImageNamed:@"globe"];
         default:
             return nil;
     }
@@ -75,6 +81,8 @@
 - (NSArray<UICellAccessory *> *)accessories {
     switch (self.type) {
         case SettingsItemModelTypeDecks:
+            return @[[UICellAccessoryDisclosureIndicator new]];
+        case SettingsItemModelTypeHSAPIPreferences:
             return @[[UICellAccessoryDisclosureIndicator new]];
         default:
             return [NSArray<UICellAccessory *> new];

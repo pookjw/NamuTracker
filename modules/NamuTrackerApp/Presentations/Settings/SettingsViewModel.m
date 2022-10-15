@@ -90,6 +90,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
     switch (itemModel.type) {
         case SettingsItemModelTypeDecks:
             return YES;
+        case SettingsItemModelTypeHSAPIPreferences:
+            return YES;
         default:
             return NO;;
     }
@@ -107,8 +109,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         SettingsDataSourceSnapshot *snapshot = [SettingsDataSourceSnapshot new];
         
         NSMutableArray<SettingsItemModel *> *noticesItemModels = [NSMutableArray<SettingsItemModel *> new];
-#ifdef USERLAND_MODE
-#if USERLAND_MODE
+#ifdef USERLAND_APP
+#if USERLAND_APP
         [noticesItemModels addObject:[[SettingsItemModel alloc] initWithType:SettingsItemModelTypeUserlandNotice]];
 #endif
 #endif
@@ -127,7 +129,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         SettingsSectionModel *generalSectionModel = [[SettingsSectionModel alloc] initWithType:SettingsSectionModelTypeGeneral];
         [snapshot appendSectionsWithIdentifiers:@[generalSectionModel]];
         [snapshot appendItemsWithIdentifiers:@[
-            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDecks]
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDecks],
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeHSAPIPreferences]
         ]
                    intoSectionWithIdentifier:generalSectionModel];
         

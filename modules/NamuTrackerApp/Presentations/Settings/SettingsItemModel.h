@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, SettingsItemModelType) {
     SettingsItemModelTypeUserlandNotice,
     SettingsItemModelTypeMockModeNotice,
-    SettingsItemModelTypeDecks
+    SettingsItemModelTypeDecks,
+    SettingsItemModelTypeHSAPIPreferences
 };
 
 @interface SettingsItemModel : NSObject

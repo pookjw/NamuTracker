@@ -2,6 +2,7 @@
 
 typedef NSString * LocalizableKey NS_STRING_ENUM;
 
+static LocalizableKey const LocalizableKeyServerAndCardLanguage = @"SERVER_AND_CARD_LANGUAGE";
 static LocalizableKey const LocalizableKeyHearhstoneIsNotInstalled = @"HEARHSTONE_IS_NOT_INSTALLED";
 static LocalizableKey const LocalizableKeyNamuTrackerHearthstoneHelperIsNotInstalled = @"NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED";
 static LocalizableKey const LocalizableKeyEnterDeckTitleHere = @"ENTER_DECK_TITLE_HERE";

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */; };
+		4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
 		4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284C28DB0A0800702FDD /* AppDelegate.m */; };
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
@@ -14,6 +16,9 @@
 		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
 		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
 		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
+		4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */; };
+		4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */; };
+		4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
 		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
 		4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11528F7079600726235 /* DecksItemModel.m */; };
@@ -43,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0DA59128FAF44100DEE9E2 /* HSAPILocale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPILocale.h; sourceTree = "<group>"; };
+		4F0DA59328FAF4E200DEE9E2 /* HSAPIRegionHost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIRegionHost.h; sourceTree = "<group>"; };
+		4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIRegionHost.m; sourceTree = "<group>"; };
+		4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HSAPIPreference.xcdatamodel; sourceTree = "<group>"; };
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +68,11 @@
 		4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDeck.xcdatamodel; sourceTree = "<group>"; };
 		4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeckService.h; sourceTree = "<group>"; };
 		4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeckService.m; sourceTree = "<group>"; };
+		4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferenceService.h; sourceTree = "<group>"; };
+		4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferenceService.m; sourceTree = "<group>"; };
+		4F9D3E7528FAF0A9004E3FB1 /* HSAPIPreference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreference.h; sourceTree = "<group>"; };
+		4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreference.m; sourceTree = "<group>"; };
+		4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APIPreference.xcdatamodel; sourceTree = "<group>"; };
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
@@ -191,10 +205,32 @@
 			path = LocalDeck;
 			sourceTree = "<group>";
 		};
+		4F9D3E6728FAED38004E3FB1 /* HSAPIPreference */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D3E7528FAF0A9004E3FB1 /* HSAPIPreference.h */,
+				4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */,
+				4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */,
+				4F0DA59328FAF4E200DEE9E2 /* HSAPIRegionHost.h */,
+				4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */,
+				4F0DA59128FAF44100DEE9E2 /* HSAPILocale.h */,
+			);
+			path = HSAPIPreference;
+			sourceTree = "<group>";
+		};
+		4F9D3E7128FAEF09004E3FB1 /* HSAPIPreference */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */,
+				4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */,
+				4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */,
+			);
+			path = HSAPIPreference;
+			sourceTree = "<group>";
+		};
 		4FD4E49A28F67B6E006EBA86 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
 				4FFFFD5628F8095A00401470 /* Prerequisite */,
 				4FD4E49B28F67B76006EBA86 /* Localizable */,
 			);
@@ -373,23 +409,26 @@
 		4FFBE16D28F70E3800726235 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4FFBE16E28F70E3800726235 /* HSAPIService */,
+				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
+				4F9D3E7128FAEF09004E3FB1 /* HSAPIPreference */,
+				4FFBE16E28F70E3800726235 /* HSAPI */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		4FFBE16E28F70E3800726235 /* HSAPIService */ = {
+		4FFBE16E28F70E3800726235 /* HSAPI */ = {
 			isa = PBXGroup;
 			children = (
 				4FFBE17028F70E3800726235 /* HSAPIService.h */,
 				4FFBE16F28F70E3800726235 /* HSAPIService.m */,
 			);
-			path = HSAPIService;
+			path = HSAPI;
 			sourceTree = "<group>";
 		};
 		4FFBE17128F70E3800726235 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				4F9D3E6728FAED38004E3FB1 /* HSAPIPreference */,
 				4F4416D928F94FA4009240BC /* LocalDeck */,
 				4FFBE17228F70E3800726235 /* HSDeck */,
 				4FFBE17528F70E3800726235 /* CancellableObject */,
@@ -543,15 +582,18 @@
 				4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */,
 				4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */,
 				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
+				4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */,
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
 				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
+				4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */,
 				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
 				4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */,
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
+				4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */,
 				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
 				4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */,
 				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
@@ -568,6 +610,8 @@
 				4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */,
 				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
+				4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */,
+				4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
 				4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */,
 			);
@@ -641,7 +685,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"USERLAND_MODE=1",
+					"USERLAND_APP=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -699,7 +743,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "USERLAND_MODE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "USERLAND_APP=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -736,6 +780,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.app.userland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -762,6 +807,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.namutracker.app.userland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -793,6 +839,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */,
+			);
+			currentVersion = 4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */;
+			name = HSAPIPreference.xcdatamodeld;
+			path = ../../Entities/HSAPIPreference/HSAPIPreference.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -800,6 +857,16 @@
 			);
 			currentVersion = 4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */;
 			path = LocalDeck.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */,
+			);
+			currentVersion = 4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */;
+			path = HSAPIPreference.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

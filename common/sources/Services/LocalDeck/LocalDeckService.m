@@ -6,8 +6,13 @@
 //
 
 #import "LocalDeckService.h"
-#import "isMockMode.h"
 #import "identifiers.h"
+
+#if defined(SYSLAND_APP) || defined(USERLAND_APP)
+#if SYSLAND_APP || USERLAND_APP
+#import "isMockMode.h"
+#endif
+#endif
 
 @interface LocalDeckService ()
 @property (strong) NSPersistentContainer *container;
@@ -86,6 +91,26 @@
             }];
             
             completion([objectIds copy], nil);
+        }];
+    }];
+}
+
+- (void)fetchSelectedLocalDeckWithCompletion:(LocalDeckServiceFetchSelectedLocalDeckCompletion)completion {
+    [self.contextQueue addOperationWithBlock:^{
+        [self.context performBlockAndWait:^{
+            NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LocalDeck"];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@" argumentArray:@[@"selected", @(YES)]];
+            fetchRequest.predicate = predicate;
+            
+            NSError * _Nullable error = nil;
+            NSArray<LocalDeck *> *results = [self.context executeFetchRequest:fetchRequest error:&error];
+
+            if (error) {
+                completion(nil, error);
+                return;
+            }
+
+            completion(results.lastObject, nil);
         }];
     }];
 }
@@ -170,9 +195,16 @@
 }
 
 - (void)configureContainer {
+    BOOL _isMockMode = NO;
+#if defined(SYSLAND_APP) || defined(USERLAND_APP)
+#if SYSLAND_APP || USERLAND_APP
+    _isMockMode = isMockMode();
+#endif
+#endif
+    
     NSURL *momURL;
     
-    if (isMockMode()) {
+    if (_isMockMode) {
         momURL = [NSBundle.mainBundle URLForResource:@"LocalDeck" withExtension:@"mom" subdirectory:@"LocalDeck.momd"];
     } else {
         momURL = [[[[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"LocalDeck"] URLByAppendingPathExtension:@"momd"] URLByAppendingPathComponent:@"LocalDeck"] URLByAppendingPathExtension:@"mom"];
@@ -181,7 +213,7 @@
     NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
     NSPersistentContainer *container = [NSPersistentContainer persistentContainerWithName:@"LocalDeck" managedObjectModel:managedObjectModel];
     
-    if (!isMockMode()) {
+    if (!_isMockMode) {
         if (![NSFileManager.defaultManager fileExistsAtPath:NamuTrackerSharedDataLibraryURLString]) {
             NSError * _Nullable error = nil;
             [NSFileManager.defaultManager createDirectoryAtURL:[NSURL fileURLWithPath:NamuTrackerSharedDataLibraryURLString] withIntermediateDirectories:YES attributes:nil error:&error];

@@ -4,7 +4,7 @@ export ARCHS = arm64 arm64e
 
 APPLICATION_NAME = NamuTrackerApp
 
-$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -fobjc-weak -Wno-unused-variable -Wno-unused-function -DSYSTEMLAND_MODE\=1 -I$(addprefix -I,$(shell find . -type d)) -I$(addprefix -I,$(shell find $(THEOS_PROJECT_DIR)/common -type d))
+$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -fobjc-weak -Wno-unused-variable -Wno-unused-function -DSYSTEMLAND_APP\=1 -I$(addprefix -I,$(shell find . -type d)) -I$(addprefix -I,$(shell find $(THEOS_PROJECT_DIR)/common -type d))
 $(APPLICATION_NAME)_FRAMEWORKS = UIKit CoreGraphics StoreKit CoreData
 $(APPLICATION_NAME)_PRIVATE_FRAMEWORKS = AppSupport
 $(APPLICATION_NAME)_LIBRARIES = rocketbootstrap

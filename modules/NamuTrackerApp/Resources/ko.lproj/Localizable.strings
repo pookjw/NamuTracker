@@ -49,3 +49,5 @@
 "ENTER_DECK_CODE_HERE" = "덱코드를 입력해 주세요... (필수)";
 
 "UNTITLED_DECK" = "이름이 없는 덱";
+
+"SERVER_AND_CARD_LANGUAGE" = "서버와 카드 언어";

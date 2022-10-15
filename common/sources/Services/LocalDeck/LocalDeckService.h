@@ -14,6 +14,7 @@ static NSNotificationName const NSNotificationNameLocalDeckServiceDidSave = @"NS
 
 typedef void (^LocalDeckServiceFetchLocalDecksCompletion)(NSArray<LocalDeck *> * _Nullable localDecks, NSError * _Nullable error);
 typedef void (^LocalDeckServiceFetchObjectIDsCompletion)(NSArray<NSManagedObjectID *> * _Nullable objectIDs, NSError * _Nullable error);
+typedef void (^LocalDeckServiceFetchSelectedLocalDeckCompletion)(LocalDeck * _Nullable localDeck, NSError * _Nullable error);
 typedef void (^LocalDeckServiceNewLocalDeckCompletion)(LocalDeck * _Nullable localDeck, NSError * _Nullable error);
 typedef void (^LocalDeckServiceRefreshLocalDeckCompletion)(void);
 
@@ -25,6 +26,7 @@ typedef void (^LocalDeckServiceRefreshLocalDeckCompletion)(void);
 - (void)refreshLocalDeck:(LocalDeck *)localDeck completion:(LocalDeckServiceRefreshLocalDeckCompletion)completion;
 - (void)fetchLocalDecksWithCompletion:(LocalDeckServiceFetchLocalDecksCompletion)completion;
 - (void)fetchObjectIdsWithCompletion:(LocalDeckServiceFetchObjectIDsCompletion)completion;
+- (void)fetchSelectedLocalDeckWithCompletion:(LocalDeckServiceFetchSelectedLocalDeckCompletion)completion;
 - (void)createLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion;
 - (void)deleteLocalDecks:(NSSet<LocalDeck *> *)localDecks;
 - (void)deleteLocalDecksWithObjectIds:(NSSet<NSManagedObjectID *> *)objectIds;
