@@ -5,7 +5,7 @@
 //  Created by Jinwoo Kim on 10/15/22.
 //
 
-#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "LocalDeck.h"
 
 NS_ASSUME_NONNULL_BEGIN

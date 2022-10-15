@@ -9,7 +9,7 @@
 #import "isMockMode.h"
 #import "identifiers.h"
 
-@interface LocalDeckService () <NSFetchedResultsControllerDelegate>
+@interface LocalDeckService ()
 @property (strong) NSPersistentContainer *container;
 @property (strong) NSManagedObjectContext *context;
 @property (strong) NSOperationQueue *backgroundQueue;

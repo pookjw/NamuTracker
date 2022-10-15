@@ -8,5 +8,4 @@
 @property (readonly, copy, nonatomic) UIColor* selectedColor;
 @property (readonly, nonatomic) double glyphScale;
 @property (readonly, nonatomic) UIViewController<CCUIContentModuleContentViewController>* contentViewController;
-
 @end

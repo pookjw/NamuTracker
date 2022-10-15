@@ -1,9 +1,11 @@
 #import "CardService.h"
 #import "identifiers.h"
 #import "HSAPIService.h"
+#import "LocalDeckService.h"
 
 @interface CardService ()
 @property (strong) HSAPIService *hsAPIService;
+@property (strong) LocalDeckService *localDeckService;
 @property (readonly, strong, nonatomic) NSDictionary *allCardsDictionary;
 @end
 
@@ -16,6 +18,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         [self configureHSAPIService];
+        [self configureLocalDeckService];
     }
 
     return self;
@@ -54,10 +57,23 @@
 }
 
 - (CancellableObject *)hsCardsFromSelectedDeckWithCompletionHandler:(CardServiceHSCardsCompletionHandler)completionHandler {
-    // TODO
-    return [self.hsAPIService hsDeckFromDeckCode:NamuTrackerDemoDeckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
-         completionHandler(hsDeck.hsCards, error);
+    CancellableObject * _Nullable __block hsDeckCancellable;
+    CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
+        [hsDeckCancellable cancel];
     }];
+
+    [self.localDeckService fetchSelectedLocalDeckWithCompletion:^(LocalDeck * _Nullable localDeck, NSError * _Nullable error) {
+        if (error) {
+            completionHandler(nil, error);
+            return;
+        }
+
+        hsDeckCancellable = [self.hsAPIService hsDeckFromDeckCode:localDeck.deckCode completionHandler:^(HSDeck * _Nullable hsDeck, NSError * _Nullable error) {
+            completionHandler(hsDeck.hsCards, error);
+        }];
+    }];
+
+    return cancellable;
 }
 
 - (NSDictionary *)allCardsDictionary {
@@ -95,6 +111,11 @@
 - (void)configureHSAPIService {
     HSAPIService *hsAPIService = [HSAPIService new];
     self.hsAPIService = hsAPIService;
+}
+
+- (void)configureLocalDeckService {
+    LocalDeckService *localDeckService = LocalDeckService.sharedInstance;
+    self.localDeckService = localDeckService;
 }
 
 @end
