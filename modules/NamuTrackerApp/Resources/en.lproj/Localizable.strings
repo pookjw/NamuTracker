@@ -10,7 +10,11 @@
 
 "DONE" = "Done";
 
+"CANCEL" = "Cancel";
+
 "EXIT" = "Exit";
+
+"FETCH" = "Fetch";
 
 "NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "Seems like NamuTrackerHearthstoneHelper is not installed, or your device has not been jailbroken.";
 
@@ -33,3 +37,15 @@
 "ENABLED_MOCK_MODE" = "Enabled mock mode";
 
 "ENABLED_MOCK_MODE_DESCRIPTION" = "Only for developers. It doesn't occur read or write transactions outside of App Sandbox, and doesn't communicate with the Helper.";
+
+"DECKS_FOOTER_TEXT" = "Add decks and select a deck. Then you can use deck tracking feature when you playing the game.";
+
+"LOAD_FROM_DECK_CODE" = "Add a deck From Deck Code";
+
+"PLEASE_ENTER_DECK_CODE" = "Please enter deck title and code below.";
+
+"ENTER_DECK_TITLE_HERE" = "Enter deck title here... (optional)";
+
+"ENTER_DECK_CODE_HERE" = "Enter deck code here... (required)";
+
+"UNTITLED_DECK" = "Untitled Deck";

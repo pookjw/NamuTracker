@@ -10,7 +10,11 @@
 
 "DONE" = "완료";
 
+"CANCEL" = "취소";
+
 "EXIT" = "종료";
+
+"FETCH" = "불러오기";
 
 "NAMU_TRACKER_HEARTHSTONE_HELPER_IS_NOT_INSTALLED" = "NamuTrackerHearthstoneHelper가 설치되지 않았거나, 해당 기기는 탈옥되지 않은 것으로 보입니다.";
 
@@ -33,3 +37,15 @@
 "ENABLED_MOCK_MODE" = "mock mode 활성화됨";
 
 "ENABLED_MOCK_MODE_DESCRIPTION" = "개발자 전용 기능입니다. 읽기/쓰기 작업이 App Sandbox 내에서만 발생하며, Helper와 통신하지 않습니다.";
+
+"DECKS_FOOTER_TEXT" = "덱을 추가하고 선택해 주세요. 그러면 게임 중에 선택된 덱으로 덱트래커 기능을 사용할 수 있습니다.";
+
+"LOAD_FROM_DECK_CODE" = "덱코드로 덱 생성";
+
+"PLEASE_ENTER_DECK_CODE" = "덱코드를 입력해 주세요.";
+
+"ENTER_DECK_TITLE_HERE" = "제목을 입력해 주세요... (선택)";
+
+"ENTER_DECK_CODE_HERE" = "덱코드를 입력해 주세요... (필수)";
+
+"UNTITLED_DECK" = "이름이 없는 덱";

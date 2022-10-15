@@ -141,7 +141,7 @@
         SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
         NSString * _Nullable footerText = sectionModel.footerText;
         
-        UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration groupedHeaderConfiguration];
+        UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration groupedFooterConfiguration];
         contentConfiguration.text = footerText;
         contentConfiguration.textProperties.alignment = UIListContentTextAlignmentCenter;
         

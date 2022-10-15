@@ -12,14 +12,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LocalDeck : NSManagedObject
-@property (assign, getter=isSelected) NSNumber * _Nullable selected;
-@property (assign) NSData * _Nullable hsCardsData;
-@property (assign) NSString * _Nullable format;
-@property (assign) NSNumber * _Nullable classId;
-@property (assign) NSString * _Nullable deckCode;
-@property (assign) NSString * _Nullable name;
-@property (assign) NSNumber * _Nullable index;
-@property (assign) NSDate * _Nullable timestamp;
+@property (strong) NSNumber * _Nullable selected;
+@property (strong) NSData * _Nullable hsCardsData;
+@property (strong) NSString * _Nullable format;
+@property (strong) NSNumber * _Nullable classId;
+@property (strong) NSString * _Nullable deckCode;
+@property (strong) NSString * _Nullable name;
+@property (strong) NSNumber * _Nullable index;
+@property (strong) NSDate * _Nullable timestamp;
 
 @property (nonatomic) NSArray<HSCard *> *hsCards;
 - (void)synchronizeWithHSDeck:(HSDeck *)hsDeck;

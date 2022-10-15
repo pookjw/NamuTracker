@@ -90,10 +90,17 @@
     }];
 }
 
-- (void)newLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion {
+- (void)createLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion {
     [self.contextQueue addOperationWithBlock:^{
         LocalDeck *localDeck = [[LocalDeck alloc] initWithContext:self.context];
-        completion(localDeck);
+        NSError * _Nullable error = nil;
+        [self.context obtainPermanentIDsForObjects:@[localDeck] error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+            completion(nil, error);
+            return;
+        }
+        completion(localDeck, nil);
     }];
 }
 
@@ -119,15 +126,8 @@
         NSMutableSet<LocalDeck *> *localDecks = [NSMutableSet<LocalDeck *> new];
         
         [objectIds enumerateObjectsUsingBlock:^(NSManagedObjectID * _Nonnull obj, BOOL * _Nonnull stop) {
-            NSError * _Nullable error = nil;
-            LocalDeck * _Nullable localDeck = [self.context existingObjectWithID:obj error:&error];
-            
-            if (error) {
-                NSLog(@"%@", error);
-            }
-            if (localDeck) {
-                [localDecks addObject:localDeck];
-            }
+            LocalDeck * _Nullable localDeck = [self localDeckFromObjectID:obj];
+            [localDecks addObject:localDeck];
         }];
         
         [self deleteLocalDecks:localDecks];
@@ -153,6 +153,16 @@
                                                                                                  sectionNameKeyPath:nil
                                                                                                           cacheName:nil];
     return fetchedResultsController;
+}
+
+- (LocalDeck *)localDeckFromObjectID:(NSManagedObjectID *)objectID {
+    NSError * _Nullable error = nil;
+    LocalDeck * _Nullable result = [self.context existingObjectWithID:objectID error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+        return nil;
+    }
+    return result;
 }
 
 - (NSFetchRequest *)fetchRequest {
