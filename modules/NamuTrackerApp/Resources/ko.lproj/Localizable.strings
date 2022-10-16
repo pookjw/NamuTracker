@@ -57,3 +57,7 @@
 "CARD_LANGUAGE" = "카드 언어";
 
 "HSAPIREGIONHOST_SECTION_FOOTER" = "중국 서버는 중국 인트라넷에서만 작동합니다.";
+
+"RELOAD_ALTERNATIVEHSCARDS" = "카드 DB 새로고침";
+
+"RELOAD_ALTERNATIVEHSCARDS_DESCRIPTION" = "작업이 완료되기까지 오래 걸릴 수 있습니다.";

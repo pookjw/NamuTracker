@@ -97,15 +97,16 @@
 
 - (void)fetchSelectedLocalDeckWithCompletion:(LocalDeckServiceFetchSelectedLocalDeckCompletion)completion {
     [self.contextQueue addOperationWithBlock:^{
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LocalDeck"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@" argumentArray:@[@"selected", @(YES)]];
+        fetchRequest.predicate = predicate;
+        
         [self.context performBlockAndWait:^{
-            NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LocalDeck"];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@" argumentArray:@[@"selected", @(YES)]];
-            fetchRequest.predicate = predicate;
-            
             NSError * _Nullable error = nil;
             NSArray<LocalDeck *> *results = [self.context executeFetchRequest:fetchRequest error:&error];
 
             if (error) {
+                NSLog(@"%@", error);
                 completion(nil, error);
                 return;
             }

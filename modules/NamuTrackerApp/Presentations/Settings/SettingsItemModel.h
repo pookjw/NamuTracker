@@ -13,7 +13,8 @@ typedef NS_ENUM(NSUInteger, SettingsItemModelType) {
     SettingsItemModelTypeUserlandNotice,
     SettingsItemModelTypeMockModeNotice,
     SettingsItemModelTypeDecks,
-    SettingsItemModelTypeHSAPIPreferences
+    SettingsItemModelTypeHSAPIPreferences,
+    SettingsItemModelTypeReloadAlternativeHSCards
 };
 
 @interface SettingsItemModel : NSObject

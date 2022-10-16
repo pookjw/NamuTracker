@@ -16,6 +16,11 @@
 		4F0DA5A728FC44B400DEE9E2 /* HSAPILocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5A628FC44B400DEE9E2 /* HSAPILocale.m */; };
 		4F0DA5AA28FC45A600DEE9E2 /* HSAPIRegionHost.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DA5AC28FC45A600DEE9E2 /* HSAPIRegionHost.strings */; };
 		4F0DA5B028FC46BB00DEE9E2 /* HSAPILocale.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DA5B228FC46BB00DEE9E2 /* HSAPILocale.strings */; };
+		4F0DA5B728FC5A5300DEE9E2 /* AlternativeHSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5B628FC5A5300DEE9E2 /* AlternativeHSCard.m */; };
+		4F0DA5BA28FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5B828FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld */; };
+		4F0DA5BE28FC5BE000DEE9E2 /* AlternativeHSCardService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5BD28FC5BE000DEE9E2 /* AlternativeHSCardService.m */; };
+		4F0DA5C328FC6D5C00DEE9E2 /* SpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5C128FC6D5C00DEE9E2 /* SpinnerView.m */; };
+		4F0DA5C628FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */; };
 		4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284C28DB0A0800702FDD /* AppDelegate.m */; };
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
@@ -70,6 +75,15 @@
 		4F0DA5AD28FC45A800DEE9E2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HSAPIRegionHost.strings; sourceTree = "<group>"; };
 		4F0DA5B128FC46BB00DEE9E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HSAPILocale.strings; sourceTree = "<group>"; };
 		4F0DA5B328FC46BE00DEE9E2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HSAPILocale.strings; sourceTree = "<group>"; };
+		4F0DA5B528FC5A5300DEE9E2 /* AlternativeHSCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlternativeHSCard.h; sourceTree = "<group>"; };
+		4F0DA5B628FC5A5300DEE9E2 /* AlternativeHSCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlternativeHSCard.m; sourceTree = "<group>"; };
+		4F0DA5B928FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlternativeHSCard.xcdatamodel; sourceTree = "<group>"; };
+		4F0DA5BC28FC5BE000DEE9E2 /* AlternativeHSCardService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlternativeHSCardService.h; sourceTree = "<group>"; };
+		4F0DA5BD28FC5BE000DEE9E2 /* AlternativeHSCardService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlternativeHSCardService.m; sourceTree = "<group>"; };
+		4F0DA5C128FC6D5C00DEE9E2 /* SpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinnerView.m; sourceTree = "<group>"; };
+		4F0DA5C228FC6D5C00DEE9E2 /* SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinnerView.h; sourceTree = "<group>"; };
+		4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SpinnerView.h"; sourceTree = "<group>"; };
+		4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SpinnerView.m"; sourceTree = "<group>"; };
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -177,6 +191,42 @@
 				4F0DA5A428FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m */,
 			);
 			path = HSAPIPreferences;
+			sourceTree = "<group>";
+		};
+		4F0DA5B428FC5A0B00DEE9E2 /* AlternativeHSCard */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DA5B528FC5A5300DEE9E2 /* AlternativeHSCard.h */,
+				4F0DA5B628FC5A5300DEE9E2 /* AlternativeHSCard.m */,
+				4F0DA5B828FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld */,
+			);
+			path = AlternativeHSCard;
+			sourceTree = "<group>";
+		};
+		4F0DA5BB28FC5BB500DEE9E2 /* AlternativeHSCard */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DA5BC28FC5BE000DEE9E2 /* AlternativeHSCardService.h */,
+				4F0DA5BD28FC5BE000DEE9E2 /* AlternativeHSCardService.m */,
+			);
+			path = AlternativeHSCard;
+			sourceTree = "<group>";
+		};
+		4F0DA5BF28FC6D2600DEE9E2 /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DA5C028FC6D2F00DEE9E2 /* SpinnerView */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		4F0DA5C028FC6D2F00DEE9E2 /* SpinnerView */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DA5C228FC6D5C00DEE9E2 /* SpinnerView.h */,
+				4F0DA5C128FC6D5C00DEE9E2 /* SpinnerView.m */,
+			);
+			path = SpinnerView;
 			sourceTree = "<group>";
 		};
 		4F30283F28DB0A0800702FDD = {
@@ -403,6 +453,7 @@
 				4FFBE16628F70E3800726235 /* Categories */,
 				4FFBE16D28F70E3800726235 /* Services */,
 				4FFBE17128F70E3800726235 /* Entities */,
+				4F0DA5BF28FC6D2600DEE9E2 /* Presentations */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -431,6 +482,8 @@
 				4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */,
 				4FFFFD5A28F80AD700401470 /* UIWindowScene+keyWindowAlt.h */,
 				4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */,
+				4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */,
+				4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -441,6 +494,7 @@
 				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
 				4F9D3E7128FAEF09004E3FB1 /* HSAPIPreference */,
 				4FFBE16E28F70E3800726235 /* HSAPI */,
+				4F0DA5BB28FC5BB500DEE9E2 /* AlternativeHSCard */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -459,9 +513,10 @@
 			children = (
 				4F9D3E6728FAED38004E3FB1 /* HSAPIPreference */,
 				4F4416D928F94FA4009240BC /* LocalDeck */,
-				4FFBE17228F70E3800726235 /* HSDeck */,
 				4FFBE17528F70E3800726235 /* CancellableObject */,
+				4F0DA5B428FC5A0B00DEE9E2 /* AlternativeHSCard */,
 				4FFBE17A28F70E3800726235 /* HSCard */,
+				4FFBE17228F70E3800726235 /* HSDeck */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -613,8 +668,11 @@
 				4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */,
 				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
 				4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */,
+				4F0DA5B728FC5A5300DEE9E2 /* AlternativeHSCard.m in Sources */,
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
+				4F0DA5C628FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m in Sources */,
+				4F0DA5BE28FC5BE000DEE9E2 /* AlternativeHSCardService.m in Sources */,
 				4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */,
 				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
@@ -630,6 +688,7 @@
 				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
 				4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */,
 				4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */,
+				4F0DA5C328FC6D5C00DEE9E2 /* SpinnerView.m in Sources */,
 				4F0DA5A728FC44B400DEE9E2 /* HSAPILocale.m in Sources */,
 				4F0DA59F28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m in Sources */,
 				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
@@ -643,6 +702,7 @@
 				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
 				4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */,
 				4F0DA5A228FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m in Sources */,
+				4F0DA5BA28FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
 				4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */,
 				4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */,
@@ -899,6 +959,16 @@
 			currentVersion = 4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */;
 			name = HSAPIPreference.xcdatamodeld;
 			path = ../../Entities/HSAPIPreference/HSAPIPreference.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F0DA5B828FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F0DA5B928FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodel */,
+			);
+			currentVersion = 4F0DA5B928FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodel */;
+			path = AlternativeHSCard.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

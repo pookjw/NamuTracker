@@ -15,7 +15,7 @@
 - (instancetype)initWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard hsCardCount:(NSNumber *)hsCardCount {
     if (self = [super init]) {
         self->_type = TrackingListItemModelTypeAlternativeHSCard;
-        self->_alternativeHSCard = [alternativeHSCard copy];
+        self->_alternativeHSCard = alternativeHSCard;
         self.hsCardCount = hsCardCount;
     }
 
@@ -52,7 +52,7 @@
 
         _copy->_type = self.type;
         _copy->_hsCard = [self.hsCard copyWithZone:zone];
-        _copy->_alternativeHSCard = [self.alternativeHSCard copyWithZone:zone];
+        _copy->_alternativeHSCard = self.alternativeHSCard;
         _copy->_hsCardCount = [self.hsCardCount copyWithZone:zone];
     }
 

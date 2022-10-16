@@ -5,13 +5,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^CardServiceAlternativeHSCardCompletion)(AlternativeHSCard * _Nullable alternativeHSCard, NSError * _Nullable error);
 typedef void (^CardServiceHSCardCompletion)(HSCard * _Nullable hsCard, NSError * _Nullable error);
 typedef void (^CardServiceHSCardsCompletion)(NSArray<HSCard *> * _Nullable hsCards, NSError * _Nullable error);
 
 @interface CardService : NSObject
-- (AlternativeHSCard *)alternativeHSCardWithCardId:(NSString *)cardId;
+- (void)alternativeHSCardWithCardId:(NSString *)cardId completion:(CardServiceAlternativeHSCardCompletion)completion;
 - (CancellableObject *)hsCardWithCardId:(NSString *)cardId completion:(CardServiceHSCardCompletion)completion;
-- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completion:(CardServiceHSCardCompletion)completion;
+- (CancellableObject *)hsCardWithDbfId:(NSNumber *)dbfId completion:(CardServiceHSCardCompletion)completion;
 - (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completion:(CardServiceHSCardCompletion)completion;
 - (CancellableObject *)hsCardsFromSelectedDeckWithCompletion:(CardServiceHSCardsCompletion)completio;
 @end

@@ -41,6 +41,8 @@
             return [LocalizableService localizableForKey:LocalizableKeyDecks];
         case SettingsItemModelTypeHSAPIPreferences:
             return [LocalizableService localizableForKey:LocalizableKeyServerAndCardLanguage];
+        case SettingsItemModelTypeReloadAlternativeHSCards:
+            return [LocalizableService localizableForKey:LocalizableKeyReloadAlternativehscards];
         default:
             return nil;
     }
@@ -52,6 +54,8 @@
             return [LocalizableService localizableForKey:LocalizableKeyRunningAsUserlandDescription];
         case SettingsItemModelTypeMockModeNotice:
             return [LocalizableService localizableForKey:LocalizableKeyEnabledMockModeDescription];
+        case SettingsItemModelTypeReloadAlternativeHSCards:
+            return [LocalizableService localizableForKey:LocalizableKeyReloadAlternativehscardsDescription];
         default:
             return nil;
     }
@@ -63,6 +67,8 @@
             return [UIImage systemImageNamed:@"books.vertical"];
         case SettingsItemModelTypeHSAPIPreferences:
             return [UIImage systemImageNamed:@"globe"];
+        case SettingsItemModelTypeReloadAlternativeHSCards:
+            return [UIImage systemImageNamed:@"square.and.arrow.down"];
         default:
             return nil;
     }

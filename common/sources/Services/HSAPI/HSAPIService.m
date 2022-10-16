@@ -11,7 +11,6 @@ static BlizzardTokenAPI const BlizzardTokenAPIAuthorizationKey = @"Authorization
 
 typedef NSString * BlizzardAPI NS_STRING_ENUM;
 
-static BlizzardAPI const BlizzardAPIAPIHost = @"kr.api.blizzard.com"; // TODO: It's a South Korea server.
 static BlizzardAPI const BlizzardAPIGetCardBasePath = @"/hearthstone/cards";
 static BlizzardAPI const BlizzardAPIGetDeckBasePath = @"/hearthstone/deck";
 static BlizzardAPI const BlizzardAPIAccessTokenKey = @"access_token";
@@ -50,7 +49,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             NSURLComponents *components = [NSURLComponents new];
 
             components.scheme = @"https";
-            components.host = BlizzardAPIAPIHost;
+            components.host = NSStringForHSAPIFromRegionHost(regionHost);
             components.path = [NSString stringWithFormat:@"%@/%@", BlizzardAPIGetCardBasePath, idOrSlug];
 
             components.queryItems = @[
@@ -111,7 +110,7 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
             NSURLComponents *components = [NSURLComponents new];
 
             components.scheme = @"https";
-            components.host = BlizzardAPIAPIHost;
+            components.host = NSStringForHSAPIFromRegionHost(regionHost);
             components.path = BlizzardAPIGetDeckBasePath;
 
             components.queryItems = @[

@@ -8,7 +8,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
 @interface HSLogService ()
 @property (strong) NSOperationQueue *timerQueue;
-@property (strong) NSOperationQueue *workQueue;
+@property (strong) NSOperationQueue *backgroundQueue;
 @property (strong) NSTimer * _Nullable timer;
 @property CFRunLoopRef timerRunLoop;
 @property NSUInteger zoneLogCheckpoint;
@@ -34,7 +34,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         NSLog(@"Started HSLogService with %@", self);
 
         [self configureTimerQueue];
-        [self configureWorkQueue];
+        [self configureBorkQueue];
         [self configureCardService];
     }
 
@@ -44,7 +44,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 - (void)dealloc {
     [self.timer invalidate];
     [self.timerQueue cancelAllOperations];
-    [self.workQueue cancelAllOperations];
+    [self.backgroundQueue cancelAllOperations];
 }
 
 - (void)installCustomLogConfiguration {
@@ -120,11 +120,11 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
     self.timerQueue = timerQueue;
 }
 
-- (void)configureWorkQueue {
-    NSOperationQueue *workQueue = [NSOperationQueue new];
-    workQueue.maxConcurrentOperationCount = 1;
-    workQueue.qualityOfService = NSQualityOfServiceUtility;
-    self.workQueue = workQueue;
+- (void)configureBorkQueue {
+    NSOperationQueue *backgroundQueue = [NSOperationQueue new];
+    backgroundQueue.maxConcurrentOperationCount = 1;
+    backgroundQueue.qualityOfService = NSQualityOfServiceUtility;
+    self.backgroundQueue = backgroundQueue;
 }
 
 - (void)configureCardService {
@@ -139,7 +139,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
     __weak typeof(self) weakSelf = self;
 
-    [self.workQueue addOperationWithBlock:^{
+    [self.backgroundQueue addOperationWithBlock:^{
         if (weakSelf == nil) return;
 
         [weakSelf postNotificationForLogType:HSLogServiceLogTypeZone];
@@ -260,7 +260,20 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
             if (!isValid) return;
 
-            AlternativeHSCard *alternativeHSCard = [self.cardService alternativeHSCardWithCardId:cardId];
+            AlternativeHSCard * _Nullable __block alternativeHSCard = nil;
+
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            [self.cardService alternativeHSCardWithCardId:cardId completion:^(AlternativeHSCard * _Nullable result, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"%@", error);
+                    dispatch_semaphore_signal(semaphore);
+                    return;
+                }
+
+                alternativeHSCard = result;
+                dispatch_semaphore_signal(semaphore);
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
             if (didRemove) {
                 [removedAlternativeHSCards addObject:alternativeHSCard];

@@ -125,7 +125,7 @@
 
 - (UICollectionViewSupplementaryRegistration *)createFooterRegistration {
     UICollectionViewSupplementaryRegistration *headerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]
-                                                                                                                                      elementKind:UICollectionElementKindSectionHeader
+                                                                                                                                      elementKind:UICollectionElementKindSectionFooter
                                                                                                                              configurationHandler:^(UICollectionViewListCell * _Nonnull supplementaryView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
         UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration groupedFooterConfiguration];
         contentConfiguration.text = [LocalizableService localizableForKey:LocalizableKeyDecksFooterText];

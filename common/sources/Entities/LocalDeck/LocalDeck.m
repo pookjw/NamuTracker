@@ -22,9 +22,9 @@
 }
 
 - (void)synchronizeWithHSDeck:(HSDeck *)hsDeck {
-    self.deckCode = hsDeck.deckCode;
-    self.format = hsDeck.format;
-    self.classId = hsDeck.classId;
+    self.deckCode = [hsDeck.deckCode copy];
+    self.format = [hsDeck.format copy];
+    self.classId = [hsDeck.classId copy];
 }
 
 @end

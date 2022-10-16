@@ -57,3 +57,7 @@
 "CARD_LANGUAGE" = "Card Language";
 
 "HSAPIREGIONHOST_SECTION_FOOTER" = "The China server is only available within China intranet.";
+
+"RELOAD_ALTERNATIVEHSCARDS" = "Reload Cards Database";
+
+"RELOAD_ALTERNATIVEHSCARDS_DESCRIPTION" = "It may take some time.";

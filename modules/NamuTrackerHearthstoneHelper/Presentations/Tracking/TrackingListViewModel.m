@@ -225,7 +225,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
 
                 switch (obj2.type) {
                     case TrackingListItemModelTypeHSCard: {
-                        if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
+                        if ([obj1.dbfId isEqualToNumber:obj2.hsCard.dbfId]) {
                             isValid = YES;
                         }
                         break;
@@ -278,7 +278,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
 
                 switch (obj2.type) {
                     case TrackingListItemModelTypeHSCard: {
-                        if (obj1.dbfId == obj2.hsCard.dbfId.unsignedIntegerValue) {
+                        if ([obj1.dbfId isEqualToNumber:obj2.hsCard.dbfId]) {
                             isValid = YES;
                         }
                         break;
@@ -345,7 +345,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
                     TrackingListItemModel * _Nullable __block oldItemModel = nil;
                     [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (obj.type != TrackingListItemModelTypeAlternativeHSCard) return;
-                        if (obj.alternativeHSCard.dbfId == hsCard.dbfId.unsignedIntegerValue) {
+                        if ([obj.alternativeHSCard.dbfId isEqualToNumber:hsCard.dbfId]) {
                             oldItemModel = obj;
                             *stop = YES;
                         }

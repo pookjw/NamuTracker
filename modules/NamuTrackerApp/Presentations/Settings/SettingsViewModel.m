@@ -10,6 +10,8 @@
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "isMockMode.h"
 #import "checkAvailability.h"
+#import "AlternativeHSCardService.h"
+#import "CancellableBag.h"
 
 typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *> SettingsDataSourceSnapshot;
 
@@ -47,6 +49,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
 @interface SettingsViewModel ()
 @property (strong) SettingsDataSource *dataSource;
 @property (strong) NSOperationQueue *dataSourceQueue;
+@property (strong) AlternativeHSCardService *alternativeHSCardService;
+@property (strong) CancellableBag *cancellableBag;
 @end
 
 @implementation SettingsViewModel
@@ -56,6 +60,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         self.dataSource = dataSource;
         
         [self configureDataSourceQueue];
+        [self configureAlternativeHSCardService];
+        [self configureCancellableBag];
         [self loadItems];
     }
     
@@ -73,9 +79,9 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
     }
 }
 
-- (void)handleSelectedIndexPath:(NSIndexPath *)selectedIndexPath {
+- (void)requestItemModelFromIndexPath:(NSIndexPath *)indexPath {
     [self.dataSourceQueue addOperationWithBlock:^{
-        SettingsItemModel * _Nullable itemModel = [self.dataSource itemIdentifierForIndexPath:selectedIndexPath];
+        SettingsItemModel * _Nullable itemModel = [self.dataSource itemIdentifierForIndexPath:indexPath];
         if (itemModel == nil) return;
         
         [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameSettingsViewModelSelectedItemModel
@@ -92,9 +98,21 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
             return YES;
         case SettingsItemModelTypeHSAPIPreferences:
             return YES;
+        case SettingsItemModelTypeReloadAlternativeHSCards:
+            return YES;
         default:
             return NO;;
     }
+}
+
+- (void)reloadAlternativeHSCardsWithCompletion:(SettingsViewModelReloadAlternativeHSCardsCompletion)completion {
+    CancellableObject *cancellable;
+    
+    cancellable = [self.alternativeHSCardService reloadAlternativeHSCardsWithCompletion:^(NSError * _Nullable error) {
+        [self.cancellableBag removeCancellable:cancellable];
+        completion(nil);
+    }];
+    [self.cancellableBag addCancellable:cancellable];
 }
 
 - (void)configureDataSourceQueue {
@@ -102,6 +120,16 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
     dataSourceQueue.qualityOfService = NSQualityOfServiceUserInitiated;
     dataSourceQueue.maxConcurrentOperationCount = 1;
     self.dataSourceQueue = dataSourceQueue;
+}
+
+- (void)configureAlternativeHSCardService {
+    AlternativeHSCardService *alternativeHSCardService = AlternativeHSCardService.sharedInstance;
+    self.alternativeHSCardService = alternativeHSCardService;
+}
+
+- (void)configureCancellableBag {
+    CancellableBag *cancellableBag = [CancellableBag new];
+    self.cancellableBag = cancellableBag;
 }
 
 - (void)loadItems {
@@ -130,7 +158,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         [snapshot appendSectionsWithIdentifiers:@[generalSectionModel]];
         [snapshot appendItemsWithIdentifiers:@[
             [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDecks],
-            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeHSAPIPreferences]
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeHSAPIPreferences],
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeReloadAlternativeHSCards]
         ]
                    intoSectionWithIdentifier:generalSectionModel];
         

@@ -2,54 +2,52 @@
 #import "identifiers.h"
 #import "HSAPIService.h"
 #import "LocalDeckService.h"
+#import "AlternativeHSCardService.h"
 
 @interface CardService ()
 @property (strong) HSAPIService *hsAPIService;
 @property (strong) LocalDeckService *localDeckService;
-@property (readonly, strong, nonatomic) NSDictionary *allCardsDictionary;
+@property (strong) AlternativeHSCardService *alternativeHSCardService;
 @end
 
-@implementation CardService {
-    NSDictionary * _allCardsDictionary;
-}
-
-@synthesize allCardsDictionary = _allCardsDictionary;
+@implementation CardService
 
 - (instancetype)init {
     if (self = [super init]) {
         [self configureHSAPIService];
         [self configureLocalDeckService];
+        [self configureAlternativeHSCardService];
     }
 
     return self;
 }
 
-- (AlternativeHSCard *)alternativeHSCardWithCardId:(NSString *)cardId {
-    AlternativeHSCard * _Nullable __block result = nil;
-
-    [self.allCardsDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop1) {
-        [(NSArray *)obj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop2) {
-            NSDictionary *dictionary = (NSDictionary *)obj;
-
-            if ([cardId isEqualToString:dictionary[@"cardId"]]) {
-                AlternativeHSCard *alternativeHSCard = [[AlternativeHSCard alloc] initWithDictionary:dictionary];
-                result = alternativeHSCard;
-                *stop1 = YES;
-                *stop2 = YES;
-            }
-        }];
-    }];
-
-    return result;
+- (void)alternativeHSCardWithCardId:(NSString *)cardId completion:(CardServiceAlternativeHSCardCompletion)completion {
+    [self.alternativeHSCardService fetchAlternativeHSCardFromCardId:cardId completion:completion];
 }
 
 - (CancellableObject *)hsCardWithCardId:(NSString *)cardId completion:(CardServiceHSCardCompletion)completion {
-    AlternativeHSCard *alternativeHSCard = [self alternativeHSCardWithCardId:cardId];
-    return [self hsCardWithAlternativeHSCard:alternativeHSCard completion:completion];
+    CancellableObject * _Nullable __block hsCardCancellable = nil;
+    CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
+        [hsCardCancellable cancel];
+    }];
+
+    [self alternativeHSCardWithCardId:cardId completion:^(AlternativeHSCard * _Nullable alternativeHSCard, NSError * _Nullable error) {
+        if (error) {
+            completion(nil, error);
+            return;
+        }
+
+        if (!cancellable.isCancelled) {
+            hsCardCancellable = [self hsCardWithAlternativeHSCard:alternativeHSCard completion:completion];
+        }
+    }];
+    
+    return cancellable;
 }
 
-- (CancellableObject *)hsCardWithDbfId:(NSUInteger)dbfId completion:(CardServiceHSCardCompletion)completion {
-    return [self.hsAPIService hsCardWithIdOrSlug:[@(dbfId) stringValue] completion:completion];
+- (CancellableObject *)hsCardWithDbfId:(NSNumber *)dbfId completion:(CardServiceHSCardCompletion)completion {
+    return [self.hsAPIService hsCardWithIdOrSlug:[dbfId stringValue] completion:completion];
 }
 
 - (CancellableObject *)hsCardWithAlternativeHSCard:(AlternativeHSCard *)alternativeHSCard completion:(CardServiceHSCardCompletion)completion{
@@ -76,38 +74,6 @@
     return cancellable;
 }
 
-- (NSDictionary *)allCardsDictionary {
-    if (self->_allCardsDictionary) {
-        return self->_allCardsDictionary;
-    }
-
-    NSURL *allCardsURL = [[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"all_cards"] URLByAppendingPathExtension:@"json"];
-    BOOL isDirectory = YES;
-    BOOL doesExist = [NSFileManager.defaultManager fileExistsAtPath:allCardsURL.path isDirectory:&isDirectory];
-
-    if (isDirectory || !doesExist) {
-        NSLog(@"%@ does not exist - this is an error.", allCardsURL);
-        return nil;
-    }
-
-    NSError * _Nullable error = nil;
-    NSData *data = [[NSData alloc] initWithContentsOfURL:allCardsURL options:NSDataReadingUncached error:&error];
-    if (error) {
-        NSLog(@"An error occured: %@", error);
-        return nil;
-    }
-
-    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingTopLevelDictionaryAssumed error:&error];
-    
-    if (error) {
-        NSLog(@"An error occured: %@", error);
-        return nil;
-    }
-
-    self->_allCardsDictionary = result;
-    return result;
-}
-
 - (void)configureHSAPIService {
     HSAPIService *hsAPIService = [HSAPIService new];
     self.hsAPIService = hsAPIService;
@@ -116,6 +82,11 @@
 - (void)configureLocalDeckService {
     LocalDeckService *localDeckService = LocalDeckService.sharedInstance;
     self.localDeckService = localDeckService;
+}
+
+- (void)configureAlternativeHSCardService {
+    AlternativeHSCardService *alternativeHSCardService = AlternativeHSCardService.sharedInstance;
+    self.alternativeHSCardService = alternativeHSCardService;
 }
 
 @end

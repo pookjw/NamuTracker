@@ -10,6 +10,7 @@
 #import "LocalizableService.h"
 #import "DecksViewController.h"
 #import "HSAPIPreferencesViewController.h"
+#import "UIViewController+SpinnerView.h"
 
 @interface SettingsViewController () <UICollectionViewDelegate>
 @property (strong) UICollectionView *collectionView;
@@ -156,14 +157,24 @@
     SettingsItemModel * _Nullable itemModel = notification.userInfo[SettingsViewModelSelectedItemModelKey];
     if (itemModel == nil) return;
     
+    __weak typeof(self) weakSelf = self;
     [NSOperationQueue.mainQueue addOperationWithBlock:^{
         switch (itemModel.type) {
             case SettingsItemModelTypeDecks:
-                [self presentDecksViewController];
+                [weakSelf presentDecksViewController];
                 break;
             case SettingsItemModelTypeHSAPIPreferences:
-                [self presentHSAPIPreferencesViewController];
+                [weakSelf presentHSAPIPreferencesViewController];
                 break;
+            case SettingsItemModelTypeReloadAlternativeHSCards: {
+                [weakSelf addSpinnerView];
+                [weakSelf.viewModel reloadAlternativeHSCardsWithCompletion:^(NSError * _Nullable error) {
+                    [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                        [weakSelf removeAllSpinnerview];
+                    }];
+                }];
+                break;
+            }
             default:
                 break;
         }
@@ -193,7 +204,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.viewModel handleSelectedIndexPath:indexPath];
+    [self.viewModel requestItemModelFromIndexPath:indexPath];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
