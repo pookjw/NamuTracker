@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */; };
 		4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
+		4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59B28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m */; };
+		4F0DA59F28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59E28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m */; };
+		4F0DA5A228FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5A128FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m */; };
+		4F0DA5A528FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5A428FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m */; };
+		4F0DA5A728FC44B400DEE9E2 /* HSAPILocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5A628FC44B400DEE9E2 /* HSAPILocale.m */; };
+		4F0DA5AA28FC45A600DEE9E2 /* HSAPIRegionHost.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DA5AC28FC45A600DEE9E2 /* HSAPIRegionHost.strings */; };
+		4F0DA5B028FC46BB00DEE9E2 /* HSAPILocale.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DA5B228FC46BB00DEE9E2 /* HSAPILocale.strings */; };
 		4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284C28DB0A0800702FDD /* AppDelegate.m */; };
 		4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30284F28DB0A0800702FDD /* SceneDelegate.m */; };
 		4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285228DB0A0800702FDD /* DecksViewController.m */; };
@@ -21,8 +28,6 @@
 		4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
 		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
-		4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11528F7079600726235 /* DecksItemModel.m */; };
-		4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11828F7079E00726235 /* DecksSectionModel.m */; };
 		4FFBE14528F7090000726235 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13D28F7090000726235 /* Localizable.strings */; };
 		4FFBE14628F7090000726235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13F28F7090000726235 /* InfoPlist.strings */; };
 		4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16528F70E3800726235 /* checkAvailability.m */; };
@@ -52,6 +57,19 @@
 		4F0DA59328FAF4E200DEE9E2 /* HSAPIRegionHost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIRegionHost.h; sourceTree = "<group>"; };
 		4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIRegionHost.m; sourceTree = "<group>"; };
 		4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HSAPIPreference.xcdatamodel; sourceTree = "<group>"; };
+		4F0DA59A28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferencesViewController.h; sourceTree = "<group>"; };
+		4F0DA59B28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferencesViewController.m; sourceTree = "<group>"; };
+		4F0DA59D28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferencesViewModel.h; sourceTree = "<group>"; };
+		4F0DA59E28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferencesViewModel.m; sourceTree = "<group>"; };
+		4F0DA5A028FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferencesSectionModel.h; sourceTree = "<group>"; };
+		4F0DA5A128FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferencesSectionModel.m; sourceTree = "<group>"; };
+		4F0DA5A328FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferencesItemModel.h; sourceTree = "<group>"; };
+		4F0DA5A428FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferencesItemModel.m; sourceTree = "<group>"; };
+		4F0DA5A628FC44B400DEE9E2 /* HSAPILocale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPILocale.m; sourceTree = "<group>"; };
+		4F0DA5AB28FC45A600DEE9E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HSAPIRegionHost.strings; sourceTree = "<group>"; };
+		4F0DA5AD28FC45A800DEE9E2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HSAPIRegionHost.strings; sourceTree = "<group>"; };
+		4F0DA5B128FC46BB00DEE9E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HSAPILocale.strings; sourceTree = "<group>"; };
+		4F0DA5B328FC46BE00DEE9E2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HSAPILocale.strings; sourceTree = "<group>"; };
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,10 +97,6 @@
 		4FD4E4A128F682A9006EBA86 /* UIApplication+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Private.h"; sourceTree = "<group>"; };
 		4FFBE11128F7076C00726235 /* DecksViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksViewModel.h; sourceTree = "<group>"; };
 		4FFBE11228F7076C00726235 /* DecksViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksViewModel.m; sourceTree = "<group>"; };
-		4FFBE11428F7079600726235 /* DecksItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksItemModel.h; sourceTree = "<group>"; };
-		4FFBE11528F7079600726235 /* DecksItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksItemModel.m; sourceTree = "<group>"; };
-		4FFBE11728F7079E00726235 /* DecksSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecksSectionModel.h; sourceTree = "<group>"; };
-		4FFBE11828F7079E00726235 /* DecksSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecksSectionModel.m; sourceTree = "<group>"; };
 		4FFBE13E28F7090000726235 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FFBE14028F7090000726235 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4FFBE14228F7090000726235 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -150,6 +164,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F0DA59928FB09E000DEE9E2 /* HSAPIPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DA59A28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.h */,
+				4F0DA59B28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m */,
+				4F0DA59D28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.h */,
+				4F0DA59E28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m */,
+				4F0DA5A028FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.h */,
+				4F0DA5A128FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m */,
+				4F0DA5A328FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.h */,
+				4F0DA5A428FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m */,
+			);
+			path = HSAPIPreferences;
+			sourceTree = "<group>";
+		};
 		4F30283F28DB0A0800702FDD = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +243,7 @@
 				4F0DA59328FAF4E200DEE9E2 /* HSAPIRegionHost.h */,
 				4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */,
 				4F0DA59128FAF44100DEE9E2 /* HSAPILocale.h */,
+				4F0DA5A628FC44B400DEE9E2 /* HSAPILocale.m */,
 			);
 			path = HSAPIPreference;
 			sourceTree = "<group>";
@@ -263,6 +293,7 @@
 				4FFBE1A628F8405F00726235 /* Main */,
 				4FFBE1A228F8403D00726235 /* Settings */,
 				4FFBE11028F7074000726235 /* Decks */,
+				4F0DA59928FB09E000DEE9E2 /* HSAPIPreferences */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -274,10 +305,6 @@
 				4F30285228DB0A0800702FDD /* DecksViewController.m */,
 				4FFBE11128F7076C00726235 /* DecksViewModel.h */,
 				4FFBE11228F7076C00726235 /* DecksViewModel.m */,
-				4FFBE11728F7079E00726235 /* DecksSectionModel.h */,
-				4FFBE11828F7079E00726235 /* DecksSectionModel.m */,
-				4FFBE11428F7079600726235 /* DecksItemModel.h */,
-				4FFBE11528F7079600726235 /* DecksItemModel.m */,
 			);
 			path = Decks;
 			sourceTree = "<group>";
@@ -286,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				4FFBE13D28F7090000726235 /* Localizable.strings */,
+				4F0DA5AC28FC45A600DEE9E2 /* HSAPIRegionHost.strings */,
+				4F0DA5B228FC46BB00DEE9E2 /* HSAPILocale.strings */,
 				4FFBE13F28F7090000726235 /* InfoPlist.strings */,
 			);
 			path = Resources;
@@ -568,7 +597,9 @@
 			files = (
 				4FFBE14628F7090000726235 /* InfoPlist.strings in Resources */,
 				4FFBE18928F7114100726235 /* Assets.xcassets in Resources */,
+				4F0DA5AA28FC45A600DEE9E2 /* HSAPIRegionHost.strings in Resources */,
 				4FFBE14528F7090000726235 /* Localizable.strings in Resources */,
+				4F0DA5B028FC46BB00DEE9E2 /* HSAPILocale.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,11 +611,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */,
-				4FFBE11628F7079600726235 /* DecksItemModel.m in Sources */,
 				4F30285328DB0A0800702FDD /* DecksViewController.m in Sources */,
 				4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */,
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
+				4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */,
 				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
 				4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */,
@@ -599,6 +630,8 @@
 				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
 				4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */,
 				4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */,
+				4F0DA5A728FC44B400DEE9E2 /* HSAPILocale.m in Sources */,
+				4F0DA59F28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m in Sources */,
 				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
 				4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */,
 				4FFBE1B228F84FE800726235 /* SettingsItemModel.m in Sources */,
@@ -606,9 +639,10 @@
 				4FFFFD5C28F80AE100401470 /* UIWindowScene+keyWindowAlt.m in Sources */,
 				4FFBE18728F70E3800726235 /* HSCard.m in Sources */,
 				4FFBE1A928F8406800726235 /* MainSplitViewController.m in Sources */,
+				4F0DA5A528FB0A7D00DEE9E2 /* HSAPIPreferencesItemModel.m in Sources */,
 				4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */,
 				4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */,
-				4FFBE11928F7079E00726235 /* DecksSectionModel.m in Sources */,
+				4F0DA5A228FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
 				4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */,
 				4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */,
@@ -620,6 +654,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4F0DA5AC28FC45A600DEE9E2 /* HSAPIRegionHost.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F0DA5AB28FC45A600DEE9E2 /* en */,
+				4F0DA5AD28FC45A800DEE9E2 /* ko */,
+			);
+			name = HSAPIRegionHost.strings;
+			sourceTree = "<group>";
+		};
+		4F0DA5B228FC46BB00DEE9E2 /* HSAPILocale.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F0DA5B128FC46BB00DEE9E2 /* en */,
+				4F0DA5B328FC46BE00DEE9E2 /* ko */,
+			);
+			name = HSAPILocale.strings;
+			sourceTree = "<group>";
+		};
 		4FFBE13D28F7090000726235 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

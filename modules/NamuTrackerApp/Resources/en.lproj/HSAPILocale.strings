@@ -1,0 +1,35 @@
+/* 
+  HSAPILocale.strings
+  NamuTrackerApp
+
+  Created by Jinwoo Kim on 10/16/22.
+  
+*/
+
+"HSAPILocaleEnUS" = "English";
+
+"HSAPILocaleFrFR" = "French";
+
+"HSAPILocaleDeDE" = "German";
+
+"HSAPILocaleItIT" = "Italian";
+
+"HSAPILocaleJaJP" = "Japanese";
+
+"HSAPILocaleKoKR" = "Korean";
+
+"HSAPILocalePlPL" = "Polish";
+
+"HSAPILocaleRuRU" = "Russian";
+
+"HSAPILocaleZhCN" = "Simplified Chinese";
+
+"HSAPILocaleEsES" = "Spanish";
+
+"HSAPILocaleEsMx" = "Mexican Spanish";
+
+"HSAPILocaleZhTW" = "Traditional Chinese";
+
+"HSAPILocalePtBR" = "Brazilian Portuguese";
+
+"HSAPILocaleThTH" = "Thai";

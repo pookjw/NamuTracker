@@ -23,3 +23,8 @@ static HSAPILocale const HSAPILocaleEsMx = @"es_MX"; // Mexican Spanish
 static HSAPILocale const HSAPILocaleZhTW = @"zh_TW"; // Traditional Chinese
 static HSAPILocale const HSAPILocalePtBR = @"pt_BR"; // Brazilian Portuguese
 static HSAPILocale const HSAPILocaleThTH = @"th_TH"; // Thai
+
+/// For getting localizables.
+NSString *NSStringFromHSAPILocale(HSAPILocale);
+
+NSArray<HSAPILocale> *allHSAPILocales(void);

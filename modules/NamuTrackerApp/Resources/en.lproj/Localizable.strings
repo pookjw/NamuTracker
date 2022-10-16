@@ -51,3 +51,9 @@
 "UNTITLED_DECK" = "Untitled Deck";
 
 "SERVER_AND_CARD_LANGUAGE" = "Server and Card Language";
+
+"SERVER" = "Server";
+
+"CARD_LANGUAGE" = "Card Language";
+
+"HSAPIREGIONHOST_SECTION_FOOTER" = "The China server is only available within China intranet.";

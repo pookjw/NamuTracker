@@ -25,13 +25,7 @@
         return NO;
     }
     
-    if ((self.type == SettingsSectionModelTypeNotices) && (other.type == SettingsSectionModelTypeNotices)) {
-        return YES;
-    } else if ((self.type == SettingsSectionModelTypeGeneral) && (other.type == SettingsSectionModelTypeGeneral)) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return (self.type == other.type);
 }
 
 - (NSUInteger)hash {

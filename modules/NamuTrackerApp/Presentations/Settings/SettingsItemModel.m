@@ -24,17 +24,7 @@
     
     if (![other isKindOfClass:[SettingsItemModel class]]) return NO;
     
-    if ((self.type == SettingsItemModelTypeUserlandNotice) && (other.type == SettingsItemModelTypeUserlandNotice)) {
-        return YES;
-    } else if ((self.type == SettingsItemModelTypeMockModeNotice) && (other.type == SettingsItemModelTypeMockModeNotice)) {
-        return YES;
-    } else if ((self.type == SettingsItemModelTypeDecks) && (other.type == SettingsItemModelTypeDecks)) {
-        return YES;
-    } else if ((self.type == SettingsItemModelTypeHSAPIPreferences) && (other.type == SettingsItemModelTypeHSAPIPreferences)) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return (self.type == other.type);
 }
 
 - (NSUInteger)hash {

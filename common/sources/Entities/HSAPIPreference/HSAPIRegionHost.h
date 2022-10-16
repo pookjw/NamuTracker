@@ -17,3 +17,8 @@ typedef NS_ENUM(NSUInteger, HSAPIRegionHost) {
 
 NSString *NSStringForHSAPIFromRegionHost(HSAPIRegionHost);
 NSString *NSStringForOAuthAPIFromRegionHost(HSAPIRegionHost);
+
+/// For getting localizables.
+NSString *NSStringFromHSAPIRegionHost(HSAPIRegionHost);
+
+NSArray<NSNumber *> *allHSAPIRegionHosts(void);

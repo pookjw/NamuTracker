@@ -40,3 +40,30 @@ NSString *NSStringForOAuthAPIFromRegionHost(HSAPIRegionHost regionHost) {
             return @"us.battle.net";
     }
 }
+
+NSString *NSStringFromHSAPIRegionHost(HSAPIRegionHost regionHost) {
+    switch (regionHost) {
+        case HSAPIRegionHostUS:
+            return @"HSAPIRegionHostUS";
+        case HSAPIRegionHostEU:
+            return @"HSAPIRegionHostEU";
+        case HSAPIRegionHostKR:
+            return @"HSAPIRegionHostKR";
+        case HSAPIRegionHostTW:
+            return @"HSAPIRegionHostTW";
+        case HSAPIRegionHostCN:
+            return @"HSAPIRegionHostCN";
+        default:
+            return @"unknown";
+    }
+}
+
+NSArray<NSNumber *> *allHSAPIRegionHosts(void) {
+    return @[
+        @(HSAPIRegionHostUS),
+        @(HSAPIRegionHostEU),
+        @(HSAPIRegionHostKR),
+        @(HSAPIRegionHostTW),
+        @(HSAPIRegionHostCN)
+    ];
+}

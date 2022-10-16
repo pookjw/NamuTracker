@@ -1,0 +1,17 @@
+/* 
+  HSAPIRegionHost.strings
+  NamuTrackerApp
+
+  Created by Jinwoo Kim on 10/16/22.
+  
+*/
+
+"HSAPIRegionHostUS" = "America";
+
+"HSAPIRegionHostEU" = "Europe";
+
+"HSAPIRegionHostKR" = "Korea";
+
+"HSAPIRegionHostTW" = "Taiwan";
+
+"HSAPIRegionHostCN" = "China";

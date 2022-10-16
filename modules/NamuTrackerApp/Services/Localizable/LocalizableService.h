@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LocalizableKey.h"
+#import "HSAPIRegionHost.h"
+#import "HSAPILocale.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 + (NSString *)localizableForKey:(LocalizableKey)key;
++ (NSString *)localizableForHSAPIRegionHost:(HSAPIRegionHost)hsAPIRegionHost;
++ (NSString *)localizableForHSAPILocale:(HSAPILocale)hsAPILocale;
 @end
 
 NS_ASSUME_NONNULL_END

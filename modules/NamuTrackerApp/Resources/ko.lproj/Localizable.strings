@@ -51,3 +51,9 @@
 "UNTITLED_DECK" = "이름이 없는 덱";
 
 "SERVER_AND_CARD_LANGUAGE" = "서버와 카드 언어";
+
+"SERVER" = "서버";
+
+"CARD_LANGUAGE" = "카드 언어";
+
+"HSAPIREGIONHOST_SECTION_FOOTER" = "중국 서버는 중국 인트라넷에서만 작동합니다.";
