@@ -9,8 +9,41 @@
 #import "HSAPIPreferenceService.h"
 #import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
 #import "checkAvailability.h"
+#import "NSDiffableDataSourceSnapshot+Sort.h"
+#import "compareNullableValues.h"
 
 typedef NSDiffableDataSourceSnapshot<HSAPIPreferencesSectionModel *, HSAPIPreferencesItemModel *> HSAPIPreferencesDataSourceSnapshot;
+
+@interface NSDiffableDataSourceSnapshot (SortHSAPIPerferencesModels)
+- (void)sortHSAPIPreferencesModels;
+@end
+
+@implementation NSDiffableDataSourceSnapshot (SortHSAPIPerferencesModels)
+
+- (void)sortHSAPIPreferencesModels {
+    [self sortSectionsUsingComparator:^NSComparisonResult(HSAPIPreferencesSectionModel * _Nonnull obj1, HSAPIPreferencesSectionModel * _Nonnull obj2) {
+        if (obj1.type < obj2.type) {
+            return NSOrderedAscending;
+        } else if (obj1.type > obj2.type) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+    
+    [self sortItemsWithSectionIdentifiers:self.sectionIdentifiers
+                          usingComparator:^NSComparisonResult(HSAPIPreferencesItemModel * _Nonnull obj1, HSAPIPreferencesItemModel * _Nonnull obj2) {
+        if (obj1.type < obj2.type) {
+            return NSOrderedAscending;
+        } else if (obj1.type > obj2.type) {
+            return NSOrderedDescending;
+        } else {
+            return comparisonResultNullableValues(obj1.text, obj2.text, @selector(compare:));
+        }
+    }];
+}
+
+@end
 
 @interface HSAPIPreferencesViewModel ()
 @property (strong) HSAPIPreferencesDataSource *dataSource;
@@ -88,17 +121,19 @@ typedef NSDiffableDataSourceSnapshot<HSAPIPreferencesSectionModel *, HSAPIPrefer
             
             [snapshot appendSectionsWithIdentifiers:@[hsAPIRegionHostsSectionModel, hsAPILocalesSectionModel]];
             
-            [allHSAPIRegionHosts() enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [allHSAPIRegionHosts() enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
                 BOOL isSelected = (obj.unsignedIntegerValue == regionHost);
                 HSAPIPreferencesItemModel *itemModel = [[HSAPIPreferencesItemModel alloc] initWithHSAPIRegionHost:obj.unsignedIntegerValue isSelected:isSelected];
                 [snapshot appendItemsWithIdentifiers:@[itemModel] intoSectionWithIdentifier:hsAPIRegionHostsSectionModel];
             }];
             
-            [allHSAPILocales() enumerateObjectsUsingBlock:^(HSAPILocale  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [allHSAPILocales() enumerateObjectsUsingBlock:^(HSAPILocale  _Nonnull obj, BOOL * _Nonnull stop) {
                 BOOL isSelected = [obj isEqualToString:locale];
                 HSAPIPreferencesItemModel *itemModel = [[HSAPIPreferencesItemModel alloc] initWithHSAPILocale:obj isSelected:isSelected];
                 [snapshot appendItemsWithIdentifiers:@[itemModel] intoSectionWithIdentifier:hsAPILocalesSectionModel];
             }];
+            
+            [snapshot sortHSAPIPreferencesModels];
             
             [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:NO completion:^{
                 

@@ -21,4 +21,4 @@ NSString *NSStringForOAuthAPIFromRegionHost(HSAPIRegionHost);
 /// For getting localizables.
 NSString *NSStringFromHSAPIRegionHost(HSAPIRegionHost);
 
-NSArray<NSNumber *> *allHSAPIRegionHosts(void);
+NSSet<NSNumber *> *allHSAPIRegionHosts(void);

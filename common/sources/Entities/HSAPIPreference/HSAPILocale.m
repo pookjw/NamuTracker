@@ -41,8 +41,8 @@ NSString *NSStringFromHSAPILocale(HSAPILocale apiLocale) {
     }
 }
 
-NSArray<HSAPILocale> *allHSAPILocales(void) {
-    return @[
+NSSet<HSAPILocale> *allHSAPILocales(void) {
+    return [NSSet setWithArray:@[
         HSAPILocaleEnUS,
         HSAPILocaleFrFR,
         HSAPILocaleDeDE,
@@ -57,5 +57,5 @@ NSArray<HSAPILocale> *allHSAPILocales(void) {
         HSAPILocaleZhTW,
         HSAPILocalePtBR,
         HSAPILocaleThTH,
-    ];
+    ]];
 }

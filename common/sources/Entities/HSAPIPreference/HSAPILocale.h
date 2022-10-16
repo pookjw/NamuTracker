@@ -27,4 +27,4 @@ static HSAPILocale const HSAPILocaleThTH = @"th_TH"; // Thai
 /// For getting localizables.
 NSString *NSStringFromHSAPILocale(HSAPILocale);
 
-NSArray<HSAPILocale> *allHSAPILocales(void);
+NSSet<HSAPILocale> *allHSAPILocales(void);

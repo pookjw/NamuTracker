@@ -58,12 +58,12 @@ NSString *NSStringFromHSAPIRegionHost(HSAPIRegionHost regionHost) {
     }
 }
 
-NSArray<NSNumber *> *allHSAPIRegionHosts(void) {
-    return @[
+NSSet<NSNumber *> *allHSAPIRegionHosts(void) {
+    return [NSSet setWithArray:@[
         @(HSAPIRegionHostUS),
         @(HSAPIRegionHostEU),
         @(HSAPIRegionHostKR),
         @(HSAPIRegionHostTW),
         @(HSAPIRegionHostCN)
-    ];
+    ]];
 }

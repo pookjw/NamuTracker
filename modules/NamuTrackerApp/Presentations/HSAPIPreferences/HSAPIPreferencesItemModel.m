@@ -36,7 +36,7 @@
     
     if (![other isKindOfClass:[HSAPIPreferencesItemModel class]]) return NO;
     
-    if ((self.type == HSAPIPreferencesItemModelTypeHSAPIRegionHost) && (other.type == HSAPIPreferencesItemModelTypeHSAPILocale)) {
+    if ((self.type == HSAPIPreferencesItemModelTypeHSAPIRegionHost) && (other.type == HSAPIPreferencesItemModelTypeHSAPIRegionHost)) {
         return compareNullableValues(self.hsAPIRegionHost, other.hsAPIRegionHost, @selector(isEqualToNumber:));
     } else if ((self.type == HSAPIPreferencesItemModelTypeHSAPILocale) && (other.type == HSAPIPreferencesItemModelTypeHSAPILocale)) {
         return compareNullableValues(self.hsAPILocale, other.hsAPILocale, @selector(isEqualToString:));
