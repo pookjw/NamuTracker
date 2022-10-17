@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */; };
-		4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
 		4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59B28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m */; };
 		4F0DA59F28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59E28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m */; };
 		4F0DA5A228FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA5A128FB0A7500DEE9E2 /* HSAPIPreferencesSectionModel.m */; };
@@ -27,10 +26,10 @@
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
 		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
 		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
+		4F8FEDFC28FD54CF00CFC486 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
 		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
 		4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */; };
 		4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */; };
-		4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */; };
 		4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */; };
 		4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE11228F7076C00726235 /* DecksViewModel.m */; };
 		4FFBE14528F7090000726235 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13D28F7090000726235 /* Localizable.strings */; };
@@ -676,7 +675,6 @@
 				4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */,
 				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
-				4F0DA59828FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld in Sources */,
 				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
@@ -705,9 +703,9 @@
 				4F0DA5BA28FC5A8200DEE9E2 /* AlternativeHSCard.xcdatamodeld in Sources */,
 				4FFFFD5928F8099900401470 /* PrerequisiteService.m in Sources */,
 				4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */,
-				4F9D3E7A28FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld in Sources */,
 				4F30285028DB0A0800702FDD /* SceneDelegate.m in Sources */,
 				4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */,
+				4F8FEDFC28FD54CF00CFC486 /* HSAPIPreference.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

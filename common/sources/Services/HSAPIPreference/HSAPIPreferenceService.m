@@ -245,7 +245,6 @@
                 [self.contextQueue addOperationWithBlock:^{
                     HSAPIPreference *hsAPIPreference = [[HSAPIPreference alloc] initWithContext:self.context];
                     NSError * _Nullable error = nil;
-                    [self.context obtainPermanentIDsForObjects:@[hsAPIPreference] error:&error];
                     if (error) {
                         completion(nil, error);
                         return;

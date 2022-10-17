@@ -116,11 +116,29 @@
     }];
 }
 
+- (void)fetchLocalDecksCountWithCompletion:(LocalDeckServiceFetchLocalDecksCountCompletion)completion {
+    [self.contextQueue addOperationWithBlock:^{
+        NSFetchRequest *fetchRequest = self.fetchRequest;
+        fetchRequest.includesSubentities = NO;
+        
+        [self.context performBlockAndWait:^{
+            NSError * _Nullable error = nil;
+            NSUInteger count = [self.context countForFetchRequest:fetchRequest error:&error];
+            if (error) {
+                NSLog(@"%@", error);
+                completion(NSNotFound, error);
+                return;
+            }
+            
+            completion(count, nil);
+        }];
+    }];
+}
+
 - (void)createLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion {
     [self.contextQueue addOperationWithBlock:^{
         LocalDeck *localDeck = [[LocalDeck alloc] initWithContext:self.context];
         NSError * _Nullable error = nil;
-        [self.context obtainPermanentIDsForObjects:@[localDeck] error:&error];
         if (error) {
             NSLog(@"%@", error);
             completion(nil, error);

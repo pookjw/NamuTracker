@@ -85,19 +85,22 @@
                 return;
             }
             
-            [weakSelf.localDeckService createLocalDeckWithCompletion:^(LocalDeck * _Nullable localDeck, NSError * _Nullable error) {
-                [localDeck synchronizeWithHSDeck:hsDeck];
-                
-                NSString *_name;
-                if ((name) && (name.length > 0)) {
-                    _name = name;
-                } else {
-                    _name = [LocalizableService localizableForKey:LocalizableKeyUntitledDeck];
-                }
-                localDeck.name = _name;
-                
-                localDeck.timestamp = [NSDate new];
-                [weakSelf.localDeckService saveChanges];
+            [weakSelf.localDeckService fetchLocalDecksCountWithCompletion:^(NSUInteger count, NSError * _Nullable error) {
+                [weakSelf.localDeckService createLocalDeckWithCompletion:^(LocalDeck * _Nullable localDeck, NSError * _Nullable error) {
+                    [localDeck synchronizeWithHSDeck:hsDeck];
+                    
+                    NSString *_name;
+                    if ((name) && (name.length > 0)) {
+                        _name = name;
+                    } else {
+                        _name = [LocalizableService localizableForKey:LocalizableKeyUntitledDeck];
+                    }
+                    localDeck.name = _name;
+                    
+                    localDeck.timestamp = [NSDate new];
+                    localDeck.selected = @(count == 0);
+                    [weakSelf.localDeckService saveChanges];
+                }];
             }];
         }];
         
