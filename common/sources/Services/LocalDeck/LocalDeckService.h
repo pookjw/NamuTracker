@@ -16,7 +16,7 @@ typedef void (^LocalDeckServiceFetchLocalDecksCompletion)(NSArray<LocalDeck *> *
 typedef void (^LocalDeckServiceFetchObjectIDsCompletion)(NSArray<NSManagedObjectID *> * _Nullable objectIDs, NSError * _Nullable error);
 typedef void (^LocalDeckServiceFetchSelectedLocalDeckCompletion)(LocalDeck * _Nullable localDeck, NSError * _Nullable error);
 typedef void (^LocalDeckServiceFetchLocalDecksCountCompletion)(NSUInteger count, NSError * _Nullable error);
-typedef void (^LocalDeckServiceNewLocalDeckCompletion)(LocalDeck * _Nullable localDeck, NSError * _Nullable error);
+typedef void (^LocalDeckServiceCreateLocalDeckCompletion)(LocalDeck * _Nullable localDeck, NSError * _Nullable error);
 typedef void (^LocalDeckServiceRefreshLocalDeckCompletion)(void);
 
 @interface LocalDeckService : NSObject
@@ -29,7 +29,7 @@ typedef void (^LocalDeckServiceRefreshLocalDeckCompletion)(void);
 - (void)fetchObjectIdsWithCompletion:(LocalDeckServiceFetchObjectIDsCompletion)completion;
 - (void)fetchSelectedLocalDeckWithCompletion:(LocalDeckServiceFetchSelectedLocalDeckCompletion)completion;
 - (void)fetchLocalDecksCountWithCompletion:(LocalDeckServiceFetchLocalDecksCountCompletion)completion;
-- (void)createLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion;
+- (void)createLocalDeckWithCompletion:(LocalDeckServiceCreateLocalDeckCompletion)completion;
 - (void)deleteLocalDecks:(NSSet<LocalDeck *> *)localDecks;
 - (void)deleteLocalDecksWithObjectIds:(NSSet<NSManagedObjectID *> *)objectIds;
 - (void)saveChanges;

@@ -135,7 +135,7 @@
     }];
 }
 
-- (void)createLocalDeckWithCompletion:(LocalDeckServiceNewLocalDeckCompletion)completion {
+- (void)createLocalDeckWithCompletion:(LocalDeckServiceCreateLocalDeckCompletion)completion {
     [self.contextQueue addOperationWithBlock:^{
         LocalDeck *localDeck = [[LocalDeck alloc] initWithContext:self.context];
         NSError * _Nullable error = nil;
@@ -214,6 +214,7 @@
 }
 
 - (void)configureContainer {
+    NSString *entityName = @"LocalDeck";
     BOOL _isMockMode = NO;
 #if defined(SYSLAND_APP) || defined(USERLAND_APP)
 #if SYSLAND_APP || USERLAND_APP
@@ -224,13 +225,13 @@
     NSURL *momURL;
     
     if (_isMockMode) {
-        momURL = [NSBundle.mainBundle URLForResource:@"LocalDeck" withExtension:@"mom" subdirectory:@"LocalDeck.momd"];
+        momURL = [NSBundle.mainBundle URLForResource:entityName withExtension:@"mom" subdirectory:[NSString stringWithFormat:@"%@.momd", entityName]];
     } else {
-        momURL = [[[[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"LocalDeck"] URLByAppendingPathExtension:@"momd"] URLByAppendingPathComponent:@"LocalDeck"] URLByAppendingPathExtension:@"mom"];
+        momURL = [[[[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"momd"] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"mom"];
     }
     
     NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
-    NSPersistentContainer *container = [NSPersistentContainer persistentContainerWithName:@"LocalDeck" managedObjectModel:managedObjectModel];
+    NSPersistentContainer *container = [NSPersistentContainer persistentContainerWithName:entityName managedObjectModel:managedObjectModel];
     
     if (!_isMockMode) {
         if (![NSFileManager.defaultManager fileExistsAtPath:NamuTrackerSharedDataLibraryURLString]) {
@@ -242,7 +243,7 @@
             }
         }
         
-        NSURL *dbURL = [[[NSURL fileURLWithPath:NamuTrackerSharedDataLibraryURLString] URLByAppendingPathComponent:@"LocalDeck"] URLByAppendingPathExtension:@"sqlite"];
+        NSURL *dbURL = [[[NSURL fileURLWithPath:NamuTrackerSharedDataLibraryURLString] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"sqlite"];
         NSPersistentStoreDescription *description = [[NSPersistentStoreDescription alloc] initWithURL:dbURL];
         description.readOnly = NO;
         container.persistentStoreDescriptions = @[description];

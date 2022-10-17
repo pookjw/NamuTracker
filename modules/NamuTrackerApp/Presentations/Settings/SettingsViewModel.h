@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef UICollectionViewDiffableDataSource<SettingsSectionModel *, SettingsItemModel *> SettingsDataSource;
 
 typedef void (^SettingsViewModelReloadAlternativeHSCardsCompletion)(NSError * _Nullable error);
+typedef void (^SettingsViewModelDeleteAllDataCachesCompletion)(NSError * _Nullable error);
 
 static NSNotificationName const NSNotificationNameSettingsViewModelSelectedItemModel = @"NSNotificationNameSettingsViewModelSelectedItemModel";
 static NSString * const SettingsViewModelSelectedItemModelKey = @"SettingsViewModelSelectedItemModelKey";
@@ -26,6 +27,7 @@ static NSString * const SettingsViewModelSelectedItemModelKey = @"SettingsViewMo
 - (void)requestItemModelFromIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)canHandleIndexPath:(NSIndexPath *)indexPath;
 - (void)reloadAlternativeHSCardsWithCompletion:(SettingsViewModelReloadAlternativeHSCardsCompletion)completion;
+- (void)deleteAllDataCachesWithCompletion:(SettingsViewModelDeleteAllDataCachesCompletion)completion;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -109,7 +109,7 @@
         
         UIBackgroundConfiguration *backgroundConfiguration = [UIBackgroundConfiguration listGroupedCellConfiguration];
         backgroundConfiguration.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3f];
-
+        
         cell.backgroundConfiguration = backgroundConfiguration;
     }];
     
@@ -138,8 +138,8 @@
     __weak typeof(self) weakSelf = self;
     
     UICollectionViewSupplementaryRegistration *footerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[UICollectionViewListCell class]
-                                                                                                                                       elementKind:UICollectionElementKindSectionFooter
-                                                                                                                              configurationHandler:^(UICollectionViewListCell * _Nonnull supplementaryView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
+                                                                                                                                      elementKind:UICollectionElementKindSectionFooter
+                                                                                                                             configurationHandler:^(UICollectionViewListCell * _Nonnull supplementaryView, NSString * _Nonnull elementKind, NSIndexPath * _Nonnull indexPath) {
         SettingsSectionModel * _Nullable sectionModel = [weakSelf.viewModel sectionModelForIndexPath:indexPath];
         NSString * _Nullable footerText = sectionModel.footerText;
         
@@ -158,27 +158,38 @@
     if (itemModel == nil) return;
     
     __weak typeof(self) weakSelf = self;
-    [NSOperationQueue.mainQueue addOperationWithBlock:^{
-        switch (itemModel.type) {
-            case SettingsItemModelTypeDecks:
+    switch (itemModel.type) {
+        case SettingsItemModelTypeDecks: {
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
                 [weakSelf presentDecksViewController];
-                break;
-            case SettingsItemModelTypeHSAPIPreferences:
+            }];
+            break;
+        }
+        case SettingsItemModelTypeHSAPIPreferences: {
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
                 [weakSelf presentHSAPIPreferencesViewController];
-                break;
-            case SettingsItemModelTypeReloadAlternativeHSCards: {
+            }];
+            break;
+        }
+        case SettingsItemModelTypeReloadAlternativeHSCards: {
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
                 [weakSelf addSpinnerView];
                 [weakSelf.viewModel reloadAlternativeHSCardsWithCompletion:^(NSError * _Nullable error) {
                     [NSOperationQueue.mainQueue addOperationWithBlock:^{
                         [weakSelf removeAllSpinnerview];
                     }];
                 }];
-                break;
-            }
-            default:
-                break;
+            }];
+            break;
         }
-    }];
+        case SettingsItemModelTypeDeleteDataCaches: {
+            [self.viewModel deleteAllDataCachesWithCompletion:^(NSError * _Nullable error) {
+                
+            }];
+        }
+        default:
+            break;
+    }
 }
 
 - (void)presentDecksViewController {

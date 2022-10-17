@@ -149,6 +149,7 @@
 }
 
 - (void)configureContainer {
+    NSString *entityName = @"HSAPIPreference";
     BOOL _isMockMode = NO;
 #if defined(SYSLAND_APP) || defined(USERLAND_APP)
 #if SYSLAND_APP || USERLAND_APP
@@ -159,13 +160,13 @@
     NSURL *momURL;
     
     if (_isMockMode) {
-        momURL = [NSBundle.mainBundle URLForResource:@"HSAPIPreference" withExtension:@"mom" subdirectory:@"HSAPIPreference.momd"];
+        momURL = [NSBundle.mainBundle URLForResource:entityName withExtension:@"mom" subdirectory:[NSString stringWithFormat:@"%@.momd", entityName]];
     } else {
-        momURL = [[[[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:@"HSAPIPreference"] URLByAppendingPathExtension:@"momd"] URLByAppendingPathComponent:@"HSAPIPreference"] URLByAppendingPathExtension:@"mom"];
+        momURL = [[[[[NSURL fileURLWithPath:NamuTrackerApplicationSupportURLString] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"momd"] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"mom"];
     }
     
     NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
-    NSPersistentContainer *container = [NSPersistentContainer persistentContainerWithName:@"HSAPIPreference" managedObjectModel:managedObjectModel];
+    NSPersistentContainer *container = [NSPersistentContainer persistentContainerWithName:entityName managedObjectModel:managedObjectModel];
     
     if (!_isMockMode) {
         if (![NSFileManager.defaultManager fileExistsAtPath:NamuTrackerSharedDataLibraryURLString]) {
@@ -177,7 +178,7 @@
             }
         }
         
-        NSURL *dbURL = [[[NSURL fileURLWithPath:NamuTrackerSharedDataLibraryURLString] URLByAppendingPathComponent:@"HSAPIPreference"] URLByAppendingPathExtension:@"sqlite"];
+        NSURL *dbURL = [[[NSURL fileURLWithPath:NamuTrackerSharedDataLibraryURLString] URLByAppendingPathComponent:entityName] URLByAppendingPathExtension:@"sqlite"];
         NSPersistentStoreDescription *description = [[NSPersistentStoreDescription alloc] initWithURL:dbURL];
         description.readOnly = NO;
         container.persistentStoreDescriptions = @[description];

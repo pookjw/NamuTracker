@@ -61,3 +61,5 @@
 "RELOAD_ALTERNATIVEHSCARDS" = "카드 DB 새로고침";
 
 "RELOAD_ALTERNATIVEHSCARDS_DESCRIPTION" = "작업이 완료되기까지 오래 걸릴 수 있습니다.";
+
+"DELETE_ALL_DATACACHES" = "캐시 삭제";

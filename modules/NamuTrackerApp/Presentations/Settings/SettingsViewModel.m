@@ -11,6 +11,7 @@
 #import "isMockMode.h"
 #import "checkAvailability.h"
 #import "AlternativeHSCardService.h"
+#import "DataCacheService.h"
 #import "CancellableBag.h"
 
 typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *> SettingsDataSourceSnapshot;
@@ -50,6 +51,7 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
 @property (strong) SettingsDataSource *dataSource;
 @property (strong) NSOperationQueue *dataSourceQueue;
 @property (strong) AlternativeHSCardService *alternativeHSCardService;
+@property (strong) DataCacheService *dataCacheService;
 @property (strong) CancellableBag *cancellableBag;
 @end
 
@@ -61,6 +63,7 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         
         [self configureDataSourceQueue];
         [self configureAlternativeHSCardService];
+        [self configureDataCacheService];
         [self configureCancellableBag];
         [self loadItems];
     }
@@ -100,6 +103,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
             return YES;
         case SettingsItemModelTypeReloadAlternativeHSCards:
             return YES;
+        case SettingsItemModelTypeDeleteDataCaches:
+            return YES;
         default:
             return NO;;
     }
@@ -115,6 +120,10 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
     [self.cancellableBag addCancellable:cancellable];
 }
 
+- (void)deleteAllDataCachesWithCompletion:(SettingsViewModelDeleteAllDataCachesCompletion)completion {
+    [self.dataCacheService deleteAllDataCachesWithCompletion:completion];
+}
+
 - (void)configureDataSourceQueue {
     NSOperationQueue *dataSourceQueue = [NSOperationQueue new];
     dataSourceQueue.qualityOfService = NSQualityOfServiceUserInitiated;
@@ -125,6 +134,11 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
 - (void)configureAlternativeHSCardService {
     AlternativeHSCardService *alternativeHSCardService = AlternativeHSCardService.sharedInstance;
     self.alternativeHSCardService = alternativeHSCardService;
+}
+
+- (void)configureDataCacheService {
+    DataCacheService *dataCacheService = DataCacheService.sharedInstance;
+    self.dataCacheService = dataCacheService;
 }
 
 - (void)configureCancellableBag {
@@ -159,7 +173,8 @@ typedef NSDiffableDataSourceSnapshot<SettingsSectionModel *, SettingsItemModel *
         [snapshot appendItemsWithIdentifiers:@[
             [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDecks],
             [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeHSAPIPreferences],
-            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeReloadAlternativeHSCards]
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeReloadAlternativeHSCards],
+            [[SettingsItemModel alloc] initWithType:SettingsItemModelTypeDeleteDataCaches]
         ]
                    intoSectionWithIdentifier:generalSectionModel];
         

@@ -43,6 +43,8 @@
             return [LocalizableService localizableForKey:LocalizableKeyServerAndCardLanguage];
         case SettingsItemModelTypeReloadAlternativeHSCards:
             return [LocalizableService localizableForKey:LocalizableKeyReloadAlternativehscards];
+        case SettingsItemModelTypeDeleteDataCaches:
+            return [LocalizableService localizableForKey:LocalizableKeyDeleteAllDatacaches];
         default:
             return nil;
     }
@@ -69,6 +71,8 @@
             return [UIImage systemImageNamed:@"globe"];
         case SettingsItemModelTypeReloadAlternativeHSCards:
             return [UIImage systemImageNamed:@"square.and.arrow.down"];
+        case SettingsItemModelTypeDeleteDataCaches:
+            return [UIImage systemImageNamed:@"trash"];
         default:
             return nil;
     }

@@ -27,6 +27,9 @@
 		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
 		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
 		4F8FEDFC28FD54CF00CFC486 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
+		4F8FEDFF28FD569500CFC486 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEDFE28FD569500CFC486 /* DataCache.m */; };
+		4F8FEE0228FD569E00CFC486 /* DataCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */; };
+		4F8FEE0728FD57BA00CFC486 /* DataCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */; };
 		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
 		4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */; };
 		4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */; };
@@ -97,6 +100,11 @@
 		4F4416DA28F94FD5009240BC /* LocalDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeck.h; sourceTree = "<group>"; };
 		4F4416DB28F94FD5009240BC /* LocalDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeck.m; sourceTree = "<group>"; };
 		4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDeck.xcdatamodel; sourceTree = "<group>"; };
+		4F8FEDFD28FD569500CFC486 /* DataCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
+		4F8FEDFE28FD569500CFC486 /* DataCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
+		4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCache.xcdatamodel; sourceTree = "<group>"; };
+		4F8FEE0528FD57BA00CFC486 /* DataCacheService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCacheService.h; sourceTree = "<group>"; };
+		4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCacheService.m; sourceTree = "<group>"; };
 		4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeckService.h; sourceTree = "<group>"; };
 		4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeckService.m; sourceTree = "<group>"; };
 		4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferenceService.h; sourceTree = "<group>"; };
@@ -272,6 +280,25 @@
 				4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */,
 			);
 			path = LocalDeck;
+			sourceTree = "<group>";
+		};
+		4F8FEE0328FD56F400CFC486 /* DataCache */ = {
+			isa = PBXGroup;
+			children = (
+				4F8FEDFD28FD569500CFC486 /* DataCache.h */,
+				4F8FEDFE28FD569500CFC486 /* DataCache.m */,
+				4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */,
+			);
+			path = DataCache;
+			sourceTree = "<group>";
+		};
+		4F8FEE0428FD56FF00CFC486 /* DataCache */ = {
+			isa = PBXGroup;
+			children = (
+				4F8FEE0528FD57BA00CFC486 /* DataCacheService.h */,
+				4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */,
+			);
+			path = DataCache;
 			sourceTree = "<group>";
 		};
 		4F9D3E6328FA48FD004E3FB1 /* LocalDeck */ = {
@@ -490,6 +517,7 @@
 		4FFBE16D28F70E3800726235 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4F8FEE0428FD56FF00CFC486 /* DataCache */,
 				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
 				4F9D3E7128FAEF09004E3FB1 /* HSAPIPreference */,
 				4FFBE16E28F70E3800726235 /* HSAPI */,
@@ -510,6 +538,7 @@
 		4FFBE17128F70E3800726235 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				4F8FEE0328FD56F400CFC486 /* DataCache */,
 				4F9D3E6728FAED38004E3FB1 /* HSAPIPreference */,
 				4F4416D928F94FA4009240BC /* LocalDeck */,
 				4FFBE17528F70E3800726235 /* CancellableObject */,
@@ -671,10 +700,13 @@
 				4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */,
 				4F30284D28DB0A0800702FDD /* AppDelegate.m in Sources */,
 				4F0DA5C628FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m in Sources */,
+				4F8FEE0728FD57BA00CFC486 /* DataCacheService.m in Sources */,
 				4F0DA5BE28FC5BE000DEE9E2 /* AlternativeHSCardService.m in Sources */,
+				4F8FEE0228FD569E00CFC486 /* DataCache.xcdatamodeld in Sources */,
 				4F0DA59C28FB09FA00DEE9E2 /* HSAPIPreferencesViewController.m in Sources */,
 				4FFBE1AC28F84FC500726235 /* SettingsViewModel.m in Sources */,
 				4FFBE18428F70E3800726235 /* HSDeck.m in Sources */,
+				4F8FEDFF28FD569500CFC486 /* DataCache.m in Sources */,
 				4FFFFD5528F808B900401470 /* isMockMode.m in Sources */,
 				4FFBE18528F70E3800726235 /* CancellableBag.m in Sources */,
 				4FFBE1A128F712EC00726235 /* nullSafetyHandler.m in Sources */,
@@ -977,6 +1009,16 @@
 			);
 			currentVersion = 4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */;
 			path = LocalDeck.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */,
+			);
+			currentVersion = 4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */;
+			path = DataCache.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

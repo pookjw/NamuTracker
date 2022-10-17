@@ -10,6 +10,7 @@ static LocalizableKey const LocalizableKeyReloadAlternativehscards = @"RELOAD_AL
 static LocalizableKey const LocalizableKeyUntitledDeck = @"UNTITLED_DECK";
 static LocalizableKey const LocalizableKeySettings = @"SETTINGS";
 static LocalizableKey const LocalizableKeyGeneral = @"GENERAL";
+static LocalizableKey const LocalizableKeyDeleteAllDatacaches = @"DELETE_ALL_DATACACHES";
 static LocalizableKey const LocalizableKeyDecks = @"DECKS";
 static LocalizableKey const LocalizableKeyLoadFromDeckCode = @"LOAD_FROM_DECK_CODE";
 static LocalizableKey const LocalizableKeyPleaseEnterDeckCode = @"PLEASE_ENTER_DECK_CODE";
