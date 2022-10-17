@@ -11,6 +11,7 @@
 #import "identifiers.h"
 #import "CancellableBag.h"
 #import "LocalizableService.h"
+#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
 
 @interface DecksViewModel () <NSFetchedResultsControllerDelegate>
 @property (strong) DecksDataSource *dataSource;
@@ -166,7 +167,7 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeContentWithSnapshot:(NSDiffableDataSourceSnapshot<NSString *,NSManagedObjectID *> *)snapshot {
     [self.dataSourceQueue addOperationWithBlock:^{
-        [self.dataSource applySnapshot:snapshot animatingDifferences:YES completion:^{
+        [self.dataSource applySnapshotAndWait:snapshot animatingDifferences:YES completion:^{
             
         }];
     }];

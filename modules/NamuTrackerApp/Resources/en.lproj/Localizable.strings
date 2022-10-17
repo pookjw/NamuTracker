@@ -38,7 +38,7 @@
 
 "ENABLED_MOCK_MODE_DESCRIPTION" = "Only for developers. It doesn't occur read or write transactions outside of App Sandbox, and doesn't communicate with the Helper.";
 
-"DECKS_FOOTER_TEXT" = "Add decks and select a deck. Then you can use deck tracking feature when you playing the game.";
+"DECKS_FOOTER_TEXT" = "Add decks and select a deck. Then you can use deck tracking feature while you playing the game.";
 
 "LOAD_FROM_DECK_CODE" = "Add a deck From Deck Code";
 

@@ -75,6 +75,8 @@ static int const _UIViewCntrollerSpinnerAssociatedKey = 0;
     UIView * _Nullable containerView = self.spinnerView_containerView;
     if (containerView == nil) return;
     
+    self.spinnerView_containerView = nil;
+    
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         containerView.alpha = 0.0f;
     } completion:^(BOOL finished) {
