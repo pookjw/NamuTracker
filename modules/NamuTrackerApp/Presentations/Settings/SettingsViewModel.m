@@ -6,7 +6,7 @@
 //
 
 #import "SettingsViewModel.h"
-#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
+#import "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "isMockMode.h"
 #import "checkAvailability.h"

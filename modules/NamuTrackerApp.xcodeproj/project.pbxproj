@@ -30,7 +30,7 @@
 		4F8FEDFF28FD569500CFC486 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEDFE28FD569500CFC486 /* DataCache.m */; };
 		4F8FEE0228FD569E00CFC486 /* DataCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */; };
 		4F8FEE0728FD57BA00CFC486 /* DataCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */; };
-		4F8FEE0A28FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */; };
+		4F8FEE0A28FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0928FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m */; };
 		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
 		4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */; };
 		4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */; };
@@ -40,7 +40,7 @@
 		4FFBE14628F7090000726235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FFBE13F28F7090000726235 /* InfoPlist.strings */; };
 		4FFBE17F28F70E3800726235 /* checkAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16528F70E3800726235 /* checkAvailability.m */; };
 		4FFBE18028F70E3800726235 /* NSObject+propertiesDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */; };
-		4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */; };
+		4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m */; };
 		4FFBE18228F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */; };
 		4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE16F28F70E3800726235 /* HSAPIService.m */; };
 		4FFBE18428F70E3800726235 /* HSDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBE17428F70E3800726235 /* HSDeck.m */; };
@@ -87,6 +87,7 @@
 		4F0DA5C228FC6D5C00DEE9E2 /* SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinnerView.h; sourceTree = "<group>"; };
 		4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SpinnerView.h"; sourceTree = "<group>"; };
 		4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SpinnerView.m"; sourceTree = "<group>"; };
+		4F0EF1E528FEE90C00D9F330 /* NSError+Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Message.h"; sourceTree = "<group>"; };
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,8 +107,8 @@
 		4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCache.xcdatamodel; sourceTree = "<group>"; };
 		4F8FEE0528FD57BA00CFC486 /* DataCacheService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCacheService.h; sourceTree = "<group>"; };
 		4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCacheService.m; sourceTree = "<group>"; };
-		4F8FEE0828FD5FC800CFC486 /* UIImageView+loadAsyncImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+loadAsyncImage.h"; sourceTree = "<group>"; };
-		4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+loadAsyncImage.m"; sourceTree = "<group>"; };
+		4F8FEE0828FD5FC800CFC486 /* UIImageView+LoadAsyncImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadAsyncImage.h"; sourceTree = "<group>"; };
+		4F8FEE0928FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LoadAsyncImage.m"; sourceTree = "<group>"; };
 		4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeckService.h; sourceTree = "<group>"; };
 		4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeckService.m; sourceTree = "<group>"; };
 		4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferenceService.h; sourceTree = "<group>"; };
@@ -143,10 +144,10 @@
 		4FFBE16428F70E3800726235 /* nullSafetyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nullSafetyHandler.m; sourceTree = "<group>"; };
 		4FFBE16528F70E3800726235 /* checkAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkAvailability.m; sourceTree = "<group>"; };
 		4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+propertiesDictionary.m"; sourceTree = "<group>"; };
-		4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewDiffableDataSource+applySnapshotAndWait.m"; sourceTree = "<group>"; };
+		4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m"; sourceTree = "<group>"; };
 		4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDiffableDataSourceSnapshot+Sort.m"; sourceTree = "<group>"; };
 		4FFBE16A28F70E3800726235 /* NSObject+propertiesDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+propertiesDictionary.h"; sourceTree = "<group>"; };
-		4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"; sourceTree = "<group>"; };
+		4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"; sourceTree = "<group>"; };
 		4FFBE16C28F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDiffableDataSourceSnapshot+Sort.h"; sourceTree = "<group>"; };
 		4FFBE16F28F70E3800726235 /* HSAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAPIService.m; sourceTree = "<group>"; };
 		4FFBE17028F70E3800726235 /* HSAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAPIService.h; sourceTree = "<group>"; };
@@ -505,16 +506,17 @@
 			children = (
 				4FFBE16A28F70E3800726235 /* NSObject+propertiesDictionary.h */,
 				4FFBE16728F70E3800726235 /* NSObject+propertiesDictionary.m */,
-				4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.h */,
-				4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m */,
+				4FFBE16B28F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h */,
+				4FFBE16828F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m */,
 				4FFBE16C28F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.h */,
 				4FFBE16928F70E3800726235 /* NSDiffableDataSourceSnapshot+Sort.m */,
 				4FFFFD5A28F80AD700401470 /* UIWindowScene+keyWindowAlt.h */,
 				4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */,
 				4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */,
 				4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */,
-				4F8FEE0828FD5FC800CFC486 /* UIImageView+loadAsyncImage.h */,
-				4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */,
+				4F8FEE0828FD5FC800CFC486 /* UIImageView+LoadAsyncImage.h */,
+				4F8FEE0928FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m */,
+				4F0EF1E528FEE90C00D9F330 /* NSError+Message.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -719,9 +721,9 @@
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
 				4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */,
 				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
-				4F8FEE0A28FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m in Sources */,
+				4F8FEE0A28FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m in Sources */,
 				4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */,
-				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
+				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+ApplySnapshotAndWait.m in Sources */,
 				4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */,
 				4FFBE1A028F712D000726235 /* compareNullableValues.m in Sources */,
 				4F0DA5C328FC6D5C00DEE9E2 /* SpinnerView.m in Sources */,

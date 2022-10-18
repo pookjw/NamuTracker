@@ -7,7 +7,7 @@
 
 #import "HSAPIPreferencesViewModel.h"
 #import "HSAPIPreferenceService.h"
-#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
+#import "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"
 #import "checkAvailability.h"
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "compareNullableValues.h"
@@ -154,8 +154,8 @@ typedef NSDiffableDataSourceSnapshot<HSAPIPreferencesSectionModel *, HSAPIPrefer
         [self.dataSourceQueue addOperationWithBlock:^{
             HSAPIPreferencesDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
             
-            HSAPIPreferencesSectionModel * _Nullable __block hsAPIRegionHostsSectionModel = nil;
-            HSAPIPreferencesSectionModel * _Nullable __block hsAPILocalesSectionModel = nil;
+            __block HSAPIPreferencesSectionModel * _Nullable hsAPIRegionHostsSectionModel = nil;
+            __block HSAPIPreferencesSectionModel * _Nullable hsAPILocalesSectionModel = nil;
             
             [snapshot.sectionIdentifiers enumerateObjectsUsingBlock:^(HSAPIPreferencesSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 switch (obj.type) {

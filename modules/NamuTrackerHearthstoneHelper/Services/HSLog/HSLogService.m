@@ -169,13 +169,13 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
         [newLogStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (![obj containsString:@"ZoneChangeList.ProcessChanges() - processing"]) return;
 
-            NSString * _Nullable __block type = nil;
-            NSString * _Nullable __block zone = nil;
-            NSString * _Nullable __block dstZoneTag = nil;
-            NSString * _Nullable __block cardId = nil;
+            __block NSString * _Nullable type = nil;
+            __block NSString * _Nullable zone = nil;
+            __block NSString * _Nullable dstZoneTag = nil;
+            __block NSString * _Nullable cardId = nil;
 
-            NSString * _Nullable __block entityValue = nil;
-            NSString * _Nullable __block metaType = nil;
+            __block NSString * _Nullable entityValue = nil;
+            __block NSString * _Nullable metaType = nil;
 
             NSArray<NSString *> *separatedStrings = [obj componentsSeparatedByString:@" "];
             [separatedStrings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -260,7 +260,7 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
 
             if (!isValid) return;
 
-            AlternativeHSCard * _Nullable __block alternativeHSCard = nil;
+            __block  AlternativeHSCard * _Nullable alternativeHSCard = nil;
 
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             [self.cardService alternativeHSCardWithCardId:cardId completion:^(AlternativeHSCard * _Nullable result, NSError * _Nullable error) {

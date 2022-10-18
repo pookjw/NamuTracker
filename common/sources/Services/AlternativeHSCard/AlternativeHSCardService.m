@@ -55,7 +55,7 @@ typedef NSString * RapidAPIHearthstoneAPI NS_STRING_ENUM;
 }
 
 - (CancellableObject *)reloadAlternativeHSCardsWithCompletion:(AlternativeHSCardServiceReloadAlternativeHSCardsCompletion)completion {
-    CancellableObject * _Nullable __block rapidAPICardsCancellable = nil;
+    __block CancellableObject * _Nullable rapidAPICardsCancellable = nil;
     
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [rapidAPICardsCancellable cancel];

@@ -27,7 +27,7 @@
 }
 
 - (CancellableObject *)hsCardWithCardId:(NSString *)cardId completion:(CardServiceHSCardCompletion)completion {
-    CancellableObject * _Nullable __block hsCardCancellable = nil;
+    __block CancellableObject * _Nullable hsCardCancellable = nil;
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [hsCardCancellable cancel];
     }];
@@ -55,7 +55,7 @@
 }
 
 - (CancellableObject *)hsCardsFromSelectedDeckWithCompletion:(CardServiceHSCardsCompletion)completion {
-    CancellableObject * _Nullable __block hsDeckCancellable;
+    __block CancellableObject * _Nullable hsDeckCancellable;
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [hsDeckCancellable cancel];
     }];

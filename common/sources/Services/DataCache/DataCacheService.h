@@ -14,6 +14,7 @@ static NSNotificationName const NSNotificationNameHSAPIPreferenceServiceDidSave 
 typedef void (^DataCacheServiceFetchDataCachesWithIdentityCompletion)(NSArray<DataCache *> * _Nullable dataCaches, NSError * _Nullable error);
 typedef void (^DataCacheServiceCreateDataCacheCompletion)(DataCache * _Nullable dataCache, NSError * _Nullable error);
 typedef void (^DataCacheServiceDeleteAllDataCachesCompletion)(NSError * _Nullable error);
+typedef void (^DataCacheServiceSaveChangesCompletion)(NSError * _Nullable error);
 
 @interface DataCacheService : NSObject
 @property (class, readonly, strong, nonatomic) DataCacheService *sharedInstance;
@@ -22,7 +23,7 @@ typedef void (^DataCacheServiceDeleteAllDataCachesCompletion)(NSError * _Nullabl
 - (void)fetchDataCachesWithIdentity:(NSString *)identity completion:(DataCacheServiceFetchDataCachesWithIdentityCompletion)completion;
 - (void)createDataCacheWithCompletion:(DataCacheServiceCreateDataCacheCompletion)completion;
 - (void)deleteAllDataCachesWithCompletion:(DataCacheServiceDeleteAllDataCachesCompletion)completion;
-- (void)saveChanges;
+- (void)saveChangesWithCompletion:(DataCacheServiceSaveChangesCompletion)completion;
 @end
 
 NS_ASSUME_NONNULL_END

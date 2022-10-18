@@ -1,6 +1,6 @@
-#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
+#import "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"
 
-@implementation UICollectionViewDiffableDataSource (applySnapshotAndWait)
+@implementation UICollectionViewDiffableDataSource (ApplySnapshotAndWait)
 
 - (void)applySnapshotAndWait:(NSDiffableDataSourceSnapshot *)snapshot animatingDifferences:(BOOL)animatingDifferences completion:(void (^ _Nullable)(void))completion {
     if (NSThread.isMainThread) {

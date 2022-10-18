@@ -47,7 +47,7 @@
         return self->_trackingWindow;
     }
 
-    UIWindowScene * _Nullable __block windowScene = nil;
+    __block UIWindowScene * _Nullable windowScene = nil;
 
     [UIApplication.sharedApplication.connectedScenes enumerateObjectsUsingBlock:^(UIScene * _Nonnull obj, BOOL * _Nonnull stop) {
         if (![obj isKindOfClass:[UIWindowScene class]]) return;

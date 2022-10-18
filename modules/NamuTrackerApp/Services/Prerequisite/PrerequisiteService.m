@@ -54,7 +54,7 @@
     LSApplicationWorkspace * defaultWorkspace = [NSClassFromString(@"LSApplicationWorkspace") defaultWorkspace];
     NSArray<LSApplicationProxy *> *allApplications = [defaultWorkspace allApplications];
     
-    BOOL __block isHearthstoneInstalled = NO;
+    __block BOOL isHearthstoneInstalled = NO;
     
     [allApplications enumerateObjectsUsingBlock:^(LSApplicationProxy * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *bundleIdentifier = [obj un_applicationBundleIdentifier];

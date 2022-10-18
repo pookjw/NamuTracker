@@ -11,7 +11,7 @@
 #import "identifiers.h"
 #import "CancellableBag.h"
 #import "LocalizableService.h"
-#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
+#import "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"
 
 @interface DecksViewModel () <NSFetchedResultsControllerDelegate>
 @property (strong) DecksDataSource *dataSource;
@@ -52,8 +52,8 @@
     [self.backgroundQueue addOperationWithBlock:^{
         NSString *text = UIPasteboard.generalPasteboard.string;
         
-        NSString * _Nullable __block name = nil;
-        NSString * _Nullable __block deckCode = nil;
+        __block NSString * _Nullable name = nil;
+        __block NSString * _Nullable deckCode = nil;
         
         [[text componentsSeparatedByString:@"\n"] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj hasPrefix:@"### "]) {

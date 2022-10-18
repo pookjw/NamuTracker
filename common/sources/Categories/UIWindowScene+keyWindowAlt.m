@@ -17,7 +17,7 @@
         return self.keyWindow;
 #pragma clang diagnostic pop
     } else {
-        UIWindow * _Nullable __block result = nil;
+        __block UIWindow * _Nullable result = nil;
         
         [self.windows enumerateObjectsUsingBlock:^(UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.isKeyWindow) {

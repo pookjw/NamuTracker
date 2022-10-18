@@ -97,7 +97,7 @@
     }];
 }
 
-- (void)saveChanges {
+- (void)saveChangesWithCompletion:(DataCacheServiceSaveChangesCompletion)completion {
     [self.contextQueue addOperationWithBlock:^{
         if (!self.context.hasChanges) return;
         [self.context performBlockAndWait:^{
@@ -105,7 +105,10 @@
             [self.context save:&error];
             if (error) {
                 NSLog(@"%@", error);
+                completion(error);
+                return;
             }
+            completion(nil);
         }];
     }];
 }

@@ -32,8 +32,8 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 }
 
 - (CancellableObject *)hsCardWithIdOrSlug:(NSString *)idOrSlug completion:(HSAPIServiceHSCardCompletion)completion {
-    CancellableObject * _Nullable __block accessTokenCancellable = nil;
-    CancellableObject * _Nullable __block hsCardCancellable = nil;
+    __block CancellableObject * _Nullable accessTokenCancellable = nil;
+    __block CancellableObject * _Nullable hsCardCancellable = nil;
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [accessTokenCancellable cancel];
         [hsCardCancellable cancel];
@@ -93,8 +93,8 @@ static BlizzardAPI const BlizzardAPICodeKey = @"code";
 }
 
 - (CancellableObject *)hsDeckFromDeckCode:(NSString *)deckCode completion:(HSAPIServiceHSDeckCompletion)completion {
-    CancellableObject * _Nullable __block accessTokenCancellable = nil;
-    CancellableObject * _Nullable __block hsDeckCancellable = nil;
+    __block CancellableObject * _Nullable accessTokenCancellable = nil;
+    __block CancellableObject * _Nullable hsDeckCancellable = nil;
     CancellableObject *cancellable = [[CancellableObject alloc] initWithCancellationHandler:^{
         [accessTokenCancellable cancel];
         [hsDeckCancellable cancel];

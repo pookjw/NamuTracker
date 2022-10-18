@@ -4,7 +4,7 @@
 #import "AlternativeHSCard.h"
 #import "checkAvailability.h"
 #import "compareNullableValues.h"
-#import "UICollectionViewDiffableDataSource+applySnapshotAndWait.h"
+#import "UICollectionViewDiffableDataSource+ApplySnapshotAndWait.h"
 #import "NSDiffableDataSourceSnapshot+Sort.h"
 #import "CancellableBag.h"
 
@@ -113,8 +113,8 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
     [self.dataSourceQueue addOperationWithBlock:^{
         [self.cancellableBag removeAllCancellables];
 
-        NSArray<HSCard *> * _Nullable __block hsCards = nil;
-        NSError * _Nullable __block error = nil;
+        __block NSArray<HSCard *> * _Nullable hsCards = nil;
+        __block NSError * _Nullable error = nil;
 
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         CancellableObject *cancellable = [self.cardService hsCardsFromSelectedDeckWithCompletion:^(NSArray<HSCard *> * _Nullable _hsCards, NSError * _Nullable _error) {
@@ -139,7 +139,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
 
         NSMutableSet<TrackingListItemModel *> *cardItemModels = [NSMutableSet<TrackingListItemModel *> new];
         [hsCards enumerateObjectsUsingBlock:^(HSCard * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop1) {
-            TrackingListItemModel * _Nullable __block oldCardItemModel = nil;
+            __block TrackingListItemModel * _Nullable oldCardItemModel = nil;
 
             [cardItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, BOOL * _Nonnull stop2) {
                 if ([obj1 isEqual:obj2.hsCard]) {
@@ -196,7 +196,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
     [self.dataSourceQueue addOperationWithBlock:^{
         TrackingListDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 
-        TrackingListSectionModel * _Nullable __block cardsSectionModel = nil;
+        __block TrackingListSectionModel * _Nullable cardsSectionModel = nil;
         [snapshot.sectionIdentifiers enumerateObjectsUsingBlock:^(TrackingListSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.type == TrackingListSectionModelTypeCards) {
                 cardsSectionModel = obj;
@@ -218,7 +218,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
         NSMutableSet<TrackingListItemModel *> *unknownItemModels = [NSMutableSet<TrackingListItemModel *> new];
 
         [addedAlternativeHSCards enumerateObjectsUsingBlock:^(AlternativeHSCard * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop1) {
-            BOOL __block foundExistingItem = NO;
+            __block BOOL foundExistingItem = NO;
 
             [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop2) {
                 BOOL isValid = NO;
@@ -254,7 +254,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
             }];
 
             if (!foundExistingItem) {
-                BOOL __block foundUnknownExistingItem = NO;
+                __block BOOL foundUnknownExistingItem = NO;
 
                 [unknownItemModels enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj2, BOOL * _Nonnull stop2) {
                     if ([obj1 isEqual:obj2.alternativeHSCard]) {
@@ -330,7 +330,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
 
                     TrackingListDataSourceSnapshot *snapshot = [self.dataSource.snapshot copy];
 
-                    TrackingListSectionModel * _Nullable __block cardsSectionModel = nil;
+                    __block TrackingListSectionModel * _Nullable cardsSectionModel = nil;
                     [snapshot.sectionIdentifiers enumerateObjectsUsingBlock:^(TrackingListSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (obj.type == TrackingListSectionModelTypeCards) {
                             cardsSectionModel = obj;
@@ -342,7 +342,7 @@ typedef NSDiffableDataSourceSnapshot<TrackingListSectionModel *, TrackingListIte
 
                     //
 
-                    TrackingListItemModel * _Nullable __block oldItemModel = nil;
+                    __block TrackingListItemModel * _Nullable oldItemModel = nil;
                     [snapshot.itemIdentifiers enumerateObjectsUsingBlock:^(TrackingListItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (obj.type != TrackingListItemModelTypeAlternativeHSCard) return;
                         if ([obj.alternativeHSCard.dbfId isEqualToNumber:hsCard.dbfId]) {

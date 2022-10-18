@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 #define ANIMATION_DURATION 0.2f
 
-static int const _UIViewCntrollerSpinnerAssociatedKey = 0;
+static int const UIViewController_SpinnerView_containerView_key = 0;
 
 @interface UIViewController (SpinnerView)
 @property (nonatomic) UIView * _Nullable spinnerView_containerView;
@@ -90,11 +90,11 @@ static int const _UIViewCntrollerSpinnerAssociatedKey = 0;
 }
 
 - (UIView *)spinnerView_containerView {
-    return objc_getAssociatedObject(self, &_UIViewCntrollerSpinnerAssociatedKey);
+    return objc_getAssociatedObject(self, &UIViewController_SpinnerView_containerView_key);
 }
 
 - (void)setSpinnerView_containerView:(UIVisualEffectView *)spinnerView_visualEffectView {
-    objc_setAssociatedObject(self, &_UIViewCntrollerSpinnerAssociatedKey, spinnerView_visualEffectView, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &UIViewController_SpinnerView_containerView_key, spinnerView_visualEffectView, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end
