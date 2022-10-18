@@ -30,6 +30,7 @@
 		4F8FEDFF28FD569500CFC486 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEDFE28FD569500CFC486 /* DataCache.m */; };
 		4F8FEE0228FD569E00CFC486 /* DataCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */; };
 		4F8FEE0728FD57BA00CFC486 /* DataCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */; };
+		4F8FEE0A28FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */; };
 		4F9D3E6628FA490B004E3FB1 /* LocalDeckService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */; };
 		4F9D3E7428FAEF23004E3FB1 /* HSAPIPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */; };
 		4F9D3E7728FAF0A9004E3FB1 /* HSAPIPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */; };
@@ -105,6 +106,8 @@
 		4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCache.xcdatamodel; sourceTree = "<group>"; };
 		4F8FEE0528FD57BA00CFC486 /* DataCacheService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCacheService.h; sourceTree = "<group>"; };
 		4F8FEE0628FD57BA00CFC486 /* DataCacheService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCacheService.m; sourceTree = "<group>"; };
+		4F8FEE0828FD5FC800CFC486 /* UIImageView+loadAsyncImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+loadAsyncImage.h"; sourceTree = "<group>"; };
+		4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+loadAsyncImage.m"; sourceTree = "<group>"; };
 		4F9D3E6428FA490B004E3FB1 /* LocalDeckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeckService.h; sourceTree = "<group>"; };
 		4F9D3E6528FA490B004E3FB1 /* LocalDeckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeckService.m; sourceTree = "<group>"; };
 		4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreferenceService.h; sourceTree = "<group>"; };
@@ -510,6 +513,8 @@
 				4FFFFD5B28F80AE100401470 /* UIWindowScene+keyWindowAlt.m */,
 				4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */,
 				4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */,
+				4F8FEE0828FD5FC800CFC486 /* UIImageView+loadAsyncImage.h */,
+				4F8FEE0928FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				4F30285E28DB0A0800702FDD /* main.m in Sources */,
 				4F0DA59528FAF55B00DEE9E2 /* HSAPIRegionHost.m in Sources */,
 				4FFBE18328F70E3800726235 /* HSAPIService.m in Sources */,
+				4F8FEE0A28FD5FCE00CFC486 /* UIImageView+loadAsyncImage.m in Sources */,
 				4FFBE1A528F8405900726235 /* SettingsViewController.m in Sources */,
 				4FFBE18128F70E3800726235 /* UICollectionViewDiffableDataSource+applySnapshotAndWait.m in Sources */,
 				4FFBE1AF28F84FD500726235 /* SettingsSectionModel.m in Sources */,
