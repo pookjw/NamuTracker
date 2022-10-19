@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^AlternativeHSCardServiceReloadAlternativeHSCardsCompletion)(NSError * _Nullable error);
 typedef void (^AlternativeHSCardServiceFetchAlternativeHSCardFromCardIdCompletion)(AlternativeHSCard * _Nullable alternativeHSCard, NSError * _Nullable error);
+typedef void (^AlternativeHSCardServiceDeleteAllDataCachesCompletion)(NSError * _Nullable error);
 
 @interface AlternativeHSCardService : NSObject
 @property (class, readonly, strong, nonatomic) AlternativeHSCardService *sharedInstance;
@@ -20,6 +21,7 @@ typedef void (^AlternativeHSCardServiceFetchAlternativeHSCardFromCardIdCompletio
 - (instancetype)init NS_UNAVAILABLE;
 - (CancellableObject *)reloadAlternativeHSCardsWithCompletion:(AlternativeHSCardServiceReloadAlternativeHSCardsCompletion)completion;
 - (void)fetchAlternativeHSCardFromCardId:(NSString *)cardId completion:(AlternativeHSCardServiceFetchAlternativeHSCardFromCardIdCompletion)completion;
+- (void)deleteAllDataCachesWithCompletion:(AlternativeHSCardServiceDeleteAllDataCachesCompletion)completion;
 @end
 
 NS_ASSUME_NONNULL_END

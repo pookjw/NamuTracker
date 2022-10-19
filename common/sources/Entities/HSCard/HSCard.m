@@ -23,10 +23,24 @@
         self->_manaCost = [nullSafetyHandler(dictionary[@"manaCost"]) copy];
         self->_name = [nullSafetyHandler(dictionary[@"name"]) copy];
         self->_text = [nullSafetyHandler(dictionary[@"text"]) copy];
-        self->_image = [nullSafetyHandler(dictionary[@"image"]) copy];
-        self->_imageGold = [nullSafetyHandler(dictionary[@"imageGold"]) copy];
+
+        NSString * _Nullable image = nullSafetyHandler(dictionary[@"image"]);
+        if ([image isKindOfClass:[NSString class]]) {
+            self->_image = [[NSURL URLWithString:image] copy];
+        }
+        
+        NSString *_Nullable imageGold = nullSafetyHandler(dictionary[@"imageGold"]);
+        if ([imageGold isKindOfClass:[NSString class]]) {
+            self->_imageGold = [[NSURL URLWithString:imageGold] copy];
+        }
+
         self->_flavorText = [nullSafetyHandler(dictionary[@"flavorText"]) copy];
-        self->_cropImage = [nullSafetyHandler(dictionary[@"cropImage"]) copy];
+
+        NSString *_Nullable cropImage = nullSafetyHandler(dictionary[@"cropImage"]);
+        if ([cropImage isKindOfClass:[NSString class]]) {
+            self->_cropImage = [[NSURL URLWithString:cropImage] copy];
+        }
+
         self->_childCardIds = [nullSafetyHandler(dictionary[@"childIds"]) copy];
         self->_parentCardId = [nullSafetyHandler(dictionary[@"parentId"]) copy];
     }

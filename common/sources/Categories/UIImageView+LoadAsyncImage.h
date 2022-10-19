@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^UIImageViewLoadAsyncImageCompletion)(UIImage * _Nullable, NSError * _Nullable);
+typedef void (^UIImageViewLoadAsyncImageCompletion)(UIImage * _Nullable image, NSError * _Nullable error);
 
 @interface UIImageView (LoadAsyncImage)
 - (void)loadAsyncImageWithURL:(NSURL * _Nullable)url indicator:(BOOL)indicator completion:(UIImageViewLoadAsyncImageCompletion _Nullable)completion;

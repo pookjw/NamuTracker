@@ -27,6 +27,10 @@
     [self configureViewModel];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 - (void)setAttributes {
     self.title = [LocalizableService localizableForKey:LocalizableKeyDecks];
     self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;

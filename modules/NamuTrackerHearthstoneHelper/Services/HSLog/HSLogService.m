@@ -275,6 +275,11 @@ static HSLogServiceLogType const HSLogServiceLogTypeLoadingScreen = @"LoadingScr
             }];
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
+            if (alternativeHSCard == nil) {
+                NSLog(@"Cannot find card data! %@", cardId);
+                return;
+            }
+
             if (didRemove) {
                 [removedAlternativeHSCards addObject:alternativeHSCard];
             } else {

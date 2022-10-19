@@ -1,6 +1,7 @@
 #import "TrackingListViewController.h"
 #import "checkAvailability.h"
 #import "TrackingListViewModel.h"
+#import "TrackingListHSCardContentView.h"
 
 @interface TrackingListViewController ()
 @property (strong) UIVisualEffectView *blurView;
@@ -79,20 +80,40 @@
 }
 
 - (TrackingListDataSource *)createDataSource {
-    UICollectionViewCellRegistration *cellRegistration = [self createCellRegistration];
+    UICollectionViewCellRegistration *defaultCellRegistration = [self createDefaultCellRegistration];
+    UICollectionViewCellRegistration *createHSCardContentCellRegistration = [self createHSCardContentCellRegistration];
 
     TrackingListDataSource *dataSource = [[TrackingListDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell * _Nullable(UICollectionView * _Nonnull collectionView, NSIndexPath * _Nonnull indexPath, id _Nonnull itemIdentifier) {
-        UICollectionViewCell *cell = [collectionView dequeueConfiguredReusableCellWithRegistration:cellRegistration forIndexPath:indexPath item:itemIdentifier];
+        TrackingListItemModel *itemModel = (TrackingListItemModel *)itemIdentifier;
+        if (![itemModel isKindOfClass:[TrackingListItemModel class]]) return nil;
+
+         UICollectionViewCell * _Nullable cell;
+
+        switch (itemModel.type) {
+            case TrackingListItemModelTypeHSCard: {
+                cell = [collectionView dequeueConfiguredReusableCellWithRegistration:createHSCardContentCellRegistration forIndexPath:indexPath item:itemIdentifier];
+                break;
+            }
+            case TrackingListItemModelTypeAlternativeHSCard: {
+                cell = [collectionView dequeueConfiguredReusableCellWithRegistration:defaultCellRegistration forIndexPath:indexPath item:itemIdentifier];
+                break;
+            }
+            default: {
+                cell = nil;
+                break;
+            }
+        }
+        
         return cell;
     }];
 
     return dataSource;
 }
 
-- (UICollectionViewCellRegistration *)createCellRegistration {
-    UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
+- (UICollectionViewCellRegistration *)createDefaultCellRegistration {
+    UICollectionViewCellRegistration *defaultCellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
         TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
-        if (![item isKindOfClass:[TrackingListItemModel class]]) return;
+        if (![itemModel isKindOfClass:[TrackingListItemModel class]]) return;
 
         UIListContentConfiguration *contentConfiguration = [UIListContentConfiguration cellConfiguration];
         if (itemModel.hsCard) {
@@ -109,7 +130,23 @@
         cell.backgroundConfiguration = backgroundConfiguration;
     }];
 
-    return cellRegistration;
+    return defaultCellRegistration;
+}
+
+- (UICollectionViewCellRegistration *)createHSCardContentCellRegistration {
+    UICollectionViewCellRegistration *hsCardContentCellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id  _Nonnull item) {
+        TrackingListItemModel *itemModel = (TrackingListItemModel *)item;
+        if (![itemModel isKindOfClass:[TrackingListItemModel class]]) return;
+
+        TrackingListHSCardContentConfiguration *contentConfiguration = [[TrackingListHSCardContentConfiguration alloc] initWithHSCard:itemModel.hsCard hsCardCount:itemModel.hsCardCount];
+        cell.contentConfiguration = contentConfiguration;
+
+        UIBackgroundConfiguration *backgroundConfiguration = [UIBackgroundConfiguration listPlainCellConfiguration];
+        backgroundConfiguration.backgroundColor = UIColor.clearColor;
+        cell.backgroundConfiguration = backgroundConfiguration;
+    }];
+
+    return hsCardContentCellRegistration;
 }
 
 @end

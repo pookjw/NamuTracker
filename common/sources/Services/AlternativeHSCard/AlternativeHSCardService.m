@@ -61,39 +61,46 @@ typedef NSString * RapidAPIHearthstoneAPI NS_STRING_ENUM;
         [rapidAPICardsCancellable cancel];
     }];
     
-    rapidAPICardsCancellable = [self rapidAPICardsDataWithCompletion:^(NSData * _Nullable data, NSError * _Nullable error) {
+    [self deleteAllDataCachesWithCompletion:^(NSError * _Nullable error) {
         if (error) {
-            NSLog(@"%@", error);
             completion(error);
             return;
         }
         
-        [self.backgroundQueue addOperationWithBlock:^{
-            NSError * _Nullable serializationError = nil;
-            NSDictionary<NSString *, NSArray<NSDictionary<NSString *, id> *> *> *cardsDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
-            if (serializationError) {
-                NSLog(@"%@", serializationError);
-                completion(serializationError);
+        rapidAPICardsCancellable = [self rapidAPICardsDataWithCompletion:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@", error);
+                completion(error);
                 return;
             }
             
-            [self.contextQueue addOperationWithBlock:^{
-                [cardsDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSDictionary<NSString *,id> *> * _Nonnull obj1, BOOL * _Nonnull stop) {
-                    [obj1 enumerateObjectsUsingBlock:^(NSDictionary<NSString *,id> * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop) {
-                        AlternativeHSCard *alternativeHSCard = [[AlternativeHSCard alloc] initWithContext:self.context];
-                        [alternativeHSCard synchronizeWithDictionary:obj2];
-                    }];
-                }];
+            [self.backgroundQueue addOperationWithBlock:^{
+                NSError * _Nullable serializationError = nil;
+                NSDictionary<NSString *, NSArray<NSDictionary<NSString *, id> *> *> *cardsDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
+                if (serializationError) {
+                    NSLog(@"%@", serializationError);
+                    completion(serializationError);
+                    return;
+                }
                 
-                [self.context performBlockAndWait:^{
-                    NSError * _Nullable error = nil;
-                    [self.context save:&error];
-                    if (error) {
-                        NSLog(@"%@", error);
-                        completion(error);
-                        return;
-                    }
-                    completion(nil);
+                [self.contextQueue addOperationWithBlock:^{
+                    [cardsDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSDictionary<NSString *,id> *> * _Nonnull obj1, BOOL * _Nonnull stop) {
+                        [obj1 enumerateObjectsUsingBlock:^(NSDictionary<NSString *,id> * _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop) {
+                            AlternativeHSCard *alternativeHSCard = [[AlternativeHSCard alloc] initWithContext:self.context];
+                            [alternativeHSCard synchronizeWithDictionary:obj2];
+                        }];
+                    }];
+                    
+                    [self.context performBlockAndWait:^{
+                        NSError * _Nullable error = nil;
+                        [self.context save:&error];
+                        if (error) {
+                            NSLog(@"%@", error);
+                            completion(error);
+                            return;
+                        }
+                        completion(nil);
+                    }];
                 }];
             }];
         }];
@@ -120,6 +127,23 @@ typedef NSString * RapidAPIHearthstoneAPI NS_STRING_ENUM;
             
             completion(results.lastObject, nil);
         }];
+    }];
+}
+
+- (void)deleteAllDataCachesWithCompletion:(AlternativeHSCardServiceDeleteAllDataCachesCompletion)completion {
+    [self.contextQueue addOperationWithBlock:^{
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"AlternativeHSCard"];
+        NSBatchDeleteRequest *batchDelete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+        batchDelete.affectedStores = self.container.persistentStoreCoordinator.persistentStores;
+        
+        NSError * _Nullable error = nil;
+        [self.container.persistentStoreCoordinator executeRequest:batchDelete withContext:self.context error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+            completion(error);
+            return;
+        }
+        completion(nil);
     }];
 }
 
