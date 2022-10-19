@@ -12,6 +12,8 @@ Rootless is not supported yet. Not tested with iOS 15 or above.
 
 ## Build
 
-1. Setup [theos](https://github.com/theos/theos) with iOS 16.0+ SDK.
+1. Create required API keys. See [common/headers/NamuTracker/keys.h](https://github.com/pookjw/NamuTracker/blob/main/common/headers/NamuTracker/keys.h).
 
-2. `make package`
+2. Setup [theos](https://github.com/theos/theos) with iOS 16.0+ SDK.
+
+3. `make package`
