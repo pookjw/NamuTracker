@@ -3,6 +3,7 @@
 typedef NSString * NamuTrackerIdentifier NS_STRING_ENUM;
 static NamuTrackerIdentifier const NamuTrackerIdentifierAppSystemland = @"com.pookjw.namutracker.app.systemland";
 static NamuTrackerIdentifier const NamuTrackerIdentifierAppUserland = @"com.pookjw.namutracker.app.userland";
+static NamuTrackerIdentifier const NamuTrackerIdentifierMessagingCenter = @"com.pookjw.namutracker.messagingcetner";
 
 static NSString * const NamuTrackerApplicationSupportURLString = @"/Library/Application Support/NamuTracker";
 static NSString * const NamuTrackerSharedDataLibraryURLString = @"/var/mobile/Library/NamuTracker";

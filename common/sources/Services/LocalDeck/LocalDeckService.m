@@ -7,6 +7,8 @@
 
 #import "LocalDeckService.h"
 #import "identifiers.h"
+#import "MessagingService.h"
+#import <UIKit/UIKit.h>
 
 #if defined(SYSLAND_APP) || defined(USERLAND_APP)
 #if SYSLAND_APP || USERLAND_APP
@@ -14,11 +16,14 @@
 #endif
 #endif
 
+static NSString *LocalDeckServiceMessagingServiceDidSaveName = @"LocalDeckServiceMessagingServiceDidSaveName";
+
 @interface LocalDeckService ()
 @property (strong) NSPersistentContainer *container;
 @property (strong) NSManagedObjectContext *context;
 @property (strong) NSOperationQueue *backgroundQueue;
 @property (readonly, nonatomic) NSFetchRequest *fetchRequest;
+@property (strong) MessagingService *messagingService;
 @end
 
 @implementation LocalDeckService
@@ -30,7 +35,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [LocalDeckService new];
     });
-
+    
     return sharedInstance;
 }
 
@@ -40,6 +45,7 @@
         [self configureContext];
         [self configureContextQueue];
         [self configureBackgroundQueue];
+        [self configureMessagingService];
         [self bind];
     }
     
@@ -104,13 +110,13 @@
         [self.context performBlockAndWait:^{
             NSError * _Nullable error = nil;
             NSArray<LocalDeck *> *results = [self.context executeFetchRequest:fetchRequest error:&error];
-
+            
             if (error) {
                 NSLog(@"%@", error);
                 completion(nil, error);
                 return;
             }
-
+            
             completion(results.lastObject, nil);
         }];
     }];
@@ -281,17 +287,52 @@
     self.backgroundQueue = backgroundQueue;
 }
 
+- (void)configureMessagingService {
+    MessagingService *messagingService = MessagingService.sharedInstance;
+    self.messagingService = messagingService;
+}
+
 - (void)bind {
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(receivedDidSaveNotification:)
                                                name:NSManagedObjectContextDidSaveNotification
                                              object:self.context];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(receivedWillEnterForegroundNotification:)
+                                               name:UISceneWillEnterForegroundNotification
+                                             object:nil];
+    
+    [self.messagingService registerForMessageName:LocalDeckServiceMessagingServiceDidSaveName
+                                           target:self
+                                         selector:@selector(receivedMessageName:userInfo:)
+                                       completion:^{
+        
+    }];
 }
 
 - (void)receivedDidSaveNotification:(NSNotification *)notification {
     [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameLocalDeckServiceDidSave
                                                       object:self
                                                     userInfo:nil];
+}
+
+- (void)receivedWillEnterForegroundNotification:(NSNotification *)notification {
+    [self.contextQueue addOperationWithBlock:^{
+        [self.context refreshAllObjects];
+        [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameLocalDeckServiceDidSave
+                                                          object:self
+                                                        userInfo:nil];
+    }];
+}
+
+- (void)receivedMessageName:(NSString *)messageName userInfo:(NSDictionary *)userInfo {
+    [self.contextQueue addOperationWithBlock:^{
+        [self.context refreshAllObjects];
+        [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameLocalDeckServiceDidSave
+                                                          object:self
+                                                        userInfo:nil];
+    }];
 }
 
 @end

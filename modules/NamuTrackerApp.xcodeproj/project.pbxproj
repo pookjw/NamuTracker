@@ -26,6 +26,7 @@
 		4F30285E28DB0A0800702FDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30285D28DB0A0800702FDD /* main.m */; };
 		4F4416DC28F94FD5009240BC /* LocalDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DB28F94FD5009240BC /* LocalDeck.m */; };
 		4F4416DF28F9537B009240BC /* LocalDeck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F4416DD28F9537B009240BC /* LocalDeck.xcdatamodeld */; };
+		4F50CFD829003BA8008934B1 /* MessagingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50CFD729003BA8008934B1 /* MessagingService.m */; };
 		4F8FEDFC28FD54CF00CFC486 /* HSAPIPreference.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */; };
 		4F8FEDFF28FD569500CFC486 /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEDFE28FD569500CFC486 /* DataCache.m */; };
 		4F8FEE0228FD569E00CFC486 /* DataCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FEE0028FD569E00CFC486 /* DataCache.xcdatamodeld */; };
@@ -101,6 +102,9 @@
 		4F4416DA28F94FD5009240BC /* LocalDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDeck.h; sourceTree = "<group>"; };
 		4F4416DB28F94FD5009240BC /* LocalDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDeck.m; sourceTree = "<group>"; };
 		4F4416DE28F9537B009240BC /* LocalDeck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDeck.xcdatamodel; sourceTree = "<group>"; };
+		4F50CFD629003BA8008934B1 /* MessagingService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagingService.h; sourceTree = "<group>"; };
+		4F50CFD729003BA8008934B1 /* MessagingService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagingService.m; sourceTree = "<group>"; };
+		4F50CFDA29003BFB008934B1 /* CPDistributedMessagingCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPDistributedMessagingCenter.h; sourceTree = "<group>"; };
 		4F8FEDFD28FD569500CFC486 /* DataCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
 		4F8FEDFE28FD569500CFC486 /* DataCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
 		4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCache.xcdatamodel; sourceTree = "<group>"; };
@@ -114,7 +118,6 @@
 		4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreferenceService.m; sourceTree = "<group>"; };
 		4F9D3E7528FAF0A9004E3FB1 /* HSAPIPreference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSAPIPreference.h; sourceTree = "<group>"; };
 		4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSAPIPreference.m; sourceTree = "<group>"; };
-		4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APIPreference.xcdatamodel; sourceTree = "<group>"; };
 		4FD4E49C28F67CB7006EBA86 /* LocalizableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableKey.h; sourceTree = "<group>"; };
 		4FD4E49D28F67CCA006EBA86 /* LocalizableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizableService.h; sourceTree = "<group>"; };
 		4FD4E49E28F67CCA006EBA86 /* LocalizableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizableService.m; sourceTree = "<group>"; };
@@ -285,6 +288,23 @@
 			path = LocalDeck;
 			sourceTree = "<group>";
 		};
+		4F50CFD529003B98008934B1 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				4F50CFD629003BA8008934B1 /* MessagingService.h */,
+				4F50CFD729003BA8008934B1 /* MessagingService.m */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		4F50CFD929003BF3008934B1 /* AppSupport */ = {
+			isa = PBXGroup;
+			children = (
+				4F50CFDA29003BFB008934B1 /* CPDistributedMessagingCenter.h */,
+			);
+			path = AppSupport;
+			sourceTree = "<group>";
+		};
 		4F8FEE0328FD56F400CFC486 /* DataCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,7 +338,7 @@
 			children = (
 				4F9D3E7528FAF0A9004E3FB1 /* HSAPIPreference.h */,
 				4F9D3E7628FAF0A9004E3FB1 /* HSAPIPreference.m */,
-				4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */,
+				4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */,
 				4F0DA59328FAF4E200DEE9E2 /* HSAPIRegionHost.h */,
 				4F0DA59428FAF55B00DEE9E2 /* HSAPIRegionHost.m */,
 				4F0DA59128FAF44100DEE9E2 /* HSAPILocale.h */,
@@ -332,7 +352,6 @@
 			children = (
 				4F9D3E7228FAEF23004E3FB1 /* HSAPIPreferenceService.h */,
 				4F9D3E7328FAEF23004E3FB1 /* HSAPIPreferenceService.m */,
-				4F0DA59628FB012300DEE9E2 /* HSAPIPreference.xcdatamodeld */,
 			);
 			path = HSAPIPreference;
 			sourceTree = "<group>";
@@ -412,6 +431,7 @@
 		4FFBE14C28F70E3700726235 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				4F50CFD929003BF3008934B1 /* AppSupport */,
 				4FFBE14D28F70E3700726235 /* NamuTracker */,
 				4FFBE15028F70E3700726235 /* FrontBoardServices */,
 				4FFBE15328F70E3700726235 /* ControlCenterUIKit */,
@@ -522,6 +542,7 @@
 		4FFBE16D28F70E3800726235 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4F50CFD529003B98008934B1 /* Messaging */,
 				4F8FEE0428FD56FF00CFC486 /* DataCache */,
 				4F9D3E6328FA48FD004E3FB1 /* LocalDeck */,
 				4F9D3E7128FAEF09004E3FB1 /* HSAPIPreference */,
@@ -728,6 +749,7 @@
 				4F0DA5A728FC44B400DEE9E2 /* HSAPILocale.m in Sources */,
 				4F0DA59F28FB0A6B00DEE9E2 /* HSAPIPreferencesViewModel.m in Sources */,
 				4FFBE11328F7076C00726235 /* DecksViewModel.m in Sources */,
+				4F50CFD829003BA8008934B1 /* MessagingService.m in Sources */,
 				4FD4E49F28F67CCA006EBA86 /* LocalizableService.m in Sources */,
 				4FFBE1B228F84FE800726235 /* SettingsItemModel.m in Sources */,
 				4FFBE18628F70E3800726235 /* CancellableObject.m in Sources */,
@@ -993,8 +1015,7 @@
 				4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */,
 			);
 			currentVersion = 4F0DA59728FB012300DEE9E2 /* HSAPIPreference.xcdatamodel */;
-			name = HSAPIPreference.xcdatamodeld;
-			path = ../../Entities/HSAPIPreference/HSAPIPreference.xcdatamodeld;
+			path = HSAPIPreference.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
@@ -1025,16 +1046,6 @@
 			);
 			currentVersion = 4F8FEE0128FD569E00CFC486 /* DataCache.xcdatamodel */;
 			path = DataCache.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		4F9D3E7828FAF0AE004E3FB1 /* HSAPIPreference.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */,
-			);
-			currentVersion = 4F9D3E7928FAF0AE004E3FB1 /* APIPreference.xcdatamodel */;
-			path = HSAPIPreference.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

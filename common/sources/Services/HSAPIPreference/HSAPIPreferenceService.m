@@ -7,7 +7,9 @@
 
 #import "HSAPIPreferenceService.h"
 #import "HSAPIPreference.h"
+#import "MessagingService.h"
 #import "identifiers.h"
+#import <UIKit/UIKit.h>
 
 #if defined(SYSLAND_APP) || defined(USERLAND_APP)
 #if SYSLAND_APP || USERLAND_APP
@@ -15,12 +17,15 @@
 #endif
 #endif
 
+static NSString *HSAPIPreferenceServiceMessagingServiceDidSaveName = @"HSAPIPreferenceServiceMessagingServiceDidSaveName";
+
 @interface HSAPIPreferenceService ()
 @property (strong) NSPersistentContainer *container;
 @property (strong) NSManagedObjectContext *context;
 @property (strong) NSOperationQueue *contextQueue;
 @property (strong) NSOperationQueue *backgroundQueue;
 @property (readonly, nonatomic) NSFetchRequest *fetchRequest;
+@property (strong) MessagingService *messagingService;
 @property (readonly, nonatomic) HSAPIRegionHost defaultRegionHost;
 @property (readonly, nonatomic) HSAPILocale defaultLocale;
 @end
@@ -44,6 +49,7 @@
         [self configureContext];
         [self configureContextQueue];
         [self configureBackgroundQueue];
+        [self configureMessagingService];
         [self bind];
     }
     
@@ -216,17 +222,58 @@
     self.backgroundQueue = backgroundQueue;
 }
 
+- (void)configureMessagingService {
+    MessagingService *messagingService = MessagingService.sharedInstance;
+    self.messagingService = messagingService;
+}
+
 - (void)bind {
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(receivedDidSaveNotification:)
                                                name:NSManagedObjectContextDidSaveNotification
                                              object:self.context];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(receivedWillEnterForegroundNotification:)
+                                               name:UISceneWillEnterForegroundNotification
+                                             object:nil];
+    
+    [self.messagingService registerForMessageName:HSAPIPreferenceServiceMessagingServiceDidSaveName
+                                           target:self
+                                         selector:@selector(receivedMessageName:userInfo:)
+                                       completion:^{
+        
+    }];
 }
 
 - (void)receivedDidSaveNotification:(NSNotification *)notification {
+    [self.messagingService sendMessageAndReceiveReplyName:HSAPIPreferenceServiceMessagingServiceDidSaveName
+                                                 userInfo:nil
+                                               completion:^(id  _Nullable reply, NSError * _Nullable error) {
+        
+    }];
+    
     [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameHSAPIPreferenceServiceDidSave
                                                       object:self
                                                     userInfo:nil];
+}
+
+- (void)receivedWillEnterForegroundNotification:(NSNotification *)notification {
+    [self.contextQueue addOperationWithBlock:^{
+        [self.context refreshAllObjects];
+        [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameHSAPIPreferenceServiceDidSave
+                                                          object:self
+                                                        userInfo:nil];
+    }];
+}
+
+- (void)receivedMessageName:(NSString *)messageName userInfo:(NSDictionary *)userInfo {
+    [self.contextQueue addOperationWithBlock:^{
+        [self.context refreshAllObjects];
+        [NSNotificationCenter.defaultCenter postNotificationName:NSNotificationNameHSAPIPreferenceServiceDidSave
+                                                          object:self
+                                                        userInfo:nil];
+    }];
 }
 
 - (void)fetchHSAPIPreferenceServiceWithCompletion:(void (^)(HSAPIPreference * _Nullable hsAPIPreference, NSError * _Nullable error))completion createIfEmpty:(BOOL)createIfEmpty {
