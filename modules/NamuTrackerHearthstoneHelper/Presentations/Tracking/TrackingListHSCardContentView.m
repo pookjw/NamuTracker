@@ -231,8 +231,8 @@ static CGFloat const kTrackingListHSCardContentViewInset = 5.0f;
         [nameLabelContainerView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [nameLabelContainerView.trailingAnchor constraintEqualToAnchor:self.countContainerView.leadingAnchor],
         [nameLabel.topAnchor constraintEqualToAnchor:nameLabelContainerView.topAnchor constant:kTrackingListHSCardContentViewInset],
-        [nameLabel.leadingAnchor constraintEqualToAnchor:nameLabelContainerView.leadingAnchor constant:kTrackingListHSCardContentViewInset],
-        [nameLabel.trailingAnchor constraintEqualToAnchor:nameLabelContainerView.trailingAnchor constant:-kTrackingListHSCardContentViewInset],
+        [nameLabel.leadingAnchor constraintEqualToAnchor:nameLabelContainerView.leadingAnchor constant:(kTrackingListHSCardContentViewInset * 2.0f)],
+        [nameLabel.trailingAnchor constraintEqualToAnchor:nameLabelContainerView.trailingAnchor constant:(-kTrackingListHSCardContentViewInset * 2.0f)],
         [nameLabel.bottomAnchor constraintEqualToAnchor:nameLabelContainerView.bottomAnchor constant:-kTrackingListHSCardContentViewInset]
     ]];
     
