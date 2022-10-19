@@ -87,7 +87,6 @@
 		4F0DA5C228FC6D5C00DEE9E2 /* SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinnerView.h; sourceTree = "<group>"; };
 		4F0DA5C428FC6DDA00DEE9E2 /* UIViewController+SpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SpinnerView.h"; sourceTree = "<group>"; };
 		4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SpinnerView.m"; sourceTree = "<group>"; };
-		4F0EF1E528FEE90C00D9F330 /* NSError+Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Message.h"; sourceTree = "<group>"; };
 		4F30284828DB0A0800702FDD /* NamuTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NamuTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F30284B28DB0A0800702FDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F30284C28DB0A0800702FDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -516,7 +515,6 @@
 				4F0DA5C528FC6DDA00DEE9E2 /* UIViewController+SpinnerView.m */,
 				4F8FEE0828FD5FC800CFC486 /* UIImageView+LoadAsyncImage.h */,
 				4F8FEE0928FD5FCE00CFC486 /* UIImageView+LoadAsyncImage.m */,
-				4F0EF1E528FEE90C00D9F330 /* NSError+Message.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";

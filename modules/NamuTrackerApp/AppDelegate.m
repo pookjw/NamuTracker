@@ -6,7 +6,6 @@
 //
 
 #import "AppDelegate.h"
-#import <objc/message.h>
 
 @interface AppDelegate ()
 
